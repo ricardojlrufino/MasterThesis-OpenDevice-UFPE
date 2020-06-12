@@ -8,6 +8,8 @@ A tese foi escria no editor Lyx, que oferece uma interface vísual para o LateX,
 
 Ela se baseia no template: RiSE Latex Template - version 0.5 (ver arquivo: LATEX/main.tex)
 
+Use o script `./compile.sh` para gerar o **.tex** e converter para **.pdf**
+
 Espero que ajude !
 
 Se utilizar esse documento ou conteúdo contido nele, não esqueca de me referenciar e avisar. Obrigado.

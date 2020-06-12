@@ -1,0 +1,259 @@
+%% RiSE Latex Template - version 0.5
+%%
+%% RiSE's latex template for thesis and dissertations
+%% http://risetemplate.sourceforge.net
+%%
+%% (c) 2012 Yguaratã Cerqueira Cavalcanti (yguarata@gmail.com)
+%%          Vinicius Cardoso Garcia (vinicius.garcia@gmail.com)
+%%
+%% This document was initially based on UFPEThesis template, from Paulo Gustavo
+%% S. Fonseca.
+%%
+%% ACKNOWLEDGEMENTS
+%%
+%% We would like to thanks the RiSE's researchers community, the 
+%% students from Federal University of Pernambuco, and other users that have
+%% been contributing to this projects with comments and patches.
+%%
+%% GENERAL INSTRUCTIONS
+%%
+%% We strongly recommend you to compile your documents using pdflatex command.
+%% It is also recommend use the texlipse plugin for Eclipse to edit your documents.
+%%
+%% Options for \documentclass command:
+%%         * Idiom
+%%           pt   - Portguese (default)
+%%           en   - English
+%%
+%%         * Text type
+%%           bsc  - B.Sc. Thesis
+%%           msc  - M.Sc. Thesis (default)
+%%           qual - PHD qualification (not tested yet)
+%%           prop - PHD proposal (not tested yet)
+%%           phd  - PHD thesis
+%%
+%%         * Media
+%%           scr  - to eletronic version (PDF) / see the users guide
+%%
+%%         * Pagination
+%%           oneside - unique face press
+%%           twoside - two faces press
+%%
+%%		   * Line spacing
+%%           singlespacing  - the same as using \linespread{1}
+%%           onehalfspacing - the same as using \linespread{1.3}
+%%           doublespacing  - the same as using \linespread{1.6}
+%%
+%% Reference commands. Use the following commands to make references in your
+%% text:
+%%          \figref  -- for Figure reference
+%%          \tabref  -- for Table reference
+%%          \eqnref  -- for equation reference
+%%          \chapref -- for chapter reference
+%%          \secref  -- for section reference
+%%          \appref  -- for appendix reference
+%%          \axiref  -- for axiom reference
+%%          \conjref -- for conjecture reference
+%%          \defref  -- for definition reference
+%%          \lemref  -- for lemma reference
+%%          \theoref -- for theorem reference
+%%          \corref  -- for corollary reference
+%%          \propref -- for proprosition reference
+%%          \pgref   -- for page reference
+%%
+%%          Example: See \chapref{chap:introduction}. It will produce 
+%%                   'See Chapter 1', in case of English language.
+
+\documentclass[pt,oneside,onehalfspacing,msc]{risethesis}
+
+%\usepackage{natbib}
+\usepackage[fixlanguage]{babelbib}
+\usepackage{babel}
+\usepackage{supertabular}
+\usepackage{microtype}
+
+
+\usepackage{acronym}
+
+% Code formatting
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% customização dos capos das tabelas
+\usepackage[table]{xcolor}
+\definecolor{lgreen}{rgb}{0.8,1,0.6}
+\definecolor{lblue}{rgb}{0.8,0.9,0.9}
+\newcommand{\prth}{\cellcolor{lgreen}}
+\newcommand{\prtv}{\cellcolor{lblue}}
+
+
+\lstset{
+  %frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{mauve},
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{dkgreen},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\usepackage{float}
+\usepackage{nomencl}
+\providecommand{\printnomenclature}{\printglossary}
+\providecommand{\makenomenclature}{\makeglossary}
+\makenomenclature
+
+\newcommand{\noun}[1]{\textsc{#1}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\providecommand{\algorithmname}{Listagem}
+\floatname{algorithm}{\protect\algorithmname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /LyX specific LaTeX commands.
+
+%Modificando alguns termos
+\declarebtxcommands{portuguese}{%
+\def\btxphdthesis#1{\protect\foreignlanguage{portuguese}{Tese de Doutorado}}%
+}
+\declarebtxcommands{portuguese}{%
+\def\btxmastthesis#1{\protect\foreignlanguage{portuguese}{Dissertação de Mestrado}}%
+}
+
+%Apagando a primeira página porque a modificação acima cria um output que sempre cria uma primeira página onde está impresso [brazil]
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+%% Change the following pdf author attribute name to your name.
+\usepackage[linkcolor=blue,citecolor=blue,urlcolor=blue,colorlinks,pdfpagelabels,pdftitle={OpenDevice: Uma Plataforma Aberta e Framework para Internet das Coisas (IoT)},pdfauthor={Ricardo Jorge Luz Rufino}]{hyperref}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim, graphicx, colortbl, textcomp, amssymb, subfigure}
+%\usepackage[numbers, square, comma, sort&compress]{natbib}
+\usepackage{arydshln}
+\usepackage{enumerate}
+
+\address{RECIFE}
+
+\universitypt{Universidade Federal de Pernambuco}
+%\universityen{Federal University of Pernambuco}
+\universityen{Universidade Federal de Pernambuco}
+
+\departmentpt{Centro de Informática}
+%\departmenten{Center for Informatics}
+\departmenten{Centro de Informática}
+
+\programpt{Pós-graduação em Ciência da Computação}
+%\programen{Graduate in Computer Science}
+\programen{Pós-graduação em Ciência da Computação}
+
+\majorfieldpt{Ciência da Computação}
+\majorfielden{Ciência da Computação}
+%\majorfielden{Computer Science}
+
+\title{OpenDevice: Uma Plataforma Aberta e Framework para Internet das Coisas (IoT)}
+\date{Fevereiro/2016}
+
+\author{Ricardo Jorge Luz Rufino}
+\adviser{Kelvin Lopes Dias}
+% \coadviser{}
+
+
+\begin{document}
+
+\frontmatter
+\frontpage
+\presentationpage
+
+\begin{dedicatory}
+Aos meus pais, a quem amo muito.
+\end{dedicatory}
+
+%\acknowledgements
+%\thispagestyle{empty}
+%Agradeço primeiramente a Deus, pois reconheço que sem Ele nada seria, nada faria. Obrigado Deus, por mais uma conquista. Obrigado, porque Tuas misericórdias se renovam a cada dia e não têm fim. Obrigado por ter me trazido até aqui.
+
+%Ao meu pai, minha mãe e irmãos por todo o apoio e ajuda que me proporcionaram durante todo este período em que estive longe deles.
+
+%Aos meus irmãos em Cristo, da Ibamsol e da Maná, que nunca cessaram de orar por mim.
+
+%Aos meus amigos que dividem ou dividiram o apartamento e também aos que conheci no CIn. Sua amizade foi fundamental.
+
+%À Professora Teresa, por sua enorme paciência e por ter me ensinado muita coisa. Seu conhecimento e experiência foram decisivos no decorrer do mestrado. Sou eternamente grato.
+
+%Ao Professor Leandro, por todo seu tempo dedicado a me acompanhar e me ensinar. Este trabalho não teria sido completado sem sua ajuda.
+
+%Por fim, agradeço a todos os professores que tive durante a graduação no CEUT -- em epecial ao Professor Harilton -- como também aos professores que tive no CIn.
+
+\resumo
+% Escreva seu resumo no arquivo resumo.tex
+\thispagestyle{empty}
+\input{Paginas/Resumo}
+
+\abstract
+% Write your abstract in a file called abstract.tex
+\thispagestyle{empty}
+\input{Paginas/Abstract}
+
+% Summary (tables of contents)
+\tableofcontents
+
+% List of figures
+\listoffigures
+
+% List of tables
+\listoftables
+
+% List of acronyms
+% Acronyms manual: http://linorg.usp.br/CTAN/macros/latex/contrib/acronym/acronym.pdf
+\listofacronyms
+\input{Paginas/acronyms}
+
+% aumentar espaçamento dos paragrafos, isso pode ser útil... ;)
+\setlength{\parskip}{3 mm}
+
+\mainmatter
+\setcounter{page}{1}
+\include{Capitulos/1_Introducao}
+\include{Capitulos/2_FundamentacaoTeorica}
+\include{Capitulos/3_TrabalhosRelacionados}
+\include{Capitulos/4_ArquiteturaProposta}
+\include{Capitulos/5_Experimento}
+\include{Capitulos/6_Conclusao}
+
+\backmatter
+\clearpage
+\markboth{Referências}{Referências}
+\selectbiblanguage{portuguese}
+\bibliographystyle{unsrt}
+%\bibliographystyle{babalpha}
+\renewcommand{\bibname}{Referências} 
+\addcontentsline{toc}{chapter}{\bibliographytocname}
+\bibliography{references}
+
+% Appendix
+\clearpage
+\addappheadtotoc
+\appendix
+\appendixpage
+\include{Paginas/Apendice}
+%\include{appendix/evl}
+%\include{appendix/ewl}
+
+\end{document}

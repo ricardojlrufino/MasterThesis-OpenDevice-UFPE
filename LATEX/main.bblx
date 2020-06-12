@@ -1,0 +1,556 @@
+\begin{thebibliography}{KKMA11}
+  \providebibliographyfont{name}{}%
+  \providebibliographyfont{lastname}{}%
+  \providebibliographyfont{title}{\emph}%
+  \providebibliographyfont{jtitle}{\btxtitlefont}%
+  \providebibliographyfont{etal}{\emph}%
+  \providebibliographyfont{journal}{}%
+  \providebibliographyfont{volume}{}%
+  \providebibliographyfont{ISBN}{\MakeUppercase}%
+  \providebibliographyfont{ISSN}{\MakeUppercase}%
+  \providebibliographyfont{url}{\url}%
+  \providebibliographyfont{numeral}{}%
+  \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+\bibitem [{ABL78}]{abl78}
+\btxnamefont {\btxlastnamefont {Arabie}, Phipps}, \btxnamefont
+  {Scott\btxfnamespacelong A. \btxlastnamefont {Boorman}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Paul\btxfnamespacelong R. \btxlastnamefont
+  {Levitt}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Constructing
+  blockmodels: How and why}{Constructing Blockmodels: How and Why}}.
+\newblock \btxjournalfont {Journal of Mathematical Psychology}, 17:21--63,
+  1978.
+
+\bibitem [{Alm07}]{almeida07}
+\btxnamefont {\btxlastnamefont {Almeida}, Leandro\btxfnamespacelong
+  Maciel}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Uma metodologia de
+  busca por redes neurais artificiais quase-ótimas}{Uma metodologia de busca
+  por redes neurais artificiais quase-ótimas}}.
+\newblock \btxmastthesis {}, UFPE, 2007.
+
+\bibitem [{Alm11}]{almeida11}
+\btxnamefont {\btxlastnamefont {Almeida}, Leandro\btxfnamespacelong
+  Maciel}\btxauthorcolon\ \btxtitlefont {Construção de Sistemas de Múltiples
+  Classificadores por meio da Hibridização e Otimização de Técnicas de
+  Agrupamento e Classificação de Dados}.
+\newblock \btxphdthesis {}, UFPE, 2011.
+
+\bibitem [{AN07}]{uci}
+\btxnamefont {\btxlastnamefont {Asuncion}, A.} \btxandlong {}\ \btxnamefont
+  {D.J. \btxlastnamefont {Newman}}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Uci machine learning repository}{UCI Machine Learning
+  Repository}}, 2007.
+\newblock {\latintext
+  \btxurlfont{http://www.ics.uci.edu/$\sim$mlearn/{MLR}epository.html}}.
+
+\bibitem [{AW10}]{aw10}
+\btxnamefont {\btxlastnamefont {Abdi}, Hervé} \btxandlong {}\ \btxnamefont
+  {Lynne\btxfnamespacelong J. \btxlastnamefont {Williams}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Principal component analysis}{Principal
+  component analysis}}.
+\newblock \btxjournalfont {Wiley Interdisciplinary Reviews: Computational
+  Statistics}, 2(4):433--459, 2010\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {1939-0068}}}.
+\newblock {\latintext \btxurlfont{http://dx.doi.org/10.1002/wics.101}}.
+
+\bibitem [{BDSS13}]{bdss12}
+\btxnamefont {\btxlastnamefont {Brusco}, Michael}, \btxnamefont {Patrick
+  \btxlastnamefont {Doreian}}, \btxnamefont {Douglas \btxlastnamefont
+  {Steinley}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Cinthia\btxfnamespacelong B. \btxlastnamefont {Satornino}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Multiobjective blockmodeling for social
+  network analysis}{Multiobjective Blockmodeling for Social Network Analysis}}.
+\newblock \btxjournalfont {Psychometrika}, 78(3):498--525, 2013.
+
+\bibitem [{BLC00}]{blc00}
+\btxnamefont {\btxlastnamefont {Braga}, Antônio\btxfnamespacelong
+  de\btxfnamespacelong Pádua}, \btxnamefont {Teresa\btxfnamespacelong Bernarda
+  \btxlastnamefont {Ludermir}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {André\btxfnamespacelong Ponce\btxfnamespacelong de\btxfnamespacelong
+  Leon\btxfnamespacelong F.\btxfnamespacelong de \btxlastnamefont
+  {Carvalho}}\btxauthorcolon\ \btxtitlefont {Redes Neurais Artificiais: Teoria
+  e Aplicações}.
+\newblock \btxpublisherfont {LTC}, Rio de Janeiro, RJ, Brasil,
+  2000\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {9788521615644}}}.
+
+\bibitem [{BM93}]{bm93}
+\btxnamefont {\btxlastnamefont {Babu}, G.\btxfnamespacelong Phanendra}
+  \btxandlong {}\ \btxnamefont {M.\btxfnamespacelong Narasimha \btxlastnamefont
+  {Murty}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {A near-optimal
+  initial seed value selection in k-means algorithm using a genetic
+  algorithm}{A near-optimal initial seed value selection in K-means algorithm
+  using a genetic algorithm}}.
+\newblock \btxjournalfont {Pattern Recognition Letters}, 14(10):763--769, 1993.
+
+\bibitem [{BMFD04}]{bmfd04}
+\btxnamefont {\btxlastnamefont {Batagelj}, Vladimir}, \btxnamefont {Andrej
+  \btxlastnamefont {Mrvar}}, \btxnamefont {Anu\v{s}ka \btxlastnamefont
+  {Ferligoj}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Patrick
+  \btxlastnamefont {Doreian}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Generalized blockmodeling with pajek}{Generalized Blockmodeling with
+  Pajek}}.
+\newblock \btxjournalfont {Metodolo\v{s}ki zvezki}, 1(2):455--467, 2004.
+
+\bibitem [{CLH11}]{clh11}
+\btxnamefont {\btxlastnamefont {Chan}, Jeffrey}, \btxnamefont {Samantha
+  \btxlastnamefont {Lam}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Conor
+  \btxlastnamefont {Hayes}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase
+  {Increasing the scalability of the fitting of generalised block models for
+  social networks}{Increasing the scalability of the fitting of generalised
+  block models for social networks}}.
+\newblock \Btxinlong {}\ \btxtitlefont {Proceedings of the Twenty-Second
+  international joint conference on Artificial Intelligence - Volume Two},
+  IJCAI'11, \btxpageslong {}\ 1218--1224. \btxpublisherfont {AAAI Press},
+  2011\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {978-1-57735-514-4}}}.
+
+\bibitem [{CXC99}]{cxc99}
+\btxnamefont {\btxlastnamefont {Chen}, K.}, \btxnamefont {L. \btxlastnamefont
+  {Xu}}\btxandcomma {} \btxandlong {}\ \btxnamefont {H. \btxlastnamefont
+  {Chi}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Improved learning
+  algorithms for mixture of experts in multiclass classification}{Improved
+  learning algorithms for mixture of experts in multiclass classification}}.
+\newblock \btxjournalfont {Neural Networks}, 12:1229--1252, 1999.
+
+\bibitem [{CY05}]{cy05}
+\btxnamefont {\btxlastnamefont {Chandra}, Arjun} \btxandlong {}\ \btxnamefont
+  {Xin \btxlastnamefont {Yao}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Ensemble learning using multi-objective evolutionary algorithms}{Ensemble
+  Learning Using Multi-objective Evolutionary Algorithms}}.
+\newblock \btxjournalfont {Journal of Mathematical Modelling and Algorithms},
+  5(4):417--445, 2005.
+
+\bibitem [{Cyb88}]{cyb88}
+\btxnamefont {\btxlastnamefont {Cybenko}, G.}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Continuous valued neural networks with two hidden layers
+  are sufficient}{Continuous valued neural networks with two hidden layers are
+  sufficient}}.
+\newblock \btxtechreplong {}, Department of Computer Science, Tufts University,
+  1988.
+
+\bibitem [{Cyb89}]{cyb89}
+\btxnamefont {\btxlastnamefont {Cybenko}, G.}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Approximation by superpositions of a sigmoid
+  function}{Approximation by superpositions of a sigmoid function}}.
+\newblock \btxjournalfont {Mathematics of Control, Signals and Systems},
+  2:303--314, 1989.
+
+\bibitem [{CZZ09}]{czz09}
+\btxnamefont {\btxlastnamefont {Chang}, Dong\btxfnamespacelong Xia},
+  \btxnamefont {Xian\btxfnamespacelong Da \btxlastnamefont {Zhang}}\btxandcomma
+  {} \btxandlong {}\ \btxnamefont {Chang\btxfnamespacelong Wen \btxlastnamefont
+  {Zheng}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {A genetic
+  algorithm with gene rearrangement for k-means clustering}{A genetic algorithm
+  with gene rearrangement for K-means clustering}}.
+\newblock \btxjournalfont {Pattern Recognition}, 42(7):1210--1222, 2009.
+
+\bibitem [{DBF04}]{dbf04}
+\btxnamefont {\btxlastnamefont {Doreian}, Patrick}, \btxnamefont {Vladimir
+  \btxlastnamefont {Batagelj}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Anuska \btxlastnamefont {Ferligoj}}\btxauthorcolon\ \btxtitlefont
+  {Generalized Blockmodeling}.
+\newblock \btxpublisherfont {Cambridge University Press}, New York, NY, USA,
+  2004\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {0521840856}}}.
+
+\bibitem [{ELL01}]{ell01}
+\btxnamefont {\btxlastnamefont {Everitt}, Brian\btxfnamespacelong S.},
+  \btxnamefont {Sabine \btxlastnamefont {Landau}}\btxandcomma {} \btxandlong
+  {}\ \btxnamefont {Morven \btxlastnamefont {Leese}}\btxauthorcolon\
+  \btxtitlefont {Cluster Analysis}.
+\newblock \btxpublisherfont {Arnold}, Londres, 2001\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {0340761199}}}.
+
+\bibitem [{Fal92}]{falkenauer92}
+\btxnamefont {\btxlastnamefont {Falkenauer}, A.}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {The grouping genetic algorithms widening the scope of the
+  {GA}s}{The grouping genetic algorithms widening the scope of the {GA}s}}.
+\newblock \btxjournalfont {JORBEL Belgian J. Oper. Res., Stat. Comput. Sci.},
+  33(1--2):79--102, 1992.
+
+\bibitem [{FS96}]{fs96}
+\btxnamefont {\btxlastnamefont {Freund}, Yoav} \btxandlong {}\ \btxnamefont
+  {Robert\btxfnamespacelong E. \btxlastnamefont {Schapire}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Experiments with a new boosting
+  algorithm}{Experiments with a New Boosting Algorithm}}.
+\newblock \Btxinlong {}\ \btxnamefont {\btxlastnamefont {Saitta}, Lorenza}\
+  (\btxeditorlong {}): \btxtitlefont {ICML}, \btxpageslong {}\ 148--156.
+  \btxpublisherfont {Morgan Kaufmann}, 1996\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {1-55860-419-7}}}.
+
+\bibitem [{Her50}]{herfindahl50}
+\btxnamefont {\btxlastnamefont {Herfindahl}, O.\btxfnamespacelong
+  C.}\btxauthorcolon\ \btxtitlefont {Concentration in the U.S. steel industry}.
+\newblock \btxphdthesis {}, Columbia University, New York, 1950.
+
+\bibitem [{HHS94}]{hhs94}
+\btxnamefont {\btxlastnamefont {Ho}, Tin\btxfnamespacelong Kam}, \btxnamefont
+  {Jonathan\btxfnamespacelong J. \btxlastnamefont {Hull}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Sargur\btxfnamespacelong N. \btxlastnamefont
+  {Srihari}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Decision
+  combination in multiple classifier systems}{Decision Combination in Multiple
+  Classifier Systems}}.
+\newblock \btxjournalfont {IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 16(1):66--75, 1994.
+
+\bibitem [{Hir64}]{hirschman64}
+\btxnamefont {\btxlastnamefont {Hirschman}, A.\btxfnamespacelong
+  O.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {The paternity of an
+  index}{The paternity of an index}}.
+\newblock \btxjournalfont {The American Economic Review}, 54:761--762, 1964.
+
+\bibitem [{HS95}]{hs95}
+\btxnamefont {\btxlastnamefont {Huang}, Y.\btxfnamespacelong S.} \btxandlong
+  {}\ \btxnamefont {C.\btxfnamespacelong Y. \btxlastnamefont
+  {Suen}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {A method of
+  combining multiple experts for the recognition of unconstrained handwritten
+  numerals}{A Method of Combining Multiple Experts for the Recognition of
+  Unconstrained Handwritten Numerals}}.
+\newblock \btxjournalfont {IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 17(1):90--94, 1995.
+
+\bibitem [{Hu01}]{hu01}
+\btxnamefont {\btxlastnamefont {Hu}, Xiaohua}\btxauthorcolon\ \btxtitlefont
+  {\btxifchangecase {Using rough sets theory and database operations to
+  construct a good ensemble of classifiers for data mining applications}{Using
+  Rough Sets Theory and Database Operations to Construct a Good Ensemble of
+  Classifiers for Data Mining Applications}}.
+\newblock \Btxinlong {}\ \btxtitlefont {Proceedings of the 2001 IEEE
+  International Conference on Data Mining}, ICDM '01, \btxpageslong {}\
+  233--240, Washington, DC, USA, 2001. \btxpublisherfont {IEEE Computer
+  Society}\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {0-7695-1119-8}}}.
+\newblock {\latintext
+  \btxurlfont{http://dl.acm.org/citation.cfm?id=645496.657724}}.
+
+\bibitem [{HZS06}]{hzs06}
+\btxnamefont {\btxlastnamefont {Huang}, Guang\btxfnamespacelong Bin},
+  \btxnamefont {Qin\btxfnamespacelong Yu \btxlastnamefont {Zhu}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Chee\btxfnamespacelong Kheong \btxlastnamefont
+  {Siew}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Extreme learning
+  machine: Theory and applications}{Extreme learning machine: Theory and
+  applications}}.
+\newblock \btxjournalfont {Neurocomputing}, 70(1--3):489--501, 2006.
+
+\bibitem [{JBR10}]{jbr10}
+\btxnamefont {\btxlastnamefont {James}, Tabitha}, \btxnamefont {Evelyn
+  \btxlastnamefont {Brown}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Cliff\btxfnamespacelong T. \btxlastnamefont {Ragsdale}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Grouping genetic algorithm for the
+  blockmodel problem}{Grouping genetic algorithm for the blockmodel problem}}.
+\newblock \btxjournalfont {Trans. Evol. Comp}, 14(1):103--111,
+  \btxprintmonthyear{.}{2}{2010}{long}\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {1089-778X}}}.
+
+\bibitem [{JJ94}]{jj94}
+\btxnamefont {\btxlastnamefont {Jordan}, Michael\btxfnamespacelong I.}
+  \btxandlong {}\ \btxnamefont {Robert\btxfnamespacelong A. \btxlastnamefont
+  {Jacobs}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Hierarchical
+  mixtures of experts and the em algorithm}{Hierarchical Mixtures of Experts
+  and the EM Algorithm}}.
+\newblock \btxjournalfont {Neural Comput.}, 6(2):181--214,
+  \btxprintmonthyear{.}{3}{1994}{long}\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {0899-7667}}}.
+\newblock {\latintext
+  \btxurlfont{http://dx.doi.org/10.1162/neco.1994.6.2.181}}.
+
+\bibitem [{JJNH91}]{jjnh91}
+\btxnamefont {\btxlastnamefont {Jacobs}, Robert\btxfnamespacelong A.},
+  \btxnamefont {Michael\btxfnamespacelong I. \btxlastnamefont {Jordan}},
+  \btxnamefont {Steven\btxfnamespacelong J. \btxlastnamefont
+  {Nowlan}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Geoffrey\btxfnamespacelong E. \btxlastnamefont {Hinton}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Adaptive mixtures of local
+  experts}{Adaptive Mixtures of Local Experts}}.
+\newblock \btxjournalfont {Neural Comput.}, 3(1):79--87,
+  \btxprintmonthyear{.}{3}{1991}{long}\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {0899-7667}}}.
+\newblock {\latintext \btxurlfont{http://dx.doi.org/10.1162/neco.1991.3.1.79}}.
+
+\bibitem [{KHDM98}]{khdm98}
+\btxnamefont {\btxlastnamefont {Kittler}, Josef}, \btxnamefont {Mohamad
+  \btxlastnamefont {Hatef}}, \btxnamefont {Robert\btxfnamespacelong P.W.
+  \btxlastnamefont {Duin}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Jiri
+  \btxlastnamefont {Matas}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {On combining classifiers}{On Combining Classifiers}}.
+\newblock \btxjournalfont {IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 20(3):226--239, 1998.
+
+\bibitem [{KKMA11}]{kkma11}
+\btxnamefont {\btxlastnamefont {Kim}, Hyunjoong}, \btxnamefont {Hyeuk
+  \btxlastnamefont {Kim}}, \btxnamefont {Hojin \btxlastnamefont
+  {Moon}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Hongshik
+  \btxlastnamefont {Ahn}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {A
+  weight-adjusted voting algorithm for ensembles of classifiers}{A
+  weight-adjusted voting algorithm for ensembles of classifiers}}.
+\newblock \btxjournalfont {Journal of the Korean Statistical Society},
+  40(4):437--449, \btxprintmonthyear{.}{Dezembro}{2011}{long}.
+
+\bibitem [{Kun93}]{kun93}
+\btxnamefont {\btxlastnamefont {Kuncheva}, Ludmila\btxfnamespacelong
+  I.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {‘change-glasses’
+  approach in pattern recognition}{‘Change-glasses’ approach in pattern
+  recognition}}.
+\newblock \btxjournalfont {Pattern Recognition Letters}, 14(8):619--623, 1993.
+
+\bibitem [{Kun00}]{kun00}
+\btxnamefont {\btxlastnamefont {Kuncheva}, Ludmila\btxfnamespacelong
+  I.}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Clustering-and-selection
+  model for classifier combination}{Clustering-and-selection model for
+  classifier combination}}.
+\newblock \Btxinlong {}\ \btxnamefont {\btxlastnamefont {Howlett},
+  Robert\btxfnamespacelong J.} \btxandlong {}\ \btxnamefont
+  {Lakhmi\btxfnamespacelong C. \btxlastnamefont {Jain}}\ (\btxeditorslong {}):
+  \btxtitlefont {KES}, \btxpageslong {}\ 185--188. \btxpublisherfont {IEEE},
+  2000\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {0-7803-6400-7}}}.
+
+\bibitem [{Kun04}]{kun04}
+\btxnamefont {\btxlastnamefont {Kuncheva}, Ludmila\btxfnamespacelong
+  I.}\btxauthorcolon\ \btxtitlefont {Combining Pattern Classifiers: Methods and
+  Algorithms}.
+\newblock \btxpublisherfont {Wiley-Interscience}, 2004\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {0471210781}}}.
+
+\bibitem [{KW03}]{kw03}
+\btxnamefont {\btxlastnamefont {Kuncheva}, Ludmila\btxfnamespacelong I.}
+  \btxandlong {}\ \btxnamefont {Christopher\btxfnamespacelong J.
+  \btxlastnamefont {Whitaker}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Measures of diversity in classifier ensembles and their relationship with
+  the ensemble accuracy}{Measures of Diversity in Classifier Ensembles and
+  Their Relationship with the Ensemble Accuracy}}.
+\newblock \btxjournalfont {Mach. Learn.}, 51(2):181--207,
+  \btxprintmonthyear{.}{5}{2003}{long}\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {0885-6125}}}.
+\newblock {\latintext \btxurlfont{http://dx.doi.org/10.1023/A:1022859003006}}.
+
+\bibitem [{Lev44}]{lev44}
+\btxnamefont {\btxlastnamefont {Levenberg}, Kenneth}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {A method for the solution of certain
+  non-linear problems in least squares}{A method for the solution of certain
+  non-linear problems in least squares}}.
+\newblock \btxjournalfont {Quarterly Journal of Applied Mathmatics},
+  2(2):164--168, 1944.
+
+\bibitem [{LLFM98}]{llfm98}
+\btxnamefont {\btxlastnamefont {Lo}, Shih\btxfnamespacelong
+  Chung\btxfnamespacelong B.}, \btxnamefont {Jyh\btxfnamespacelong
+  Shyan\btxfnamespacelong J. \btxlastnamefont {Lin}}, \btxnamefont
+  {Matthew\btxfnamespacelong T. \btxlastnamefont {Freedman}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Seong\btxfnamespacelong K. \btxlastnamefont
+  {Mun}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Application of
+  artificial neural networks to medical image pattern recognition: Detection of
+  clustered microcalcifications on mammograms and lung cancer on chest
+  radiographs}{Application of Artificial Neural Networks to Medical Image
+  Pattern Recognition: Detection of Clustered Microcalcifications on Mammograms
+  and Lung Cancer on Chest Radiographs}}.
+\newblock \btxjournalfont {Journal of VLSI signal processing systems for
+  signal, image and video technology}, 18(3):263--274,
+  \btxprintmonthyear{.}{Abril}{1998}{long}.
+
+\bibitem [{LSL12a}]{lsl12a}
+\btxnamefont {\btxlastnamefont {Lima}, Tiago\btxfnamespacelong
+  P.\btxfnamespacelong F.}, \btxnamefont {Adenilton\btxfnamespacelong J.
+  \btxlastnamefont {Silva}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Teresa\btxfnamespacelong Bernarda \btxlastnamefont
+  {Ludermir}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Clustering and
+  selection of neural networks using adaptive differential
+  evolution}{Clustering and selection of neural networks using adaptive
+  differential evolution}}.
+\newblock \Btxinlong {}\ \btxtitlefont {IJCNN}, \btxpageslong {}\ 747--753.
+  \btxpublisherfont {IEEE}, 2012\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont
+  {978-1-4673-1488-6}}}.
+
+\bibitem [{LSL12b}]{lsl12b}
+\btxnamefont {\btxlastnamefont {Lima}, Tiago\btxfnamespacelong
+  P.\btxfnamespacelong F.}, \btxnamefont {Adenilton\btxfnamespacelong J.
+  \btxlastnamefont {Silva}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Teresa\btxfnamespacelong Bernarda \btxlastnamefont
+  {Ludermir}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Selection and
+  fusion of neural networks via differential evolution}{Selection and Fusion of
+  Neural Networks via Differential Evolution}}.
+\newblock \Btxinlong {}\ \btxtitlefont {IBERAMIA}, \btxvolumelong {}\
+  \btxvolumefont {7637}, \btxpageslong {}\ 149--158. \btxpublisherfont
+  {Springer}, 2012\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont
+  {978-3-642-34653-8}}}.
+
+\bibitem [{LY01}]{ly01}
+\btxnamefont {\btxlastnamefont {Liu}, Rujie} \btxandlong {}\ \btxnamefont
+  {Baozong \btxlastnamefont {Yuan}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Multiple classifiers combination by clustering and
+  selection}{Multiple classifiers combination by clustering and selection}}.
+\newblock \btxjournalfont {Information Fusion}, 2(3):163--168, 2001.
+
+\bibitem [{Mar63}]{mar63}
+\btxnamefont {\btxlastnamefont {Marquardt}, Donald\btxfnamespacelong
+  W.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {An algorithm for
+  least-squares estimation of nonlinear parameters}{An algorithm for
+  least-squares estimation of nonlinear parameters}}.
+\newblock \btxjournalfont {SIAM Journal on Applied Mathematics},
+  11(2):431--441, 1963.
+\newblock {\latintext \btxurlfont{http://dx.doi.org/10.1137/0111030}}.
+
+\bibitem [{ML06}]{ml06}
+\btxnamefont {\btxlastnamefont {Minku}, A\btxfnamespacelong L.} \btxandlong {}\
+  \btxnamefont {Teresa\btxfnamespacelong B. \btxlastnamefont
+  {Ludermir}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Efunns ensembles
+  construction using a clustering method and a coevolutionary genetic
+  algorithm}{EFuNNs ensembles construction using a clustering method and a
+  coevolutionary genetic algorithm}}.
+\newblock \Btxinlong {}\ \btxtitlefont {In CEC2006}, \btxpageslong {}\
+  5548--5555, 2006.
+
+\bibitem [{MM04}]{mm04}
+\btxnamefont {\btxlastnamefont {Melville}, Prem} \btxandlong {}\ \btxnamefont
+  {Raymond\btxfnamespacelong J. \btxlastnamefont {Mooney}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Creating diversity in ensembles using
+  artificial data}{Creating diversity in ensembles using artificial data}}.
+\newblock \btxjournalfont {Information Fusion}, 6:99--111, 2004.
+
+\bibitem [{MP69}]{mp69}
+\btxnamefont {\btxlastnamefont {Minsky}, M.} \btxandlong {}\ \btxnamefont {S.
+  \btxlastnamefont {Papert}}\btxauthorcolon\ \btxtitlefont {Perceptrons: an
+  introduction to computational geometry}.
+\newblock \btxpublisherfont {MIT Press}, Massachusetts, 1969.
+
+\bibitem [{NG04}]{ng04}
+\btxnamefont {\btxlastnamefont {Newman}, M.\btxfnamespacelong
+  E.\btxfnamespacelong J.} \btxandlong {}\ \btxnamefont {M. \btxlastnamefont
+  {Girvan}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Finding and
+  evaluating community structure in networks}{Finding and evaluating community
+  structure in networks}}.
+\newblock \btxjournalfont {Phys. Rev. E}, 69(2):026113,
+  \btxprintmonthyear{.}{2}{2004}{long}.
+\newblock {\latintext
+  \btxurlfont{http://link.aps.org/doi/10.1103/PhysRevE.69.026113}}.
+
+\bibitem [{Pol06}]{pol06}
+\btxnamefont {\btxlastnamefont {Polikar}, R.}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Ensemble based systems in decision making}{Ensemble based
+  systems in decision making}}.
+\newblock \btxjournalfont {IEE Circuits and Systems Magazine}, 6(3):21--45,
+  2006\ifbtxprintISSN {, \mbox{\btxISSN~\btxISSNfont {1531-636X}}}.
+
+\bibitem [{Pon11}]{pon11}
+\btxnamefont {\btxlastnamefont {Ponti}, M.\btxfnamespacelong
+  P.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Combining classifiers:
+  From the creation of ensembles to the decision fusion}{Combining Classifiers:
+  From the Creation of Ensembles to the Decision Fusion}}.
+\newblock \btxjournalfont {24th SIBGRAPI Conference on Graphics, Patterns and
+  Images Tutorials (SIBGRAPI-T)}, \btxpageslong {}\ 1--10, 2011.
+
+\bibitem [{RG05}]{rg05}
+\btxnamefont {\btxlastnamefont {Ruta}, Dymitr} \btxandlong {}\ \btxnamefont
+  {Bogdan \btxlastnamefont {Gabrys}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Classifier selection for majority voting}{Classifier
+  selection for majority voting}}.
+\newblock \btxjournalfont {Information Fusion}, 6(1):63--81, 2005.
+
+\bibitem [{Rok09}]{rok09}
+\btxnamefont {\btxlastnamefont {Rokach}, Lior}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Taxonomy for characterizing ensemble methods in
+  classification tasks a review and annotated bibliography}{Taxonomy for
+  characterizing ensemble methods in classification tasks A review and
+  annotated bibliography}}.
+\newblock \btxjournalfont {Computational Statistics \& Data Analysis},
+  53(12):4046–--4072, \btxprintmonthyear{.}{Outubro}{2009}{long}.
+
+\bibitem [{Rok10}]{rok10}
+\btxnamefont {\btxlastnamefont {Rokach}, Lior}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Ensemble-based classifiers}{Ensemble-based Classifiers}}.
+\newblock \btxjournalfont {Artif. Intell. Rev.}, 33(1-2):1--39,
+  \btxprintmonthyear{.}{2}{2010}{long}\ifbtxprintISSN {,
+  \mbox{\btxISSN~\btxISSNfont {0269-2821}}}.
+\newblock {\latintext
+  \btxurlfont{http://dx.doi.org/10.1007/s10462-009-9124-7}}.
+
+\bibitem [{Ros58}]{ros58}
+\btxnamefont {\btxlastnamefont {Rosenblatt}, F.}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {The perceptron: A probabilistic model for information
+  storage and organization in the brain}{The perceptron: A probabilistic model
+  for information storage and organization in the brain}}.
+\newblock \btxjournalfont {Psychol. Rev.}, 65:386--408, 1958.
+
+\bibitem [{Ros62}]{ros62}
+\btxnamefont {\btxlastnamefont {Rosenblatt}, F.}\btxauthorcolon\ \btxtitlefont
+  {Principies of Neurodynamics: Perceptrons and the theory of brain
+  mechanisms}.
+\newblock \btxpublisherfont {Spartan Books}, New York, 1962.
+
+\bibitem [{SLA13}]{sla13}
+\btxnamefont {\btxlastnamefont {Silva}, Evandro}, \btxnamefont
+  {Teresa\btxfnamespacelong B. \btxlastnamefont {Ludermir}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {Leandro \btxlastnamefont
+  {Almeida}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Clustering and
+  selection using grouping genetic algorithms for blockmodeling to construct
+  neural network ensembles}{Clustering and selection using grouping genetic
+  algorithms for blockmodeling to construct neural network ensembles}}.
+\newblock \btxjournalfont {IEEE 25th International Conference on Tools with
+  Artificial Intelligence}, \btxpageslong {}\ 420--425, 2013.
+
+\bibitem [{SSF10}]{ssf10}
+\btxnamefont {\btxlastnamefont {Silva}, I.\btxfnamespacelong N.}, \btxnamefont
+  {D.\btxfnamespacelong H. \btxlastnamefont {Spatti}}\btxandcomma {}
+  \btxandlong {}\ \btxnamefont {R.\btxfnamespacelong A. \btxlastnamefont
+  {Flauzino}}\btxauthorcolon\ \btxtitlefont {Redes Neurais Artificiais: para
+  engenharia e ciências aplicadas}.
+\newblock \btxpublisherfont {Artliber}, São Paulo, SP, Brasil,
+  2010\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont {8588098539}}}.
+
+\bibitem [{SYK97}]{syk97}
+\btxnamefont {\btxlastnamefont {Sarkar}, Manish}, \btxnamefont {B.
+  \btxlastnamefont {Yegnanarayana}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Deepak \btxlastnamefont {Khemani}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {A clustering algorithm using an evolutionary
+  programming-based approach}{A clustering algorithm using an evolutionary
+  programming-based approach}}.
+\newblock \btxjournalfont {Pattern Recognition Letters}, 18(10):975--986, 1997.
+
+\bibitem [{WBB76}]{wbb76}
+\btxnamefont {\btxlastnamefont {White}, Harrison\btxfnamespacelong C.},
+  \btxnamefont {Scott\btxfnamespacelong A. \btxlastnamefont
+  {Boorman}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Ronald\btxfnamespacelong L. \btxlastnamefont {Breiger}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Social structure from multiple
+  networks}{Social Structure from Multiple Networks}}.
+\newblock \btxjournalfont {American Journal of Sociology}, 81:730--780, 1976.
+
+\bibitem [{Web00}]{webb00}
+\btxnamefont {\btxlastnamefont {Webb}, Geoffrey\btxfnamespacelong
+  I.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Multiboosting: A
+  technique for combining boosting and wagging}{MultiBoosting: A Technique for
+  Combining Boosting and Wagging}}.
+\newblock \btxjournalfont {Mach. Learn.}, 40(2):159--196, 2000\ifbtxprintISSN
+  {, \mbox{\btxISSN~\btxISSNfont {0885-6125}}}.
+
+\bibitem [{WGC14}]{wgc14}
+\btxnamefont {\btxlastnamefont {Woźniak}, Michał}, \btxnamefont {Manuel
+  \btxlastnamefont {Graña}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Emilio \btxlastnamefont {Corchado}}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {A survey of multiple classifier systems as hybrid
+  systems}{A survey of multiple classifier systems as hybrid systems}}.
+\newblock \btxjournalfont {Information Fusion}, 16:3--17, 2014.
+
+\bibitem [{Wil45}]{wilcoxon45}
+\btxnamefont {\btxlastnamefont {Wilcoxon}, Frank}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Individual comparisons by ranking
+  methods}{Individual Comparisons by Ranking Methods}}.
+\newblock \btxjournalfont {Biometrics Bulletin}, 1(6):80--83, 1945.
+
+\bibitem [{XKS92}]{xks92}
+\btxnamefont {\btxlastnamefont {Xu}, Lei}, \btxnamefont {Adam \btxlastnamefont
+  {Krzyzak}}\btxandcomma {} \btxandlong {}\ \btxnamefont
+  {Ching\btxfnamespacelong Y. \btxlastnamefont {Suen}}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Methods of combining multiple classifiers
+  and their applications to handwriting recognition}{Methods of Combining
+  Multiple Classifiers and Their Applications to Handwriting Recognition}}.
+\newblock \btxjournalfont {IEEE Transactions on Systems, Man, and Cybernetics},
+  22(3):418--435, 1992.
+
+\bibitem [{YWG12}]{ywg12}
+\btxnamefont {\btxlastnamefont {Yuksel}, Seniha\btxfnamespacelong Esen},
+  \btxnamefont {Joseph\btxfnamespacelong N. \btxlastnamefont
+  {Wilson}}\btxandcomma {} \btxandlong {}\ \btxnamefont {Paul\btxfnamespacelong
+  D. \btxlastnamefont {Gader}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Twenty years of mixture of experts}{Twenty Years of Mixture of Experts}}.
+\newblock \btxjournalfont {IEEE Transactions on Neural Networks and Learning
+  Systems}, 23(8):1177--1193, 2012.
+
+\end{thebibliography}
