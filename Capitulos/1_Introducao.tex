@@ -1,0 +1,173 @@
+
+\chapter{Introdução}
+
+A Internet das Coisas ou Internet of Things (IoT)\cite{Ashton2009},
+em inglês, é um termo utilizado para descrever um paradigma tecnológico
+no qual os objetos físicos estão conectados em rede e se comunicam
+através da Internet, gerando informações, atuando de forma inteligente
+a eventos, integrando aplicações e serviços.
+
+A IoT é umas das principais tecnologias emergentes, é considerada
+a terceira onda de desenvolvimento da Internet\cite{GoldmanSachs2014},
+e assim como as duas primeiras ondas, promete trazer profundas mudanças
+na economia. Essa ``revolução'' vem impulsionando mudanças nos padrões
+da própria Internet, a fim de atender uma escala nunca antes vista
+de ``coisas'' conectadas, e inevitavelmente, promovendo para vida
+cotidiana, trabalho, saúde e negócios.
+
+Recentes avanços tecnológicos tem impulsionado o desenvolvimento da
+Internet das Coisas, a citar: (1) redução dos custos de sensores e
+microprocessadores, permitindo a criação de dispositivos ``mais inteligentes'',
+(2) redução no custo de banda da internet, algo estimado em 40x nos
+últimos 10 anos, (3) a presença massiva de smartphones, tornando-se
+uma ferramenta para geração de dados, visualização e controle, (4)
+BigData, com a capacidade de processar enorme quantidades de dados
+e gerar informações estratégicas para os negócios e (5) a alta disponibilidade
+de acesso a rede internet de maneira quase ubíqua\cite{GoldmanSachs2014}.
+
+O potencial estimado da Internet das Coisas tem despertado o interesse
+e investimento de grandes empresas como Google, Microsoft, Intel,
+Oracle, IBM, Cisco, Sansung. Não somente empresa, mas projetos e
+fundações ligadas ao ``ecossistema'' open source, como Eclipse,
+Arduino, Ubuntu/Linux, vem apostando na Internet das Coisas. 
+
+Apesar dos benefícios e oportunidades, ainda existem uma série de
+desafios que precisam ser superados para uma transição completa para
+a Internet das Coisas\cite{mattern2010,teixeira2011}. Os desafios
+estão relacionados à heterogeneidade, escalabilidade, interoperabilidade
+, segurança, privacidade, grande volumes de dados, complexidade do
+software e do hardware, que estão inseridos com graus de relevâncias
+diferenciados nas áreas da saúde, transportes, telecomunicações, automação,
+etc.
+
+Um enorme esforço de investigação é necessário para fazer a IoT viável,
+uma vez que muitas questões em aberto ainda persistem nesta área.
+A comunidade científica está oferecendo várias tentativas para padronizar
+totalmente o paradigma IoT. Além disso, o grande número de dispositivos
+que são esperados integrar o ambiente de IoT, obriga um esquema de
+endereçamento eficaz. Tais questões são geralmente discutidos na literatura\cite{yang2010,Katasonov2008}. 
+
+\section{Motivação}
+
+A Internet das Coisas é uma grande oportunidade para empresas e desenvolvedores
+criarem novas soluções que conectem dispositivos à Internet. Novos
+dispositivos, sensores, microcontroladores e plataformas de desenvolvimento
+vêm surgindo, impulsionados por essas oportunidades e pelo desenvolvimento
+da Internet das Coisas. Porém, essa grande quantidade de dispositivos
+heterogêneos, decorrente da inerente diversidade de tecnologias de
+hardware e software, se tornam um dos principais desafios para o desenvolvimento
+de aplicações.
+
+Devido à falta do estabelecimento de padrões das plataformas de hardware
+e software, os desenvolvedores acabam criando suas próprias soluções,
+o que contribui para o problema da interoperabilidade. Muitas das
+soluções elaboradas, acabam tendo uma baixa qualidade, são fechadas
+(proprietárias) ou devido a sua complexidade acabam atrasando ou mesmo
+inviabilizando o atendimento dos principais requisitos, que é gerar
+valor de mercado e promover a inovação.
+
+Nesse contexto, plataformas de middleware são avaliadas como soluções
+promissoras para prover tal interoperabilidade, realizar o gerenciamento
+da crescente quantidade de dispositivos e integrar aplicações\cite{teixeira2011}.
+Tais plataformas oferecem um meio padronizado para o acesso aos dados
+e serviços através de uma interface de alto nível\cite{Bandyopadhyay2011},
+com isso as aplicações não precisam lhe dar com os detalhes de baixo
+nível relacionados às especificidades de cada dispositivo e padrões
+de comunicação. A adoção de uma plataforma de middleware, pode contribuir
+para facilitar o desenvolvimento de projetos de IoT.
+
+Existem cerca de 9 milhões de desenvolvedores Java, o fornecimento
+de frameworks e serviços \emph{open source} em plataforma Java irá
+tornar mais fácil a adoção da linguagem para projetos de Internet
+das Coisas e favorecer possíveis contribuições para o desenvolvimento
+e aprimoramento da solução proposta nesse trabalho.
+
+\subsection{Desafios}
+
+Sistemas baseados em Internet das Coisas podem ser usado para diferentes
+fins e áreas, de modo que, temos de enfrentar diferentes desafios.
+Nesta seção, vamos explicar alguns dos desafios que precisam ser considerados
+nas atividades de investigação:
+\begin{itemize}
+\item \textbf{Tecnologias de Borda:} Ao nível do hardware, são necessários
+mais esforços de investigação para desenvolver a tecnologia de dispositivos
+embarcados, sensores, atuadores e identificação (passiva e ativa),
+uma vez que um sistema baseado na Internet das Coisas deve ser capaz
+de reunir informações suficientes sobre o mundo real, empregando uma
+grande variedade de dispositivos e ambientes. Assim, exige-se mais
+esforços para conectar dispositivos heterogêneos e implantá-los em
+aplicações da Internet das Coisas, e para fornecer suporte para novos
+dispositivos.
+\item \textbf{Tecnologias de Rede}: Em IoT, as coisas estão ligadas através
+de diferentes tipos de redes, ou seja, rede móvel, com e sem fio.
+Estas redes fornecem comunicação bidirecional em diferentes níveis
+entre os objetos do mundo real, aplicações e serviços que são utilizados
+pelas aplicações da Internet das Coisas. Esta estrutura altamente
+distribuída deve fornecer interconexão com baixo consumo de energia,
+enquanto os dados distribuídas podem causar problemas de privacidade.
+\item \textbf{Middleware:} Em IoT, temos redes e dispositivos heterogêneos.
+Sua heterogeneidade pode potencialmente aumentar com as novas tecnologias.
+Para facilitar a utilização destes dispositivos por aplicações da
+Internet das Coisas, devemos proteger a sua heterogeneidade. Portanto,
+precisamos desenvolver um middleware seguro, escalável e semanticamente
+enriquecido para lidar com a heterogeneidade dos dispositivos.
+\item \textbf{Plataformas de Serviços:} Eles suportam uma gestão de alto
+nível de todos os dispositivos envolvidos, de forma integrada, garantindo
+a escalabilidade, alta disponibilidade, e a execução segura das funcionalidades
+solicitadas a partir de dispositivos.
+\end{itemize}
+
+\section{Objetivo Geral\label{sec:Objetivos}}
+
+Criação de um framework para facilitar o desenvolvimento de aplicações
+para Internet das Coisa, com menor custo e tempo possível, abstraindo
+dispositivos, protocolos e tecnologias de comunicação de comunicação,
+bem como oferecer um conjunto de APIs para integração com outras aplicações.
+
+\section{Objetivos Específicos}
+
+Os objetivos específicos que este trabalho pretende alcançar, são
+listador a seguir:
+\begin{itemize}
+\item \textbf{Solução completa para integração entre plataformas}: oferecendo
+soluções para o desenvolvimento e integração de projetos nas plataformas
+de Hardware, Desktop, Web e Mobile.
+\item \textbf{Integração entre diferentes dispositivos e protocolos}: permitindo
+integrar diferentes dispositivos e protocolos em um mesmo ambiente
+de maneira transparente e consistente, focando em padrões abertos
+e baseado em plataformas open source (hardware e software). 
+\item \textbf{Utilização em dispositivos com limitações de processamento
+e memória}: oferecer soluções para o desenvolvimento de dispositivos
+embarcados com limitações de processamento e memória, como microcontroladores
+(AVR 8-bits), mini PCs e dispositivos móveis.
+\item \textbf{Oferecer um protocolo aberto e extensível}: Trata-se da elaboração
+de um protocolo (baseado em comandos), para integrar aplicações e
+dispositivos com limitações de memória e processamento, permitindo
+uma comunicação bidirecional, em tempo-real e apoiada sobre padrões
+abertos como MQTT, WebSocket, TCP, etc. Um dos principais objetivos
+é que este protocolo seja de fácil implementação e extensível.
+\item \textbf{Simplificação na criação de dispositivos inteligentes}: permitindo
+que as empresas e indivíduos possam focar em questões de projeto,
+design, marketing e comercialização dos novos dispositivos inteligente
+que irão compor a Internet das Coisas.
+\item \textbf{Oferecer uma plataforma base para criação de projetos especializados}:
+através de uma arquitetura flexível, oferecer uma fundação para que
+empresas e desenvolvedores possam estender a adaptá-la a regras de
+casos de uso específicos das áreas de automação, transporte, cidades
+inteligentes, etc.
+\end{itemize}
+Neste contexto é apresentado o OpenDevice, um framework que facilita
+a criação de projetos de Internet das Coisas usando tecnologias de
+baixo custo, como: Arduino\cite{url:arduino:intro}, Rasberry Pi\cite{url:raspberry},
+ESP8266\cite{url:esp8266:espressif} e outros\cite{arduino-comp1,arduino-comp2,arduino-comp3}.
+
+\section{Organização da Dissertação}
+
+Este trabalho está organizado da seguinte forma. O capítulo 2 apresenta
+os fundamentos para o desenvolvimento desta dissertação. O capítulo
+3 apresenta e discute propostas e trabalhos relacionados com o desenvolvimento
+de middlewares ou projetos correlacionados. O capítulo 4 apresenta
+a arquitetura proposta e os seus componentes, assim como a implementação
+dessa arquitetura. O capítulo 5 apresenta a avaliação e os testes
+da implementação da proposta. Finalmente, o capítulo 6 apresenta as
+conclusões da dissertação, assim como os trabalhos futuros. 

@@ -1,0 +1,8184 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\begin_preamble
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  %frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{mauve},
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{dkgreen},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\end_preamble
+\use_default_options true
+\master ../Principal.lyx
+\maintain_unincluded_children false
+\language brazilian
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 3
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\branch protocolo
+\selected 1
+\filename_suffix 0
+\color #fffcef
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Arquitetura Proposta
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Arquitetura"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este capítulo apresenta a arquitetura empregada na construção do OpenDevice.
+ A arquitetura proposta será apresentada em uma visão top-down (de cima
+ para baixo), onde partiremos de uma abordagem em alto nível até um nível
+ mais baixo, apresentando detalhes de implementação.
+ Na primeira seção (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:VisaoGeral"
+
+\end_inset
+
+), será apresentado a visão geral da arquitetura, permitindo o entendimento
+ de suas camadas, modelos de comunicação, requisitos e extensibilidade.
+ Na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Arquitetura-Detalhada"
+
+\end_inset
+
+, será apresentada uma visão mais detalhada dos componentes da arquitetura,
+ detalhando os módulos que compõe a arquitetura e responsabilidades.
+ As seções 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:GerenciamentoDispositivos"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ModeloEventos"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:APIComandos"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Armazenamento"
+
+\end_inset
+
+ apresentam os detalhes de como é realizada a abstração dos dispositivos
+ e nas seções 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConexoesServidores"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConexoesCliente"
+
+\end_inset
+
+, são apresentados os recursos que permitem que as aplicações clientes se
+ comuniquem com os dispositivos físicos, utilizando por exemplo o protocolo
+ MQTT.
+ A seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MecanismoExtensao"
+
+\end_inset
+
+, apresenta os mecanismos de extensibilidade que a plataforma oferece, em
+ complemento ao framework de conexões que é apresentado na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Framework-de-Conexoes"
+
+\end_inset
+
+.
+ Na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Arquitetura-do-Firmware"
+
+\end_inset
+
+ são apresentado os detalhes da arquitetura utilizada na construção do firmware,
+ um componente importante que permite a criação de dispositivos (sensores
+ e atuadores) para internet das coisas, utilizando componentes de baixo
+ custo, de maneira simplificada e extensível, e com suporte à várias tecnologias
+ de comunicação.
+ Um protocolos simples e fácil de ser implementado é proposto na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+ , para permitir a integração entre software e hardware com baixo poder
+ de processamento.
+ 
+\end_layout
+
+\begin_layout Standard
+A Internet das Coisas em é ambiente dinâmico, que pode ser composto por
+ centenas à milhares de dispositivos, sensores ou atuadores, operando em
+ vários tipos de rede, utilizando vários protocolos de comunicação, e contendo
+ inúmeros tipos de interface e recursos, partindo de hardwares com recursos
+ extremamente limitados, como os microcontroladores, passando por hardwares
+ com capacidades medianas, como os Mini-PCs, até servidores em nuvem (Cloud)
+ com múltiplos processadores e escalabilidade de recursos sob demanda.
+ Com base nesses requisitos e nos requisitos especificados na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Requisitos"
+
+\end_inset
+
+, foi projetado uma arquitetura com capacidades de extensibilidade, com
+ uma solida estrutura de comunicação e abstração de dispositivos, podendo
+ ser utilizado como framework para o desenvolvimento de soluções especializadas
+ para domínios específicos da internet das coisas, como: saúde, cidades
+ inteligentes, automação industrial, automação residencial, monitoramento
+ de sensores e etc.
+ A integração dos componentes da arquitetura proposta, permite a criação
+ de um middleware de propósito geral, permitindo a integração de aplicações
+ sem a necessidade de alterações na arquitetura, e contendo mecanismos de
+ extensão que podem ampliar suas capacidades.
+\end_layout
+
+\begin_layout Section
+Visão Geral
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:VisaoGeral"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O OpenDevice é uma plataforma aberta (open source) que tem como objetivo
+ fornecer uma solução completa para criação de projetos baseados na Internet
+ das Coisas.
+ Suas ferramentas tangem todas as plataformas envolvidas no ecossistema
+ de IoT: (1) Hardware, (2) Desktop, (3) Cloud, (4) Mobile, (5) Web, provendo
+ uma infraestrutura de comunicação entre todas essas camadas, bem como serviços
+ de: (1) Armazenamento, (2) Controle, (3) Configuração, (4) Visualização.
+ A base da arquitetura foi construída usando a linguagem de programação
+ Java, e por ser multi-plataforma, vários componentes podem ser reutilizados
+ em várias plataformas.
+ Devido a limitação de recursos de processamento e memória de alguns dispositivo
+s embarcados alvos desse projeto, como no caso do microcontroladores AVR/Arduino
+, um protocolo de nível de aplicação foi elaborado, implementado e disponibiliza
+do através de bibliotecas em C/C++.
+ Hardwares mais robustos, como no caso do Raspberry, Beaglebone ou outro
+ dispositivo que tenha uma implementação da JVM disponível, podem executar
+ as implementações em Java diretamente.
+ O OpenDevice oferece mecanismos para implementar aplicações simples ou
+ tratadores de eventos diretamente em JavaScript, que executam no lado do
+ servidor, algo similar ao Node.js
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nesta seção iremos apresentar uma visão macro da arquitetura e na seção
+ seguinte (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Arquitetura-Detalhada"
+
+\end_inset
+
+) uma visão mais detalhada.
+ Analisando a figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visao-Geral"
+
+\end_inset
+
+, podemos observar a integração dos componentes gerais do projeto, como
+ veremos mais adiante na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ModelosComunicacao"
+
+\end_inset
+
+, vários modelos de comunicação (layouts) podem ser utilizados, de acordo
+ com os requisitos de cada aplicação.
+ Projetos para a Internet das Coisas tem por característica principal lidar
+ com uma grande quantidade de atuadores e sensores heterogêneos, a camada
+ do Firmware é responsável por oferecer um nível mais alto de abstração
+ dos dispositivos (atuadores e sensores), já que esses podem utilizar diversos
+ protocolos e tratamentos de dados variados.
+ A integração do firmware com o middleware ou aplicações, ou seja, a integração
+ entre software e hardware, é um desafio, pois os protocolos ainda estão
+ em fase de desenvolvimento e validação
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+.
+ Devido a este problema a arquitetura tanto do middleware como do firmware
+ foi projetada para atender novos requisitos e ter uma fácil extensibilidade.
+ Apesar de não se ter uma padrão definido, os principais padrões e tecnologias
+ de comunicação foram avaliados e implementados dentro da arquitetura.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+falta colcar a legenda 'devices' nos equipamentos.
+\end_layout
+
+\begin_layout Plain Layout
+Mudar diagrama (simplificar e limpar) , separando por camadas horiontais,
+ colocando o título em cima.
+ Tirar também as imagens adicionais da parte cloud, adicionando apenas linhas
+ dos devices e dos clientes.
+\end_layout
+
+\begin_layout Plain Layout
+Colocar logomarca...
+\end_layout
+
+\begin_layout Plain Layout
+Foi mencionado os protocolos de dispositivos (ex: SPI, OneWire, etc..) seria
+ interessante ter uma sessão no trabalho falando desses protocolos.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/visao_geral.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Visão Geral
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visao-Geral"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Componentes da Visão Geral
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:VisaoGeralComponentes"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Middleware (Servidor)
+\series default
+ - O middleware tem um papel fundamental em projetos de IoT, como mencionamos
+ na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Fund_Middleware"
+
+\end_inset
+
+.
+ No OpenDevice ele tem o papel de oferecer serviços para as aplicações clientes,
+ fazer o gerenciamento dos dispositivos, gerenciar múltiplas conexões, fazer
+ armazenamento e dispõe de módulos para visualização dos dados através de
+ dashboards dinâmicos e gráficos em tempo-real ou históricos.
+ Ele foi desenvolvido usando uma estrutura modular e extensível, permitindo
+ a inclusão de novos componentes e plug-ins de maneira simplificada.
+ Os desenvolvedores podem optar por utilizar ele como um servidor à parte,
+ de modo embarcado ou estendendo, esse último é o modo aconselhado caso
+ esteja desenvolvendo aplicações na linguagem Java, pois sua arquitetura
+ foi pensada como um framework, de modo que os desenvolvedores de projetos
+ de Internet das Coisas, incluam apenas as regras de negócio, sem se preocupar
+ com os detalhes de baixo nível.
+ Projetos escritos em outras linguagens de programação podem utilizar as
+ APIs REST, MQTT, Socket e WebSocket para se comunicar com os dispositivos
+ através do middleware, que pode ser implantado em um servidor local (PC
+ / Raspberry Pi) ou na nuvem
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+vai ter openstack ?
+\end_layout
+
+\end_inset
+
+.
+ OpenDevice suporta a criação de aplicações em JavaScript, que executam
+ diretamente na JVM (Java Virtual Machine), o que permite acesso aos módulos
+ Java e a criação de interfaces gráficas usando JavaFx.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Firmware
+\series default
+ - O firmware tem o papel de implementar o protocolo do OpenDevice e fazer
+ o gerenciamento dos dispositivos físicos (atuadores e sensores) ligados
+ a ele, criando uma abstração de alto nível, e facilitando a integração
+ com a camada de software.
+ Nele, os dispositivos (sensores e atuadores) são configurados e mapeados
+ para uma um pino específico, de modo que apenas as informações do dispositivo
+ (ID, Nome, Tipo) são expostas para as APIs externas, permitindo assim uma
+ maior abstração dos detalhes do hardware, ou até mesmo a substituição do
+ hardware por outro sem alterações na aplicação.
+ Podemos pensar no firmware também como um gateway, responsável por manter
+ a comunicação com o middleware ou aplicação e controlar os dispositivos
+ físicos.
+ É um componente de software projetado para rodar em dispositivos embarcados
+ com baixo poder de processamento e memória, algo em torno de 2KB de RAM.
+ O foco inicial do desenvolvimento foi os microcontroladores encontrados
+ em plataformas de prototipação como o Arduino e similares.
+ Com a expansão e popularidade da plataforma do Arduino inúmeros hardwares
+ estão dando suporte as suas APIs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arduino-comp1,arduino-comp2"
+
+\end_inset
+
+, ampliando a compatibilidade do firmware desenvolvido.
+ Na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Hardwares-Testados"
+
+\end_inset
+
+, serão apresentados os hardwares testeados.
+ A arquitetura do firmware é extensível, permitindo incluir novos dispositivos,
+ novos comandos, e suporte a novos tipos de conexões.
+ Os detalhes do protocolo do OpenDevice serão apresentados na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+.
+ O Firmware é um componente dispensável o projeto utilizar hardwares com
+ um maior poder de processamento e que tenham suporte a GPIO, como no caso
+ Raspberry ou BeagleBone.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Devices
+\series default
+ - Representam os dispositivos físicos que podem ser atuadores, representado
+ pela classe 
+\series bold
+Device
+\series default
+, ou sensores, representados pela classe 
+\series bold
+Sensor
+\series default
+, e estão organizados nos seguintes tipos: (1) ANALOG, (2) DIGITAL, (3)
+ CHARACTER, 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+falta o NUMBER
+\end_layout
+
+\end_inset
+
+que estão ligados ao modo de operação e tipo de dado suportado.
+ Dentro do protocolo os dispositivos são identificados através de um código,
+ denominado DeviceID.
+ Os dispositivos do tipo ANALOG, podem receber uma faixa de valores numéricos,
+ já os dispositivos do tipo DIGITAL trabalham com dois estados: 0 (desligado)
+ e 1 (ligado), os dispositivos do tipo CHARACTER, estão aptos a receber
+ uma String
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+não implementado
+\end_layout
+
+\end_inset
+
+.
+ O OpenDevice trabalha com um modelo orientado a objetos, permitindo que
+ uma chamada dos métodos do 
+\emph on
+Device
+\emph default
+ na aplicação cliente, como por exemplo: 
+\emph on
+Device1.on()
+\emph default
+, acenda uma lampada real ou o realize fechamento de uma garra robótica.
+ Eles podem ser independentes ou estarem conectados à um microcontrolador,
+ executando o firmware, que faz o papel de gateway.
+ Os desenvolvedores podem estender essa abstração e adicionar novos comportament
+os para os devices e sensores.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Clientes
+\series default
+ - Representam as aplicações clientes, que podem ser aplicações desktop,
+ web ou mobile e podem ser desenvolvidas em qualquer linguagem.
+ As aplicações clientes, podem se comunicar com o middleware, através das
+ interfaces ofertadas (REST, MQTT, Socket, WebSocket e etc.) ou diretamente
+ com os dispositivos físicos.
+ Foram desenvolvidos módulos de bibliotecas clientes que permitem a integração
+ com o middleware em linguagens Java e JavaScript e experimentos de integração
+ usando a linguagem python.
+ Mais detalhes sobre estas implementações serão vistas na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConexoesCliente"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Modelos de comunicação
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ModelosComunicacao"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A arquitetura planejada permite desenvolver projetos em vários layouts e
+ modelos de comunicação, permitindo atender desde aplicações locais, que
+ se comunicam diretamente com os dispositivos, até aplicações distribuídas,
+ com comunicação através da internet.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Comunicação direta
+\series default
+ - É um modelo de comunicação que permite a comunicação direta entre a aplicação
+ final e os dispositivo físicos.
+ Tem a característica de ser mais simples, pois neste modelo, não se faz
+ necessária a presença do middleware (servidor).
+ A aplicação neste cenário pode ser representada por: (1) um dispositivo
+ mobile, (2) uma aplicação desktop ou (3) uma aplicação web.
+ Representando o dispositivo físico, podemos ter um hardware que disponibilize
+ um mecanismo de comunicação embarcado, por exemplo o ESP2866
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+, que possui WiFi, ou por exemplo um Arduino com um módulo Bluetooth acoplado.
+ Estes dois componentes podem se comunicar usando diversas tecnologias,
+ como: USB, Bluetooth, Ethernet, WiFi.
+ Mais detalhes sobre os meios de comunicação e como eles são implementados,
+ serão vistos nas seções 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Arquitetura-do-Firmware"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FirmwareGerenciamentoConn"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Comunicação local (Middleware)
+\series default
+ - No modelo de comunicação local, entre em cena um novo componente do OpenDevic
+e, o middleware.
+ O middleware quando implantado dentro de um projeto pode ser visualizado
+ como o servidor, e pode ser configurado tanto em um computador convencional,
+ como em um mini-pc (ex.: Raspberry Pi).
+ A vantagem da inclusão deste elemento é que ele permite que diversas aplicações
+ se comuniquem com o mesmo dispositivo.
+ Por exemplo, caso uma aplicação mobile esteja conectada via Bluetooth com
+ um dispositivo, outra aplicação será impedida de se comunicar com esse
+ dispositivo, usando middleware, essa limitação é contornada, já que o middlewar
+e recebe os comandos das aplicações cliente e faz o redirecionamento para
+ o dispositivo desejado.
+ Outra vantagem é que o middleware pode gerenciar várias conexões com os
+ dispositivos, utilizando vários meios de comunicação, liberando essa carga
+ de gerenciamento das aplicações.
+ Neste modelo de comunicação, os dispositivos podem operar no modo servidor,
+ aguardando a conexão por parte do middleware, ou no modo cliente.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Comunicação pela Internet
+\series default
+ - Neste modelo as aplicações podem se comunicar com os dispositivos através
+ da internet.
+ Para isso, os dispositivos devem possuir um hardware que suporte uma conexão
+ usando o protocolo TCP/IP, necessitando apenas de um roteador convencional
+ para interligação com a internet ou um modem GSM/GPRS.
+ Neste cenário os dispositivos atuam no modo cliente e o middleware está
+ implantando em um servidor na nuvem.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Comunicação pela Internet, usando um middleware local
+\series default
+ - Neste modelo um middleware local é aplicado novamente, permitindo que
+ as aplicações continuem funcionando caso a internet não esteja disponível
+ ou quando é necessário integrar dispositivos que não possuem suporte o
+ protocolo TCP/IP.
+ Neste modelo, a mesma versão do middleware está rodando em um servidor
+ local e em um servidor na nuvem, diferenciando apenas os módulos e infraestrutu
+ra utilizada, já que em um servidor local a memória e recursos são limitados
+ e num servidor de nuvem é necessário uma performance e alta escalabilidade.
+\end_layout
+
+\begin_layout Subsection
+Requisitos
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Requisitos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A arquitetura foi projetada para ser adaptável as capacidades e necessidades
+ de casos de uso específicos.
+ Esses podem ser categorizados como:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Requisitos de Comunicação
+\series default
+ - O sistema deve ser apoiado em eventos e/ou comunicação autônoma.
+ Os dispositivos devem ser configurados e controlados remotamente.
+ O sistema deve suportar comunicação em tempo-real.
+ O sistema deverá fornecer comunicação segura e confiável.
+ O sistema deve prover recursos para extensão dos protocolos de comunicação.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Gerenciamento de dispositivos
+\series default
+ - A API deve prover uma interface para o controle dos dispositivos.
+ Isso inclui a configuração do dispositivo bem como ativação, desativação
+ e atualização remota.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Serviços de Descoberta 
+\series default
+- O sistema deve oferecer mecanismos para descoberta e vinculação de novos
+ dispositivos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Capacidades do dispositivo
+\series default
+ - A API deve prover informações sobre as capacidades dos dispositivos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Requisitos de comunicação cliente/servidor
+\series default
+ - A API deve prover suporte para operar os dispositivos tanto no modo cliente
+ como no modo servidor.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Requisitos de monitoramento de status
+\series default
+ - Status como como nível de bateria, temperatura, estado de operação dentro
+ da infraestrutura devem estar acessíveis.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Serviço de Armazenamento
+\series default
+ - A API deve oferecer recursos para armazenamento das informações sobre
+ os dispositivos, bem como mecanismo para obter o histórico dos dados do
+ dispositivo.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Serviço de Visualização
+\series default
+ - A API deve oferecer serviço para análise dos dados, recursos para consultas
+ históricas, funções para agrupamento e agregação dos dados, bem como componente
+s visualização através de gráficos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Orientado a Eventos
+\series default
+ - O sistema deve oferecer um sistema para tratamento de eventos, notificando
+ as partes interessadas quando alguma mudança de estado ocorrer nos dispositivos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Interoperável entre várias redes (PAN, LAN e WAN)
+\series default
+ - Precisa trabalhar através de uma variedade de redes e protocolos, tanto
+ com redes IP e não-IP, incluindo dispositivos de baixa potência (low-power)
+ em redes como Z-Wave, Zigbee e Bluetooth.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Independência de Plataforma
+\series default
+ - A API de serviços deve ser multi-plataforma, executando nos principais
+ sistema operacionais encontrados no mercado.
+\end_layout
+
+\begin_layout Subsection
+Extensibilidade
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:VisaoGeral-Extensibilidade"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Toda a arquitetura do OpenDevice foi pensada visando uma fácil extensibilidade,
+ permitindo inclusão de novos protocolos, novos módulos de comunicação e
+ integração com outras ferramentas.
+ Devido à grande diversidade de áreas, requisitos e domínios variados que
+ projetos de Internet das Coisas podem ser empregadas, e por ser uma área
+ relativamente nova é uma tarefa complexa desenvolver uma plataforma/framework
+ que atenda a todos os requisitos.
+ Esse trabalho oferece contribuições com uma base sólida para criação de
+ outros projetos especializados para outros domínios como automação residencial,
+ saúde, cidades inteligentes e etc, porém sua estrutura generalista pode
+ ser empregada para criar vários projetos sem necessidade de modificações,
+ no capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Avaliacao-Experimental"
+
+\end_inset
+
+ será realizada uma avaliação experimental, usando como base o domínio da
+ automação residencial para validar a arquitetura, com base na sua aplicação
+ generalista e nas suas capacidades de extensibilidade.
+\end_layout
+
+\begin_layout Standard
+No contexto de extensibilidade, foram analisadas algumas estratégias de
+ implementação de suporte a plug-ins e módulos dinâmicos, uma das soluções
+ mais promissoras nesse campo é o OSGI (Open Services Gateway Initiative)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "osgi"
+
+\end_inset
+
+, porém foi descartado por considerarmos que é uma ferramenta que adiciona
+ uma complexidade extra no desenvolvimento das extensões e necessita de
+ um gerenciamento complexo que é feito contêiner de OSGI, conseguintemente
+ consumindo mais recursos.
+ A solução adotada é baseada em uma ferramenta disponível pela própria linguagem
+ Java, o SPI (Service Provider Interfaces), que tem como objetivo de oferecer
+ recursos de extensão de forma simples e leve, baseando-se apenas em interfaces
+ que são definidas pelo próprio OpenDevice e um arquivo de configuração
+ simples.
+ Uma pequena desvantagem encontrada no mecanismo do SPI é que ele não permite
+ o carregamento dinâmico de plug-ins em tempo de execução, apenas no carregament
+o da aplicação.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Talvez possa contornar isso adicionando novas implementação, task: [core]
+ Suporte a Plugins, isso iria gerar outro tópico na implementação.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Arquitetura detalhada
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Arquitetura-Detalhada"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nesta seção, veremos os detalhes da arquitetura empregada na construção
+ do projeto OpenDevice, analisando os módulos individualmente, os blocos
+ funcionais e suas responsabilidades.
+\end_layout
+
+\begin_layout Standard
+Uma das considerações importantes no desenvolvimento desse projeto é que
+ o core da arquitetura e os módulos servidores principais
+\begin_inset space ~
+\end_inset
+
+(MQTT, Rest e WebSocket) pudessem ser executados em hardwares de baixo poder
+ de processamento, algo em torno de 512MB de RAM e 500Mhz de CPU.
+ Com base nessa restrição, foram desenvolvidos módulos de servidores que
+ rodam de modo embarcado(
+\emph on
+embedded
+\emph default
+), já que as soluções disponíveis de servidores Java como: Tomcat , Jetty,
+ JBoss, GlassFish iriam consumir muitos recursos da máquina.
+ O mesmo critério foi aplicado na seleção do banco de dados, que é um componente
+ opcional.
+ Soluções embarcadas foram adotadas em relação à soluções instaladas separadamen
+te (ex.: MySQL), facilitando o desenvolvimento e distribuição da aplicação.
+\end_layout
+
+\begin_layout Standard
+A camada do middleware, das aplicações clientes e firmware são baseadas
+ no modelo de desenvolvimento orientado eventos (
+\emph on
+Event-Driven
+\emph default
+)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+, realizada através do envio e recebimento de comandos, usando comunicações
+ em tempo-real.
+ O modelo baseado em eventos facilita o desenvolvimento de aplicações de
+ IoT, principalmente quando é necessário a interação com sensores
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref ?
+\end_layout
+
+\end_inset
+
+, permitindo que os desenvolvedores registrem que tipo de evento ou os dispositi
+vos que desejam monitorar, e quando o evento ocorrer, como por exemplo um
+ sensor mudar seu valor, os interessados no evento serão notificados.
+ Esse modelo também permite uma fácil extensão da ferramenta, pois tira
+ a responsabilidade das extensões de conhecer fluxo de conexão e aspectos
+ internos do funcionamento, podendo agregar funções mais elaboradas para
+ lidar com os eventos, como por exemplo, um algoritmo de inteligência artificial
+ (IA) que faz predição.
+\end_layout
+
+\begin_layout Standard
+Na Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arquitetura"
+
+\end_inset
+
+ pode-se observar a arquitetura e, cada camada, assim como, cada elemento
+ será explicado a seguir.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/arquitetura.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Arquitetura detalhada
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arquitetura"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Camadas da Arquitetura
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Camada de Aplicação (User Application APIs)
+\series default
+ - Constituem os módulos e bibliotecas disponibilizados para utilização
+ pelas aplicações clientes, permitindo a integração com o OpenDevice.
+ A maioria dos módulos são projetados para que as aplicações se comunicarem
+ com os dispositivos físicos (hardware) através do middleware, porém estão
+ disponíveis módulos que permitem a comunicação direta entre a aplicação
+ cliente e o hardware.
+ Foram desenvolvidos módulos clientes para Web, Desktop e Android, os detalhes
+ da implementação e tecnologias suportadas serão abordados na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConexoesCliente"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Middleware
+\series default
+ - O middleware é uma camada altamente modular e customizável, que oferece
+ uma série de serviços para as aplicações, como mencionamos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:VisaoGeralComponentes"
+
+\end_inset
+
+ (Componentes da Visão Geral).
+ Ele é a peça central que permite a comunicação das aplicações com os hardwares
+ utilizando uma linguagem de alto-nível.
+ O middleware foi desenvolvido para uma fácil extensão, devido a essa caracterís
+tica, ele se torna um framework para criação de projetos de Internet das
+ Coisas.
+ Conta com um poderoso framework de conexões, responsável pelas definições
+ do protocolo, comunicação com os dispositivos físicos e integração com
+ as aplicações.
+ Mais detalhes e sub-componentes serão abordados a seguir.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hardware
+\series default
+ - Os hardwares podem ser classificados em microcontroladores e Mini PCs.
+ Para os microcontroladores são disponibilizadas bibliotecas, que chamamos
+ nesse trabalho de firmware, que permitem uma fácil integração com o middleware
+ (servidor) e facilitam na criação de objetos inteligentes.
+ Elas dão suporte a utilização de várias tecnologias de comunicação, como:
+ Usb, Bluetooth, Ethernet e WiFi.
+ Essas bibliotecas são baseadas no framework do Arduino, o que as torna
+ compatível com uma série de hardwares e plataformas de prototipação, inclusive
+ que não fazem parte do projeto do Arduino
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arduino-comp1,arduino-comp2,arduino-comp3"
+
+\end_inset
+
+.
+ Quando se trata de Mini PCs, que envolvem hardwares de maior poder de processam
+ento e memória, como por exemplo, Raspberry
+\begin_inset space ~
+\end_inset
+
+Pi e BeagleBone, é possível executar o middleware diretamente neles, desde
+ que se tenha disponível uma implementação da JVM para esses dispositivos.
+ Nos Mini PCs, o acesso aos pinos de GPIO ainda é um problema, pois cada
+ hardware possui suas especificações, o projeto Device I/O 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-dio"
+
+\end_inset
+
+, mantido pela comunidade do OpenJDK, tem a proposta de criar uma implementação
+ para o acesso aos periféricos desses dispositivos, porém ainda está em
+ fase de desenvolvimento.
+ Para hardwares não suportados pelo projeto, existem três alternativas:
+ (1) criar adaptadores/wrapper para bibliotecas já existentes, (2) implementar
+ chamadas JNI ou (3) usar o drivers baseados em sysfs que alguns kernels
+ disponibilizam para acessar a GPIO como fossem simples arquivos
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-sysfs"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Módulos
+\end_layout
+
+\begin_layout Standard
+Nesta seção, abordaremos os módulos que compõe a arquitetura.
+ Na Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Modulos"
+
+\end_inset
+
+ pode-se observar os módulos, assim como, cada elemento será explicado a
+ seguir.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+falta falar que as dependencias são gerenciadas pelo maven.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /media/ricardo/Dados/Dropbox/Mestrado/Dissertacao/Imagens/Cap_4/OpenDevice_Modulos.png
+	lyxscale 70
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Módulos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Modulos"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Módulos Gerais
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\noun on
+core
+\noun default
+: Módulo base da arquitetura, com o sistema de gerenciamento de dispositivos,
+ sensores, conexões, eventos, armazenamento, API de comandos e implementação
+ do protocolo.
+ Esse módulo pode usado no desenvolvimento de aplicações Desktop, Web ou
+ Mobile;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+rest-api
+\noun default
+: Definições das interfaces REST para controle dos dispositivos e sensores;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+js-engine: 
+\noun default
+Implementação do suporte a execução de JavaScript no lado do servidor;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+opendevice-web-view
+\noun default
+: Interface HTML/5 + AngularJS + OpenDeviceJS;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+middleware: 
+\noun default
+Aplicação de gestão, controle e monitoramento, que usa a maior parte dos
+ módulos do OpenDevice, usando o banco de dados Neo4J + Hibernate OGM (JPA).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Módulos do framework de conexões
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\noun on
+connection-api
+\noun default
+: Especificação das interfaces de conexão cliente/servidor;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+connection-stream
+\noun default
+: Implementações de conexões USB, Bluetooth, TCP (PC/RaspPI);
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+android-stream
+\noun default
+: Implementação de conexões USB, Bluetooth para Android
+\begin_inset Foot
+status collapsed
+
+\begin_layout Enumerate
+Demais conexões (Rest, WebSocket, MQTT) podem ser utilizada no Android através
+ dos outros módulos.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+raspberry-pi4j
+\noun default
+: Comunicação com a GPIO do Raspberry usando PI4J.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Módulos Cliente
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\noun on
+opendevice-js
+\noun default
+: Biblioteca JavaScript com suporte a WebSocket e REST;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+opendevice-wasync-client
+\noun default
+: Biblioteca WebSocket para Android e PC;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+python-client
+\noun default
+: Biblioteca em Python com suporte a TCP.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Módulos Servidores
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\noun on
+rest-ws-server
+\noun default
+: Servidor REST e WebSocket;
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+opendevice-mqtt
+\noun default
+: Servidor MQTT 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+E cliente ?, implementar e atualizar imagem ! No capítudo de implementação
+ tem que falar que é baseadno no moquette;
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Bibliotecas para hardware
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+opendevice-lib-arduino: Bibliotecas em C++ baseadas na API do Arduino, que
+ implementa o protocolo do OpenDevice e são usadas para criação do firmware.
+ Provê suporte ao gerenciamento de dispositivos e conexões: USB, Bluetooth,
+ WiFi, Ethernet.
+ Veja a lista de placas testadas na seção
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Hardwares-Testados"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Gerenciamento de Dispositivos
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:GerenciamentoDispositivos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Um dos principais requisitos de uma arquitetura de Internet das Coisas é
+ realizar a abstração dos dispositivos, permitindo ligar com a sua grande
+ heterogeneidade.
+ No OpenDevice as abstrações base são implementadas através das classes
+ Device e Sensor.
+ Algumas implementações de clientes sofrem algumas variações nessa abstração,
+ como por exemplo no cliente JavaScript 
+\noun on
+opendevice-js,
+\noun default
+ onde existe apenas a classe 
+\emph on
+Device
+\emph default
+ e a identificação, se é um sensor ou atuador, é feita através de um atributo,
+ já que nessa linguagem não temos suporte a orientação a objetos.
+ 
+\end_layout
+
+\begin_layout Standard
+O OpenDevice permite a conexão com vários hardwares ao mesmo tempo, cada
+ hardware (ex.: Arduino) pode gerenciar vários sensores e atuadores, cada
+ sensor e atuador é interpretado como um 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Device
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e recebe um ID (DeviceID) único na plataforma, que pode ser codificado
+ manualmente ou dinamicamente.
+ Quando o modulo cliente ou o middleware estabelece uma conexão com o hardware
+ (ex.: Arduino), ele solicita as definições dos dispositivos que foram configurad
+os.
+ A biblioteca (firmware) instalada no hardware, cuida de todo o processo
+ de negociação.
+ A configuração de dispositivos no hardware pode ser feita de forma estática,
+ através de uma pre-configuração, ou dinâmica, através de comandos.
+ No hardware (ex.: Arduino) os dispositivos são mapeados de forma a vincular
+ o pino do microcontrolador com um ID (DeviceID), de modo que as aplicações
+ externas conheçam o apenas ID, criando uma abstração do hardware final,
+ permitindo mudanças sem afetar a aplicação.
+ Os hardwares
+\begin_inset space ~
+\end_inset
+
+(ex.: Arduino), atuariam como um gateway, podendo ser identificados através
+ de um nome ou ID, e seriam responsáveis por controlar sensores e atuadores,
+ e integra-los às aplicações.
+ 
+\end_layout
+
+\begin_layout Standard
+A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:devices1"
+
+\end_inset
+
+ apresenta um exemplo (em Java) da configuração dos dispositivos e conexão.
+ Ao instanciar uma classe Device dentro de uma classe que estende 
+\emph on
+LocalDeviceManager, 
+\emph default
+eles passam a ser gerenciados pelo OpenDevice, qualquer alteração dos valores
+ dos dispositivos (ex.: 
+\emph on
+led.on()
+\emph default
+ e 
+\emph on
+led.off()
+\emph default
+), resulta em um envio de um comando para o hardware, que verifica o ID
+ do dispositivo e faz o mapeamento para o pino correspondente.
+ No lado do hardware/firmware (listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:devices2"
+
+\end_inset
+
+), a configuração dos dispositivos foi realizada de forma estática, onde
+ foram adicionados dois dispositivos: (1) um atuador digital (led), conectado
+ no pino 5 do Arduino e (2) um sensor digital (switch), conectado no pino
+ 3.
+ A associação do ID para cada dispositivo foi realizada de forma automática
+ e sequencial, porém é possível especificar um ID manualmente.
+ 
+\end_layout
+
+\begin_layout Standard
+Ao pressionar o sensor físico (ID=2), o firmware reconhece a alteração no
+ seu estado e envia uma notificação para a aplicação (ou middleware), que
+ chama o evento 
+\begin_inset Quotes eld
+\end_inset
+
+onChange
+\begin_inset Quotes erd
+\end_inset
+
+ do dispositivo especificado e notifica outros componentes (incluindo extensões)
+ que foram registrados para esse evento.
+ No evento disparado, no exemplo na listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:devices1"
+
+\end_inset
+
+, ele verifica o status atual do botão (linha 11), se estiver ligado/pressionado
+, ele chama o método 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+on()
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ do led.
+ O OpenDevice detecta essa alteração e envia o comando para o hardware (firmware
+) e este faz o acionamento do pino correspondente ao dispositivo.
+ Mais detalhes sobre os fluxos de execução de comandos são apresentados
+ na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FluxoMensagens"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+O exemplo apresentado demonstra a integração entre uma aplicação e um hardware
+ baseado em um microcontrolador, que tem um recursos extremamente limitados.
+ Em hardwares com maior poder de processamento, denominados Mini-PCs (ex.:
+ Raspberry), é possível executar a aplicação e fazer o controle dos dispositivos
+ diretamente, pois ele permite acesso aos periféricos (pinos GPIO).
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:devices3"
+
+\end_inset
+
+, apresenta um exemplo resumido de como realizar o mapeamento dos dispositivos
+ para os pinos correspondentes do RaspberryPi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Falar da extenssão de devices.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+TODO: Falar que os dispositivos são mantidos em cache, para performace.
+\end_layout
+
+\begin_layout Plain Layout
+TODO: Fala falar dos meta-dados (labels) - não implementado.
+\end_layout
+
+\begin_layout Plain Layout
+Foi falado, da inclusão dinâmica de Devices, masnão foi implementada ainda.
+\end_layout
+
+\begin_layout Plain Layout
+- nova idea: seria que o ID fosse disponibilizado pela Aplicação, ficaria
+ muito flexível.
+\end_layout
+
+\begin_layout Plain Layout
+Falar do suporte a dispositivos virtuais:
+\end_layout
+
+\begin_layout Plain Layout
+OpenIot: Middleware para conexão de sensores e redes de sensores para a
+ plataforma (sensores ou fluxos de dados, a partir de dispositivos físicos
+ ou algoritmos de processamento apresentado como dispositivos virtuais).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// alguns trechos de código foram omitidos
+\end_layout
+
+\begin_layout Plain Layout
+
+public class BlinkButtonDemo extends LocalDeviceManager{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    public BlinkButtonDemo() {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        final Device led = new Device(1, Device.DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+        final Device btn = new Sensor(2, Device.DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        connect(out.bluetooth("00:13:03:14:19:07"));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        btn.onChange(device -> {
+\end_layout
+
+\begin_layout Plain Layout
+
+            if(btn.isON()){
+\end_layout
+
+\begin_layout Plain Layout
+
+                led.on();
+\end_layout
+
+\begin_layout Plain Layout
+
+            }else{
+\end_layout
+
+\begin_layout Plain Layout
+
+                led.off();
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+        });
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuração dos dispositivos - Java
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:devices1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// alguns trechos de código foram omitidos
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup(){
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.name("ModuleName");
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addDevice(5, Device::DIGITAL); // ID:1 - led 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addSensor(3, Device::DIGITAL); // ID:2 - button
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.begin(Serial1, 9600);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.loop();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuração dos dispositivos no Arduino - Firmware/C
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:devices2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// alguns trechos de código foram omitidos
+\end_layout
+
+\begin_layout Plain Layout
+
+Device led = new Device(1, DeviceType.DIGITAL).gpio(1);
+\end_layout
+
+\begin_layout Plain Layout
+
+// ...
+\end_layout
+
+\begin_layout Plain Layout
+
+connect(new RaspberryGPIO());
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuração dos dispositivos no Raspberry - Java 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:devices3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modelo Orientado a Eventos
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ModeloEventos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O design da arquitetura segue um modelo orientado a eventos, ou 
+\emph on
+Evento-Driven
+\emph default
+, que permite desacoplar os componentes da arquitetura e aplicações.
+ Este desacoplamento pode ser de tempo, espaço e sincronização
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-eventd"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+O mecanismo de eventos é importante na construção do framework, pois ele
+ é considerado mais eficiente e escalável do que o modelo baseado em 
+\emph on
+Polling
+\emph default
+, que é um mecanismo sincrono de requisição e resposta, que pode introduzir
+ uma latência na comunicação e no tempo de resposta
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-poll2"
+
+\end_inset
+
+.
+ Esse mecanismo também permite a isolação da aplicações, de saber qual a
+ frequência com que os dispositivos geram os dados, passando apenas a utilizar
+ um mecanismo de 
+\begin_inset Quotes eld
+\end_inset
+
+observar
+\begin_inset Quotes erd
+\end_inset
+
+ os dispositivos, e reagir aos eventos quando eles acontecem.
+\end_layout
+
+\begin_layout Standard
+Os eventos gerados pelas aplicações clientes, são direcionados para o middleware
+ ou diretamente para os dispositivos, de forma automática e transparente.
+ Os principais eventos gerados pela arquitetura são: mudança do estado do
+ dispositivo, associação de novos dispositivos, mudança no estado das conexões,
+ porém exitem outros e novos podem ser criados.
+ È possível monitorar eventos gerados por dispositivos individuais, registrado
+ ouvintes (listeners) para as instâncias especificas, ou para todos os dispositi
+vos, registando ouvintes (listeners) no gerenciador de dispositivos (
+\emph on
+DeviceManager
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+Um exemplo foi apresenta na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:GerenciamentoDispositivos"
+
+\end_inset
+
+, listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:devices1"
+
+\end_inset
+
+, onde é adicionado um 
+\begin_inset Quotes eld
+\end_inset
+
+ouvinte
+\begin_inset Quotes erd
+\end_inset
+
+ no dispositivo e quando o valor dele mudar, o 
+\begin_inset Quotes eld
+\end_inset
+
+ouvinte
+\begin_inset Quotes erd
+\end_inset
+
+ é executado.
+ No exemplo citado, o 
+\begin_inset Quotes eld
+\end_inset
+
+ouvinte
+\begin_inset Quotes erd
+\end_inset
+
+ ao ser executado, faz a chamada do método 
+\begin_inset Quotes eld
+\end_inset
+
+led.on()
+\begin_inset Quotes erd
+\end_inset
+
+, gerando um evento (comando) que é despachado para os componentes interessados.
+ Um dos interessados é o 
+\emph on
+CommandDelivery
+\emph default
+, que cuida do envio e monitoramento da entrega do comando, através das
+ conexões de saída.
+ Outro interessado é o serviço de armazenamento, que se habilitado, registra
+ o histórico de alterações dos valores dos dispositivos.
+\end_layout
+
+\begin_layout Standard
+Algumas bibliotecas disponibilizadas para construção de aplicações clientes,
+ se baseiam no sistema Publish/Subscribe
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+, que permitem um baixo acoplamento e uma alta escalabilidade
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref?
+\end_layout
+
+\end_inset
+
+.
+ Um dos exemplos é a biblioteca JavaScript para desenvolvimento de aplicações
+ WEB, 
+\noun on
+opendevice-js
+\noun default
+, que utiliza o procolo de comunicação WebSocket, e consegue interagir (envio
+ e recebimento) com os dispositivos praticamente em tempo-real.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falar do suporte a interrupções quando o mesmo for implementado (dar uma
+ contextualizada no modelo de interrupção)
+\end_layout
+
+\begin_layout Plain Layout
+Algumas limitações na construção do Firmware....
+\end_layout
+
+\begin_layout Plain Layout
+Envio de comandos sincronos...
+\end_layout
+
+\begin_layout Plain Layout
+Falar tambem que é: Model Driven Architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+API de Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:APIComandos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As informações trocadas entre hardware, middleware e aplicações clientes
+ são baseadas em mensagens, que chamamos de comandos e são representadas
+ pela classe base 
+\emph on
+Command
+\emph default
+.
+ Esses comandos são convertidos no protocolo do OpenDevice (mais detalhes
+ serão vistos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+), através dos serializadores.
+ O framework permite a comunicação com os hardwares, e controle dos dispositivos
+, utilizando apenas os comandos, sem utilizar as abstrações obtidas com
+ com os dispositivos (classe 
+\emph on
+Device
+\emph default
+ e 
+\emph on
+Sensor
+\emph default
+).
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:command"
+
+\end_inset
+
+ mostra um exemplo da equivalência da operação usando a classe 
+\emph on
+Device
+\emph default
+ e usando os comandos.
+ A classe DeviceCommand, permite o envio de comandos do tipo DIGITAL e ANALÓGICO.
+ O recebimento de informações geradas pelo hardware ou de outro componente
+ (ex.:aplicação cliente), é realizada através de comandos.
+ Para realizar o monitoramento e recebimento desses comandos é necessário
+ adicionar os ouvintes (listeners) nas conexões, um exemplo simplificado
+ é apresentado na listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:command-1"
+
+\end_inset
+
+.
+ Ao enviar um comando para o hardware, ele irá responder com uma mensagem
+ de status, que é representada pela classe 
+\emph on
+ResponseCommand
+\emph default
+, permitindo identificar se o comandos foi recebido corretamente ou não.
+ O envio das mensagens é gerenciado pelo 
+\emph on
+CommandDelivery
+\emph default
+, que permite direcionar a mensagem para a conexão certa e monitorar a entrega,
+ caso ela não seja feita, devido a um delay ou falha de comunicação, ele
+ notifica a aplicação com um erro de 
+\emph on
+timeout
+\emph default
+, detalhes desse fluxo serão apresentados na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FluxoMensagens"
+
+\end_inset
+
+.
+ A figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DiagCommands"
+
+\end_inset
+
+ mostra um diagrama de classe simplificado da API de comandos.
+ Essa API promove mais uma camada de abstração, permitindo que, caso as
+ implementações atuais dos dispositivos (Device e Sensor) não sejam suficientes,
+ elas possam ser substituídas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// Usando a API de comandos
+\end_layout
+
+\begin_layout Plain Layout
+
+DeviceConnection conn = Connections.out.usb();
+\end_layout
+
+\begin_layout Plain Layout
+
+conn.send(DeviceCommand.ON(1)); // '1' is DeviceID
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// Usando a abstração
+\end_layout
+
+\begin_layout Plain Layout
+
+Device led = new Device(1, Device.DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+led.on();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparação da API de comandos e Devices 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:command"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+DeviceConnection conn = Connections.out.usb();
+\end_layout
+
+\begin_layout Plain Layout
+
+conn.addListener(new ConnectionListener() {
+\end_layout
+
+\begin_layout Plain Layout
+
+    public void onMessageReceived(Message message, DeviceConnection connection)
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+        String type = message.getClass().getSimpleName();
+\end_layout
+
+\begin_layout Plain Layout
+
+        System.out.println("onMessageReceived("+type+"): "+ message);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+});
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Monitorando recebimento de comandos 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:command-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/commands-api.svg
+	width 70line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama de classe simplificado dos Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DiagCommands"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Mecanismo de extensão
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:MecanismoExtensao"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como mencionado na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:VisaoGeral-Extensibilidade"
+
+\end_inset
+
+, o mecanismo de extensão da arquitetura é baseado no SPI (Service Provider
+ Interface), um recurso simples e leve, disponível no Java 6 e posteriores.
+ Embora a arquitetura tenha sido projetada como um framework, para ser usando
+ como base para criação de projetos mais especializados, existe uma implementaçã
+o padrão, denominada 
+\emph on
+middleware
+\emph default
+, que permite customizações através de extensões/plug-ins.
+ Os mecanismos de extensão padrão estão voltados para: (1) conexões, permitindo
+ adicionar novas conexões ou substituir por implementações mais eficientes,
+ (2) tratadores de eventos, que permite plugar estratégias de tratamento
+ de eventos, como exemplo a extensão que adiciona suporte tratadores de
+ evento usando a linguagem JavaScript (seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:SuporteJavaScript"
+
+\end_inset
+
+), e (3) sistema de armazenamento.
+ As extensões são implementadas através da interface 
+\emph on
+OpenDeviceExtension
+\emph default
+, que são inicializadas durante o carreamento da aplicação.
+ Para que as extensões sejam carregadas corretamente é necessário que no
+ módulo (.jar), seja incluído o arquivo de configuração na pasta: 
+\emph on
+resources/META-INF/services,
+\emph default
+ com o nome:
+\emph on
+ br.com.criativasoft.opendevice.engine.js.ExtensionPoint
+\emph default
+, seguindo as especificações do SPI.
+ As conexões seguem um mecanismo similar, porém possuem seus pontos de extensão
+ individualizados para cada tipo de conexão, como foi visto na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DiagConections"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+E as extenções REST, que o usuário pode extender ? (falta implementar)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Framework de Conexões
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Framework-de-Conexoes"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O framework de conexões foi projetado para ser usado de forma independente
+ do restante da arquitetura, a figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DiagConections"
+
+\end_inset
+
+ mostra a hierarquia base das conexões suportadas pela arquitetura, essas
+ interfaces são os pontos de extensão, permitindo que implementações possam
+ ser utilizadas de acordo com a plataforma ou mesmo trocadas por uma implementaç
+ão mais eficiente.
+ A figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DiagConections2"
+
+\end_inset
+
+ mostra um exemplo de implementação da conexão Bluetooth.
+ A implementação para aplicações Desktop é fornecida pelo módulo 
+\noun on
+connection-stream
+\noun default
+ , já a implementação para aplicações Android são fornecidas pelo módulo:
+ 
+\noun on
+android-stream
+\noun default
+, dessa maneira é possível que uma aplicação possa ser portada sem modificações
+ no seu código base para outras plataformas.
+ No OpenDevice a implementação correta é escolhida pela fabrica de conexões,
+ usando 
+\emph on
+Connections.out.bluetooth(
+\begin_inset Quotes eld
+\end_inset
+
+...
+\begin_inset Quotes erd
+\end_inset
+
+).
+
+\emph default
+ Esta fábrica está disponível no módulo core, e possui método para criação
+ das principais tecnologias de comunicação suportadas, tanto clientes, como
+ servidores.
+ Os principais componentes desse framework e suas descrições são listadas
+ a seguir.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/connections.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama de classe das conexões
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DiagConections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/connections-bluetooth.svg
+	width 70line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo de implementação da conexão bluetooth
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DiagConections2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+DeviceConnection - Interface base para todos as conexões do sistema, define
+ o modo de operação geral das conexões e em conjunto com o 
+\emph on
+MessageSerializer
+\emph default
+ definem o modelo de protocolo a ser utilizado.
+ E possui uma implementação um implementação base, através da classe 
+\emph on
+AbstractConnection
+\emph default
+, que facilita a criação de implementações finais.
+ 
+\end_layout
+
+\begin_layout Itemize
+MessageSerializer - Como mencionado anteriormente, é o componente responsável
+ pela serialização e desserialização das das mensagens enviadas e recebidas
+ pelas conexões.
+ São as implementações que definem o tamanho e formato das mensagens.
+ A implementação padrão, localizada no módulo core, é feita pela classe
+ 
+\emph on
+CommandStreamSerializer
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+ConnectionListener - Interface que permite monitorar de forma plugável os
+ eventos ocorridos na conexão, como conexão, desconexão e recebimento de
+ mensagens, permitindo as aplicações reagirem à esses eventos.
+ Vários ouvintes de eventos (Listeners) podem ser adicionados a conexão.
+\end_layout
+
+\begin_layout Itemize
+Message - Interface que encapsula os dados enviados e recebidos, exemplos
+ de implementações são 
+\emph on
+ByteMessage
+\emph default
+, 
+\emph on
+Request
+\emph default
+, etc.
+ A implementação base usada no OpenDevice é realizada pela classe 
+\emph on
+Command
+\emph default
+, localizada no módulo core.
+\end_layout
+
+\begin_layout Standard
+No OpenDevice, esse framework é utilizado em duas camadas: (1) conexões
+ de entrada (Input), que são os servidores e tem por objetivo disponibilizar
+ os serviços para as aplicações clientes, como por exemplo o servidor REST,
+ e (2) conexões de saída (Output), denominados na maioria das vezes como
+ streams, que são as conexões com os módulos físicos (hardware) e que implementa
+m o protocolo de baixo nível, realizando a serialização e desserialização
+ dos comandos enviadas pelas aplicações.
+ 
+\end_layout
+
+\begin_layout Section
+Módulos Servidores 
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ConexoesServidores"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Os módulos servidores, são responsáveis por fazer a interface com as aplicações
+ clientes.
+ Eles permitem a inclusão de novos mecanismos de conexão ou novos protocolos.
+ Um exemplo de utilização de novo protocolo é encontrado do servidor REST,
+ que expande o protocolo do OpenDevice (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+), permitindo criar interfaces mais simples e de mais alto nível, para as
+ aplicações cliente se comunicarem com os dispositivos.
+\end_layout
+
+\begin_layout Standard
+O servidor WebSocket, permite que aplicações (Web, Desktop, Mobile) se comunique
+m em tempo-real e de forma bidirecional com os dispositivos, usando middleware.
+ O framework é projetado seguindo dois conceitos de conexões: (1) conexões
+ de entrada (Input), que são os servidores, e (2) conexões de saída (Ouput),
+ que são as conexões com os dispositivos físicos.
+ O papel do middleware é de fazer a tradução entre os protocolos de entrada
+ e direcionados para saída correspondente, confirme a figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:middleware_connections"
+
+\end_inset
+
+.
+ O módulo de visualização (com gráficos e dashboards), apresentado na seção
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Visualizacao"
+
+\end_inset
+
+, utilizam as conexões em WebSocket para permitir a comunicação em tempo-real
+ com os dispositivos.
+\end_layout
+
+\begin_layout Standard
+Os servidores permitem a abstração e desacoplamentos entre dispositivos
+ e aplicações, de modo que, uma aplicação pode se comunicar com vários dispositi
+vos, ou permitir que varias aplicações se comuniquem com o mesmo dispositivo,
+ contornando alguns problemas das conexões que suportam apenas um cliente,
+ como no caso do Bluetooth e Usb.
+\end_layout
+
+\begin_layout Standard
+Os servidores foram projetados pensando na otimização de recursos do hardware.
+ Como o objetivo é permitir que eles possam executar em hardwares, na categoria
+ Mini-PCs, como o Raspberry e BeagleBone, as implementações dos servidores
+ utilizados no middleware, foram escolhidas de modo que rodassem de forma
+ embarcada e compartilhado o máximo de recursos possíveis.
+ Devido a arquitetura estar projetada para suportar inicialmente os protocolos
+ Http, Rest, WebSocket e MQTT, a implementações dos mesmos seriam um desafio,
+ e devido a variedade de requisitos, estaria fora do escopo da proposta
+ deste trabalho.
+ Foi então realizado um estudo que mapeou as implementações desses protocolos
+ individualmente, e observou-se que as soluções mais maduras estavam baseadas
+ em frameworks de rede.
+ Os principais frameworks encontrados foram: Jetty (Eclipse)
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://www.eclipse.org/jetty/
+\end_layout
+
+\end_inset
+
+, Grizzly (GlassFish)
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://grizzly.java.net
+\end_layout
+
+\end_inset
+
+ e Netty
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://netty.io
+\end_layout
+
+\end_inset
+
+.
+ O Jetty é um contêiner de aplicações Java e servidor web, que tem uma estrutura
+ modular e suporta protocolos como Http e WebSocket.
+ Apesar ser possível rodar de forma embarcada, sua estrutura foi planejada
+ para rodar aplicações Java web (.war), não como um framework genérico e
+ nem com plataformas embarcadas em mente.
+ O Grizzly por sua vez é projetado como um framework, e utilizado como base
+ na construção do servidor de aplicação GlassFish, suportando também Http,
+ WebSocket e sendo de fácil extensão.
+ Por fim, o Netty, é também um framework que tem uma estrutura simples,
+ é utilizado para construção de projetos como Apache Spark, Elasticsearch,
+ Neo4j (banco de dados), Minecraft e outros
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://netty.io/wiki/adopters.html
+\end_layout
+
+\end_inset
+
+.
+ O Netty é framework utilizado como base das implementações dos servidores
+ escolhidos para o projeto arquitetura.
+ 
+\end_layout
+
+\begin_layout Standard
+A escalabilidade da arquitetura pode ser alcançada, substituindo os implementaçõ
+es dos servidores embarcados, por implementações mais robustas, que permitam
+ escalonamento horizontal e balanceamento de carga.
+ Isto pode ser alcançado, de forma transparente para a aplicação, utilizando
+ os mecanismos de extensão (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:VisaoGeral-Extensibilidade"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MecanismoExtensao"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/middleware_connections.svg
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fluxo de conexão e descoberta
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:middleware_connections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Servidor MQTT
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Flar resumo bem leve do MQTT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A implementação de servidor MQTT escolhida, foi o 
+\begin_inset Quotes eld
+\end_inset
+
+Moquette MQTT
+\begin_inset Quotes erd
+\end_inset
+
+, projeto mantido pela fundação Eclipse, e que utiliza como base o framework
+ de rede Netty.
+\end_layout
+
+\begin_layout Standard
+Os servidores são em sua maioria destinados à comunicação com as aplicações
+ clientes (conexões de entrada), o MQTT é uma exceção, pois permite também
+ que os dispositivos físicos também sejam conectados ao middleware.
+ Para permitir um gerenciamento e integração com o middleware, e permitir
+ a comunicação bidirecional entre aplicações e dispositivos físicos, algumas
+ convenções foram adotadas na nomenclaturas dos tópicos.
+ 
+\end_layout
+
+\begin_layout Standard
+Tanto as aplicações como os dispositivos físicos são 
+\begin_inset Quotes eld
+\end_inset
+
+publish
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+subscriber
+\begin_inset Quotes erd
+\end_inset
+
+.
+ O middleware é o encarregado de monitorar as mensagens e fazer o direcionamento
+ adequado, atuando como espécie de 
+\begin_inset Quotes eld
+\end_inset
+
+subscriber
+\begin_inset Quotes erd
+\end_inset
+
+ geral.
+ Caso uma aplicação envie uma requisição para um dispositivo, é papel do
+ middleware fazer o direcionamento para o tópico correto, e monitorar a
+ resposta e envia-la de volta (publish) para a aplicação que fez a requisição.
+ A camada das aplicações não conhecem a estrutura de tópicos do borker mqtt
+ e seu mapeamento para os dispositivos, elas apenas possuem as abstrações
+ dos dispositivos, orientadas a objetos, e enviam os comandos para o middleware
+ (ex.: device.on()).
+ Isso mermite que aplicações clientes MQTT consigam se comunicar com dispositivo
+s Bluetooth e MQTT de forma transparente.
+\end_layout
+
+\begin_layout Standard
+A tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:mqtt_nomenclatura"
+
+\end_inset
+
+, apresenta as nomenclaturas estabelecias para o nome dos tópicos.
+ Quando uma aplicação realiza uma operação na abstração do dispositivo (ex.:
+ device.on()), um comando é enviado para tópico 
+\begin_inset Quotes eld
+\end_inset
+
+ProjectID/middeware/in
+\begin_inset Quotes erd
+\end_inset
+
+, que é o canal que o middleware usa para o recebimento dos comandos das
+ aplicações.
+ Na implementação atual, por ser embarcada, o recebimento é feito diretamente
+ sem necessidade do middleware se inscrever nos tópicos.
+ O middleware identifica o dispositivo e determina qual conexão que o dispositiv
+o em questão está vinculado, que pode ser uma conexão Bluetooth ou MQTT,
+ nesse ultimo caso, o firmware envia (publish) o comando para seu respectivo
+ tópico: 
+\begin_inset Quotes eld
+\end_inset
+
+ProjectID/in/ModuleName
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+O componente denominado 
+\begin_inset Quotes eld
+\end_inset
+
+Firmware
+\begin_inset Quotes erd
+\end_inset
+
+ é um hardware (ex.: arduino) que pode estar gerenciando um ou mais dispositivos
+ (sensores e atuadores), onde internamente cada um recebe uma identificação
+ (DeviceID).
+ Cada conexão com um hardware (ex.: arduino), recebe uma identificação chamada
+ 
+\begin_inset Quotes eld
+\end_inset
+
+ModuleName
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Componente
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operação
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tópico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Descrição
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Firmware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Publish
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/out
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Envio de Dados
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Firmware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subscribe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/in/ModuleName
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Recebimento de comandos
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Middleware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subscribe*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/out
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+* Monitoramento (Listener)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Middleware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subscribe*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/middeware/in
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+* Monitoramento (Listener)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+App
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Publish
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/middeware/in
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Envio de Comandos
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+App
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subscribe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/middeware/out
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Notificações Gerais
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+App
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Subscribe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ProjectID/middeware/out/CID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tópico de Resposta
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nomenclatura de tópicos MQTT
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:mqtt_nomenclatura"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Servidores WebSocket, Rest e Http
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dar um resumo do WebSocket?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O WebSocket é o protocolo originalmente utilizado para permitir a comunicação
+ em tempo-real com as aplicações Web, porém é possível a sua utilização
+ em aplicações Desktop.
+ A implementação desse protocolo é fornecida pelo projeto Nettosphere
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/Atmosphere/nettosphere
+\end_layout
+
+\end_inset
+
+, também baseado no framework Netty.
+ O grade diferencial é que ele oferece a implementação dos três protocolos
+ utilizando a mesma porta (ex.: 80), e consequentemente poupando muitos recursos
+ do hardware.
+ Isso é possível devido a estrutura de processamento do framework Netty,
+ que permite identificar e processar cada protocolo separadamente.
+ Teoricamente o mesmo poderia ser feito para o protocolo MQTT, mas seria
+ um desafio atingir o nível de maturidade da implementação embarcada que
+ adotamos.
+\end_layout
+
+\begin_layout Standard
+O servidor HTTP, permite que seja configurado pastas, onde pode ser disponibiliz
+ados arquivos html, css e imagens, permitindo a criação de interfaces gráficas.
+\end_layout
+
+\begin_layout Standard
+O servidor REST, permite a criação de serviços que atendem ao protocolo
+ REST.
+ A integração com o Jesey
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://jersey.java.net
+\end_layout
+
+\end_inset
+
+, permite a implementação da especificação Java (JAX-RS - The Java API for
+ RESTful Web Services), facilitando e padronizando a criação de novos serviços,
+ estendendo as capacidades do middleware.
+ Os serviços Rest criados, contam com suporte a injeção de dependências,
+ seguindo a especificação JSR-330, que se utilizam das anotações @Inject
+ e @Named, para injeção dos componentes.
+\end_layout
+
+\begin_layout Section
+Suporte a JavaScript
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:SuporteJavaScript"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O suporte a JavaScript permite a criação de aplicações simples e tratadores
+ de eventos, que rodam nativamente, e é integrado ao OpenDevice através
+ do mecanismo de extensões.
+ Outro modo de programação em JavaScript, é utilizando a biblioteca 
+\noun on
+opendevice-js
+\noun default
+, que é voltada para o desenvolvimento de aplicações Web, implementam os
+ protocolos REST e WebSocket.
+ No primeiro caso, é possível criar aplicações que rodem nativamente, ou
+ seja, sem depender de um navegador, pois rodam diretamente na JVM.
+ Este suporte é fornecido através do módulo 
+\noun on
+js-engine
+\noun default
+, que usa os recursos da própria JVM implementados no projeto Nashorn 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://openjdk.java.net/projects/nashorn/
+\end_layout
+
+\end_inset
+
+.
+ Este recurso auxilia na utilização por desenvolvedores que não tem experiência
+ com linguagem Java ou mesmo desenvolvedores experientes que precisam realizar
+ uma prototipação mais rápida ou pela simplicidade da implementação de tratament
+o de eventos com uma linguagem de script.
+ Devido a necessidade de recursos avançados da JVM esse módulo (
+\noun on
+js-engine
+\noun default
+), depende da versão Java 8, que inclui várias melhorias de performance
+ e integração com JavaScript
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+.
+ Os modos de desenvolvimento serão detalhados a seguir.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dúvida, seria necessário adicionar uma explicação sobre a linguagem JavaScript
+ ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Criação de aplicações nativas em JavaScript
+\end_layout
+
+\begin_layout Standard
+As aplicações criadas em JavaScript, executam na JVM e tem interoperabilidade
+ com as classes definidas em Java, desse modo é possível realizar chamadas
+ nas classes e métodos do OpenDevice.
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:ExemploJS1"
+
+\end_inset
+
+, demostra um exemplo de criação de uma aplicação simples, que ao detectar
+ uma mudança no botão
+\begin_inset space ~
+\end_inset
+
+(button), controla o estado da lâmpada
+\begin_inset space ~
+\end_inset
+
+(led).
+ O módulo 
+\noun on
+js-engine
+\noun default
+ pode ser compilado para um executável (odevjs.exe ou odevjs.jar), destinado
+ a execução de aplicações em JavaScript usando o comando: 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+> odevjs.exe myscript.js
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Outro exemplo de aplicação, usando interface gráfica (GUI) em JavaFX, pode
+ ser encontrado no Apêndice 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:ApendiceA"
+
+\end_inset
+
+, para habilitar o JavaFX é necessário informar o parâmetro 
+\begin_inset Quotes eld
+\end_inset
+
+-fx
+\begin_inset Quotes erd
+\end_inset
+
+, exemplo: 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+> odevjs.exe -fx myscript.js
+\end_layout
+
+\end_inset
+
+.
+ Os códigos JS podem ser executados diretamente de aplicações Java, através
+ da classe 
+\emph on
+OpenDeviceJSEngine
+\emph default
+, exemplo: 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+OpenDeviceJSEngine.run("myscript.js")
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+var led = new Device(1, DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+var button = new Sensor(2, DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+button.onChange(function(){
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(button.isON()){
+\end_layout
+
+\begin_layout Plain Layout
+
+        led.on();
+\end_layout
+
+\begin_layout Plain Layout
+
+    }else{
+\end_layout
+
+\begin_layout Plain Layout
+
+        led.off();
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+});
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+connect(usb());
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo de Aplicação em JavaScript
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:ExemploJS1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Tratadores de Eventos (EventHook)
+\end_layout
+
+\begin_layout Standard
+Os tratadores de evento (EventHook), são pequenos trechos de código JavaScript
+ que estão vinculados os dispositivos (Devices e Sensors) e são executados
+ quando acontece alguma mudança do seu valor.
+ Esse mecanismo é uma extensão para o EventManager, e implementada pela
+ classe 
+\emph on
+JavaScriptEventHandler
+\emph default
+.
+ A implementação padrão faz o carregamento dos scripts através de arquivos,
+ mas pode-se implementar outras formas de armazenamento/carregamento.
+ Na implementação atual, os eventos são mapeados para os dispositivos através
+ de metadados includidos no próprio script.
+ Na listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:ExemploJS2"
+
+\end_inset
+
+, é implementado a mesma lógica da listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:ExemploJS1"
+
+\end_inset
+
+, só que diferentemente, eles não são interpretados através do executável
+ (odevjs.exe), eles são gerenciados pela o middleware e são executados quando
+ os dispositivos mapeados através da anotação 
+\noun on
+@devices,
+\noun default
+ sofrem alguma modificação.
+ A variável 
+\begin_inset Quotes eld
+\end_inset
+
+device
+\begin_inset Quotes erd
+\end_inset
+
+, é injetada pelo framework e representa o dispositivo que sofreu a alteração.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=VBScript"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/**
+\end_layout
+
+\begin_layout Plain Layout
+
+ * @name ButtonHookDemo
+\end_layout
+
+\begin_layout Plain Layout
+
+ * @devices 2
+\end_layout
+
+\begin_layout Plain Layout
+
+ * @description TestCase
+\end_layout
+
+\begin_layout Plain Layout
+
+ * @type JavaScript
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+var led = findDevice(1);
+\end_layout
+
+\begin_layout Plain Layout
+
+if(device.isON()){
+\end_layout
+
+\begin_layout Plain Layout
+
+    led.on();
+\end_layout
+
+\begin_layout Plain Layout
+
+}else{
+\end_layout
+
+\begin_layout Plain Layout
+
+    led.off();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo do 
+\begin_inset Quotes eld
+\end_inset
+
+EventHook
+\begin_inset Quotes erd
+\end_inset
+
+ em JavaScript
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:ExemploJS2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Criação de aplicações WEB em JavaScript
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falta falar do mapeamento de propriedades e actions...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A biblioteca 
+\noun on
+opendevice-js
+\noun default
+ foi desenvolvida para auxiliar no desenvolvimento de aplicações Web, escritas
+ em qualquer outra linguagem, e sua integração com os dispositivos físicos.
+ Ela permite a comunicação em tempo-real com os dispositivos graças ao suporte
+ a WebSocket.
+ Trabalha no modelo orientado a eventos, ou seja, quando ocorre alguma mudança
+ no estado no dispositivo, o evento 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+onChange
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ é chamado, conforme no exemplo da listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:ExemploJS3"
+
+\end_inset
+
+.
+ Ele é utilizada na construção do front-end web do middleware (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Visualizacao"
+
+\end_inset
+
+), que permite fazer o controle dos dispositivos, realizar a análise e visualiza
+ção de dados em tempo-real ou de dados históricos.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=VBScript"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<script>
+\end_layout
+
+\begin_layout Plain Layout
+
+    $(function(){ // JQuery ready()
+\end_layout
+
+\begin_layout Plain Layout
+
+        ODev.connect();
+\end_layout
+
+\begin_layout Plain Layout
+
+    });
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.onChange(function(device){
+\end_layout
+
+\begin_layout Plain Layout
+
+        if(device.sensor){
+\end_layout
+
+\begin_layout Plain Layout
+
+            ODev.findDevice(1).setValue(device.value);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    });
+\end_layout
+
+\begin_layout Plain Layout
+
+</script>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo de utilização da biblioteca 
+\noun on
+opendevice-js
+\noun default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:ExemploJS3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Visualização e controle dos dispositivos
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Visualizacao"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O middleware conta uma uma interface Web (figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dashboard1"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dashboard2"
+
+\end_inset
+
+), desenvolvida em HTML5 e AngularJS, e implementada pelo módulo 
+\noun on
+opendevice-web-view, 
+\noun default
+que permite o monitoramento, controle dos dispositivos e visualização do
+ dados através de gráficos e indicadores.
+ A visualização pode ser em tempo-real ou através de consultas a dados histórico
+s.
+ É possível aplicar funções como: (1) média, (2) mínimo, 3 (máximo), 4 (soma),
+ 5 (contagem) e 6 (desvio padrão), nos dados de um determinado intervalo
+ que é configurado via a interface gráfica.
+ Os gráficos implementados são: (1) gráfico de linha, (2) gráfico de pizza,
+ (3) gauge e (4) indicador numérico.
+ Os dashbords são altamente flexíveis, permitindo configurar o tamanho,
+ adicionar e remover gráficos.
+ Alguns gráficos permitem a inclusão de vários dispositivos, permitindo
+ uma análise comprativa, como no exemplo da figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dashboard2"
+
+\end_inset
+
+ (Luz Semana 1), foram incluídos três dispositivos em um gráfico de linha.
+ O mesmo permite funções de zoom em determinado período de forma interativa.
+ Os dashboards permitem também a inclusão de dispositivos e sensores digitais,
+ permitindo o controle, ativação, desativação e visualização do status atual.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Talvez fosse interessante dar uma contextualizada da importância da visualização
+ (ref 6.1 RuG ViSi Tool e 6.3 User Layer, e 6.3.4 Web Interface)
+\end_layout
+
+\begin_layout Plain Layout
+faltou tabem descrever que os blocos de gráficos podem ser utilizados de
+ forma independente.
+\end_layout
+
+\begin_layout Plain Layout
+Explicar tambem mais sobre a interface de controle, que é em tempo real,
+ e ao contar vários clientes na mesma aplicação as alteraçãos são visualizadas
+ em tempo real em ambas aplicações (video ?), explicar que os 3 primeiros
+ são atuadores, e os outros sensores, e que eles se atualizam automaticamente.
+\end_layout
+
+\begin_layout Plain Layout
+E o sistema de reconhecimento de fala ?
+\end_layout
+
+\begin_layout Plain Layout
+Falta falar da biblioteca de graficos utilizada.
+\end_layout
+
+\begin_layout Plain Layout
+Falta falar do sistema de Extensibilidade.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/dashboard-devices.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interface de controle de dispositivos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dashboard1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/dashboard-charts.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interface de Dashboards Gráficos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dashboard2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Serviço de descoberta
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ServicoDescoberta"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Conectar e configurar um dispositivo (microcontrolador, sensor ou atuador),
+ é uma tarefa relativamente simples.
+ Fazer o mesmo para centenas ou milhares de dispositivos, não é uma tarefa
+ fácil.
+ Este é o cenário que os pesquisadores e desenvolvedores irão encontrar
+ no ambiente de Internet das Coisas.
+ Um mecanismo dinâmico, adaptável e utilizando um processo mais automatizado
+ possível, é necessário para realizar a descoberta de dispositivos e registro
+ de suas informações básicas.
+ Além disso existe a necessidade de trabalhar de forma unificada com diferentes
+ protocolos e dispositivos de rede.
+\end_layout
+
+\begin_layout Standard
+O framework conta com serviços de descoberta de dispositivos, suportando
+ as tecnologias: Usb, Bluetooth, Ethernet e WiFi.
+ O middleware também disponibiliza um serviço de descoberta, permitindo
+ que as aplicações clientes o localizem em uma rede local.
+ São dois os possíveis cenários onde as aplicações e dispositivos IoT estarão
+ executando: Local e Internet.
+ No cenário onde os dispositivos estão conectados à Internet, eles devem
+ ser configurados para atuarem como clientes, conectando-se no servidor
+ em nuvem do OpenDevice em um endereço fixo.
+ Já em um cenário local, focando-se em dispositivos Ethernet, no cenário
+ de automação residencial por exemplo, os dispositivos poderiam atuar em
+ modo cliente ou como servidor, e ambos os cenários seria necessário configurar
+ manualmente um IP fixo para cada dispositivo, uma tarefa relativamente
+ trabalhosa de pendendo da quantidade de dispositivos.
+\end_layout
+
+\begin_layout Standard
+Uma solução promissora é o padrão DNS-SD (DNS Service Discovery, RFC 6763)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-dnssd"
+
+\end_inset
+
+, que permite a descoberta de serviços na rede e associação de um 
+\begin_inset Quotes eld
+\end_inset
+
+DNS local
+\begin_inset Quotes erd
+\end_inset
+
+ para o dispositivo, como por exemplo: 
+\emph on
+lampada1.local
+\emph default
+.
+ Devido às limitações de alguns hardwares alvos do estudo (microcontroladores),
+ uma solução mais simples foi adotada, trata-se do envio de mensagens UDP
+ em broadcast na rede.
+ Os dispositivos (hardware) monitoram a rede e ao detectar uma solicitação
+ de descoberta (um comando do tipo DISCOVERY_REQUEST), enviam uma mensagem
+ de volta contento o seu nome, tipo, IP atual, e porta
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+não existe o tipo ainda, talvez precise de uma tabela explicando.
+\end_layout
+
+\end_inset
+
+.
+ Desse modo, todos os dispositivos podem ser configurados com IP dinâmico
+ usando DHCP, incluindo o próprio servidor (middleware).
+ As aplicações clientes podem localizar os dispositivos ou middleware utilizando
+ o mesmo mecanismo.
+ 
+\end_layout
+
+\begin_layout Standard
+Foi desenvolvido uma estratégia bastante simples, influenciado pelo DNS-SD
+ e combinado com a técnica desenvolvida, para conexão com os dispositivos
+ TCP/IP, usando um endereço com sufixo pre-definido (ex.: 
+\emph on
+lampada1
+\emph default
+.local.opendevice).
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:descoberta"
+
+\end_inset
+
+ apresenta um modelo tradicional de descoberta e o modelo usando os endereços
+ de domínio local.
+ No primeiro exemplo (modelo tradicional) é obtido o serviço de descoberta
+ e iniciado a busca durante 5 segundos por dispositivos na rede, em seguida
+ é feita a conexão.
+ No seguindo caso, ele permite a simplificação do processo, o endereço informado
+ 
+\begin_inset Quotes eld
+\end_inset
+
+lampada1.local.opendevice
+\begin_inset Quotes erd
+\end_inset
+
+, na verdade não se trata de um domínio, serve apenas para marcar e iniciar
+ o sistema de descoberta automaticamente, permitindo uma fácil conexão com
+ determinado dispositivo (hardware).
+ A imagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DiagDiscoveryConnect"
+
+\end_inset
+
+ apresenta um diagrama de fluxo de como esse processo funciona.
+\end_layout
+
+\begin_layout Standard
+As conexões Usb e Bluetooth, possuem mecanismos de descobertas menos sofisticado
+s, oferecidos pelas próprias implementações no S.O, que são usados pelo serviço
+ de descoberta.
+ No caso do USB, a classe que implementa essa conexão (
+\emph on
+UsbConnection
+\emph default
+), possui o método 
+\begin_inset Quotes eld
+\end_inset
+
+listAvailable
+\begin_inset Quotes erd
+\end_inset
+
+, que lista todos os dispositivos USB-Serial conectados na maquina.
+ É possível realizar facilmente uma conexão com o primeiro dispositivo encontrad
+o usando: 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+connect(out.usb())
+\end_layout
+
+\end_inset
+
+.
+ A implementação para Bluetooth é similar, onde o método 
+\begin_inset Quotes eld
+\end_inset
+
+listAvailable
+\begin_inset Quotes erd
+\end_inset
+
+ da classe (
+\emph on
+BluetoothConnection
+\emph default
+), realiza a listagem dos dispositivos seriais (SSP - Serial Port Profile)
+ disponíveis, também é possível conectar-se facilmente com o primeiro dispositiv
+o encontrado, usando: 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+connect(out.bluetooth())
+\end_layout
+
+\end_inset
+
+ (observe que, antes é necessário realizar manualmente o pareamento dos
+ dispositivos).
+ 
+\end_layout
+
+\begin_layout Standard
+Para dispositivos com suporte a WiFi, existe uma etapa inicial de configuração
+ do SSID e senha da rede(roteador) ao qual esse dispositivo deve se conectar,
+ mudanças na rede necessitariam de uma reprogramação do dispositivo.
+ No OpenDevice foi implementado um mecanismo de configuração remota dos
+ dispositivos WiFi, que será abordado na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConfigWifi"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// Modelo tradicional
+\end_layout
+
+\begin_layout Plain Layout
+
+Set<NetworkDeviceInfo> devices = getDiscoveryService().scan(5000, null);
+\end_layout
+
+\begin_layout Plain Layout
+
+if(devices.size() > 0){
+\end_layout
+
+\begin_layout Plain Layout
+
+    NetworkDeviceInfo info = devices.iterator().next();
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(info.getName().equals("lampada1")) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        connect(out.tcp(info.getIp() + ":" + info.getPort()));
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// Modelo usando domínio local
+\end_layout
+
+\begin_layout Plain Layout
+
+connect(out.tcp("lampada1.local.opendevice"));
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplos de descoberta de dispositivos 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:descoberta"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_discovery_connect.svg
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fluxo de conexão e descoberta
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DiagDiscoveryConnect"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+O mecanismo de descoberta não está suficiente abstraido, as implementações
+ para TCP e USB usam mecanismos distintos.
+ è preciso cria uma camada de composição.
+ Um exemplo disso é apresentado em: 4.2.3 Discovery Plugins (Design and Implementa
+tion of a Middleware..)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+APIs para Aplicações Cliente
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ConexoesCliente"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O conjunto de bibliotecas ou APIs para aplicações clientes, permitem a rápida
+ construção de aplicações, sem que os pesquisadores ou desenvolvedores tenham
+ que se preocupar com os detalhes de baixo nível do protocolo, adotando
+ um modelo orientados a eventos (Event-Driven) e usando orientação a objetos
+ na construção das aplicações, que podem ser uma aplicações Web, Desktop,
+ Mobile ou uma interface simulação.
+ O maior desafio encontrado na construção dessas aplicações é lidar com
+ a heterogeneidade dos dispositivos (atuadores e sensores), fazer o gerenciament
+o das conexões e a integração com a aplicação.
+ A arquitetura disponibiliza uma middleware e um framework para construção
+ de plataformas (middleware) customizadas.
+\end_layout
+
+\begin_layout Standard
+As bibliotecas disponibilizadas permitem uma comunicação bidirecional e
+ são focadas na comunicação em tempo-real, dessa maneira é possível construir
+ gráficos para visualização das informações em tempo-real, aplicações de
+ simulação, etc.
+ As tecnologias empregadas que permitem essa comunicação , estão disponíveis
+ para as plataformas Web, Desktop e Mobile, conforme a tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:apis-clientes"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Web
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Desktop
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mobile (Android)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alvo de Comunicação
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+USB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Firmware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bluetooth
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Firmware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Socket (TCP)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Middleware/Firmware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WebSocket
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Middleware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MQTT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Middleware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+APIs Clientes
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:apis-clientes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Implementação
+\end_layout
+
+\begin_layout Standard
+A maior parte das bibliotecas são implementados em linguagem Java com base
+ no framework de conexões (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Framework-de-Conexoes"
+
+\end_inset
+
+) e utilizam o módulo principal (core), que provê as APIs de comandos e
+ abstração de dispositivos.
+ Porém são disponibilizadas bibliotecas em JavaScript, apresentada na seção
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:SuporteJavaScript"
+
+\end_inset
+
+, e Python (experimental).
+ As tecnologias de comunicação (ex.: Usb), são implementadas com auxílio
+ de bibliotecas externas, e suas considerações são listadas a seguir.
+\end_layout
+
+\begin_layout Subsubsection
+USB
+\end_layout
+
+\begin_layout Standard
+A comunicação USB, por utilizar recursos do sistema operacional e ser dependente
+ da arquitetura, não possui suporte nativo na JVM, apesar de ser umas das
+ especificações iniciais da plataforma, registrada sobre a especificação:
+ Java USB API (JSR-80)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-JSR-80"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Como alternativa, algumas bibliotecas de terceiros foram avaliadas.
+ Uma das pioneiras e mais utilizadas é a biblioteca RXTX
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/rxtx/rxtx
+\end_layout
+
+\end_inset
+
+, e foi utilizada nas versões iniciais da plataforma.
+ Porém pelo fato de não ter um desenvolvimento ativo, e nos testes realizados
+ ter se mostrado instável, apresentando alguns erros, problemas de deadlocks
+ e problema em plataformas ARM (ex.: Raspberry), ela foi substituída.
+ A implementação de referência oficial, javax-usb 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://javax-usb.sourceforge.net/
+\end_layout
+
+\end_inset
+
+, a julgar pelo site e documentação, estão abandonados a muito tempo.
+\end_layout
+
+\begin_layout Standard
+A implementação utilizada, foi baseada na biblioteca JSSC (Java Simple Serial
+ Connector)
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/scream3r/java-simple-serial-connector
+\end_layout
+
+\end_inset
+
+, que oferece suporte para várias plataformas
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Segundo o site: Windows(x86, x86-64), Linux(x86, x86-64, ARM soft & hard
+ float), Solaris(x86, x86-64), Mac OS X(x86, x86-64, PPC, PPC64)
+\end_layout
+
+\end_inset
+
+, se mostrando uma alternativa promissora.
+ Ela é a biblioteca utilizada na IDE do Arduino, substituindo a RXTX em
+ versões anteriores.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falar que está no planejamento implemtaão para o Web(Chome) e Android ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Bluetooth
+\end_layout
+
+\begin_layout Standard
+A comunicação Bluetooth é apoiada na especificação Java JSR-82
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-JSR-82"
+
+\end_inset
+
+, possui implementações bem estabelecidas e estáveis para o desenvolvimento
+ para dispositivos móveis, usando JavaME.
+ As implementações para ambiente desktop, sofrem com os mesmos problemas
+ de plataforma do Usb.
+ Uma das poucas alternativas, é a biblioteca BlueCove
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://bluecove.org/
+\end_layout
+
+\end_inset
+
+, que tem implementações para os principais sistemas operacionais (Windows,
+ Linux, MacOS).
+ Para o suporte à plataformas ARM (no RaspberryPi), foi necessários a recompilaç
+ão da mesma e ajustes, pois não foram encontradas versões disponibilizadas
+ no site oficial nem de terceiros.
+ 
+\end_layout
+
+\begin_layout Standard
+As implementações para aplicações mobile, estão disponíveis para o Android,
+ e utiliza as APIs disponibilizadas pela própria plataforma.
+ A arquitetura do OpenDevice, é projetada de maneira que a implementação
+ utilizada é transparente para o desenvolvedor, sem precisar de modificações
+ no código.
+\end_layout
+
+\begin_layout Subsubsection
+Socket (TCP)
+\end_layout
+
+\begin_layout Standard
+È implementada usando as APIs nativas do Java, usando as classes da API
+ de Socket.
+ Como o Java foi projetada para construção de sistemas em rede, as APIs
+ de comunicação são suportadas em praticamente todas as plataformas.
+\end_layout
+
+\begin_layout Standard
+Apesar de ser compatível com as plataformas mobile (Android), a implementação
+ atual não é indicada, por não levar em consideração requisitos de consumo
+ de bateria.
+\end_layout
+
+\begin_layout Subsubsection
+WebSocket
+\end_layout
+
+\begin_layout Standard
+A implementação de WebSocket para plataforma Web, utiliza as próprias APIs
+ disponibilizadas pelos navegadores, através da implementação da especificação
+ de WebSocket para o HTML5
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-ws-1,key-ws-2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A implementação para aplicações Desktop e Mobile(Android), são baseadas
+ na biblioteca wAsync
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/Atmosphere/wasync
+\end_layout
+
+\end_inset
+
+.
+ As especificações da API de WebSocket para plataforma Java, estão disponíveis
+ através da especificação JSR 356
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-JSR-356"
+
+\end_inset
+
+, e uma implementação de referência chamada Tyrus
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://tyrus.java.net/
+\end_layout
+
+\end_inset
+
+, parece promissora, porém ainda conta com limitações para utilização no
+ Android e por conta disso não foi utilizada.
+\end_layout
+
+\begin_layout Subsubsection
+MQTT
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://projects.eclipse.org/proposals/moquette-mqtt
+\end_layout
+
+\begin_layout Plain Layout
+LMAX disruptor (ASL 2.0) Netty (ASL 2.0)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Armazenamento
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Armazenamento"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O sistema de armazenamento guarda informações sobre as conexões, dispositivos
+ e histórico de dados.
+ A implementação padrão é baseada em um banco de dados orientado a grafos,
+ chamado Neo4j
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://www.neo4j.com
+\end_layout
+
+\end_inset
+
+, baseado no conceito NoSQL, que permite ser executado de forma embarcada,
+ junto com a aplicação.
+ A base da arquitetura do Neo4j é construída usando o framework Netty, o
+ mesmo utilizado nas implementações dos módulos de servidores (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConexoesServidores"
+
+\end_inset
+
+), permitindo otimizando alguns recursos de espaço e consumo de memória.
+ Ao incluir o middleware e o módulo de interface gráfica, as informações
+ sobre os dashboards e configuração dos gráficos também são armazenadas.
+ Na construção de aplicações e protótipos, o sistema de armazenamento pode
+ ser dispensado, usando apenas o sistema de cache de dispositivos, porém
+ este não permite a visualização de dados históricos.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dúvida: Aqui falei sobre Banco de Dados orientado a grafos, precisa ter
+ alguma explicação sobre isso em alguma outra parte do trabalho ? Talvez
+ falar do Neo4J ?
+\end_layout
+
+\begin_layout Plain Layout
+Nova possibilidade de implementação, usando o MapDB
+\end_layout
+
+\begin_layout Plain Layout
+Incluir a imagendo Neo4J: /home/ricardo/Imagens/Selection_355.png
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Firmware
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Arquitetura-do-Firmware"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O firmware é um componente que permite a criação de dispositivos (coisas)
+ para Internet das Coisas.
+ Ele foi projetado para criação de sistemas embarcados para microcontroladores,
+ e se baseia na API do Arduino para acesso aos periféricos do microcontrolador.
+ Apesar de utilizar a API do Arduino, ele não está limitado apenas aos hardwares
+ denominados Arduino, várias outras plataformas vem implementando o suporte
+ a sua API
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+
+\end_inset
+
+, como por exemplo o ESP8266
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://www.esp8266.com
+\end_layout
+
+\end_inset
+
+, um SoC (System-On-Chip) de 32 bits com WiFi embutido.
+ Hardwares com maior poder de processamento e que suportem a execução na
+ JVM (Maquina Virtal Java), não farão utilização do firmware.
+\end_layout
+
+\begin_layout Standard
+O firmware é flexível e pode ser utilizado como base para criação sistemas
+ embarcados customizados, dando suporte a várias tecnologias de comunicação,
+ como: Usb, Bluetooth, Ethernet e WiFi, que pode operar tanto no modo cliente
+ como no modo servidor (vide tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:FirmwareConexoes"
+
+\end_inset
+
+).
+ Dentro da plataforma do Arduino ele é disponibilizado como uma biblioteca,
+ escrita em C++, e é responsável pelo gerenciamento dos dispositivos, conexões
+ e implementa o protocolo do OpenDevice.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Falar da ideia que os fabricantes podem usar para criar seus produtos.
+\end_layout
+
+\begin_layout Plain Layout
+Dúvida: Algumas exemplos utilizadas, estão assumindo que o leitor já conhece
+ a estrutura de códigos de arduino, precisa colocar a explicação de como
+ o arduino compila e funciona ?.
+\end_layout
+
+\begin_layout Plain Layout
+Falta colocar o diagrama do sistema de armazenamento da def dos devices
+ (nao impl)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falta descrever os novos eventos de OnChange
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Visão Geral
+\end_layout
+
+\begin_layout Standard
+Na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ArquiteturaFirmware"
+
+\end_inset
+
+ é apresentada uma visão geral de como a arquitetura do firmware está estruturad
+a.
+ Podemos observar que ela é similar a arquitetura geral do projeto (Figura
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arquitetura"
+
+\end_inset
+
+), a camada central, que compreende o firmware, é a junção das bibliotecas
+ do Arduino, APIs do OpenDevice e o código do usuário (
+\emph on
+User Code
+\emph default
+), que auxiliam na criação dos sistemas embarcados, a camada superior, compreend
+e as aplicações cliente, que implementam os protocolos de baixo nível (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+), com auxílio das bibliotecas disponibilizadas pelo OpenDevice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+CoAP não foi implementa, e acho que não será ...
+ (não por min...)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/arquitetura-firmware.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Arquitetura do Firmware
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ArquiteturaFirmware"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Meios de comunicação suportados
+\end_layout
+
+\begin_layout Standard
+A tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:FirmwareConexoes"
+
+\end_inset
+
+ apresenta as tecnologias de comunicação que são suportadas, destacadas
+ juntos com os modelos de comunicação.
+ Entende-se por modelo de comunicação a forma como o firmware irá operar,
+ se é no modo cliente ou no modo servidor.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cliente
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Servidor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Usb
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bluetooth
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ethernet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WiFi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comunicação suportada pelo firmware
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:FirmwareConexoes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Gerenciamento de conexões
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:FirmwareGerenciamentoConn"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O bloco denominado 
+\begin_inset Quotes eld
+\end_inset
+
+Connections Framework
+\begin_inset Quotes erd
+\end_inset
+
+, trata-se de adaptações das bibliotecas disponibilizadas pelo Arduino (
+\begin_inset Quotes eld
+\end_inset
+
+User Libs
+\begin_inset Quotes erd
+\end_inset
+
+ e nativas) para implementação das conexões, usando seus respectivos módulos
+ módulos (shields), permitindo assim a comunicação com o middleware e aplicações.
+ Como por exemplo, o suporte a conexões Ethernet usando o módulo ENC28J60
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref rodape
+\end_layout
+
+\end_inset
+
+, necessita de uma biblioteca específica que realiza a implementação do
+ protocolo TCP/IP via software, já o modulo(shield) Ethernet baseado no
+ chip W5100
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+ é suportado nativamente pelo framework do Arduino e OpenDevice.
+ O Arduino disponibiliza uma API base para implementação das conexões Ethernet
+ e WiFi, módulos (shields) que implementem essa API, estariam compatíveis
+ automaticamente com o OpenDevice.
+ 
+\end_layout
+
+\begin_layout Standard
+As conexões USB e Bluetooth, são comunicações seriais, acessíveis através
+ de portas UART
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+, referenciadas geralmente pelas variáveis 
+\emph on
+Serial
+\emph default
+, 
+\emph on
+Serial1
+\emph default
+, etc.
+ E que tem como implementação base a classe 
+\emph on
+Stream
+\emph default
+(do Arduino).
+ Outras tenologias de conexão, que se baseiem nos mecanismos apresentados
+ acima serão automaticamente suportados, ou necessitariam de pequenos ajustes.
+ 
+\end_layout
+
+\begin_layout Standard
+As tecnologias implementadas estão listadas na tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:FirmwareConexoes"
+
+\end_inset
+
+ e mais adiante na seção de hardwares testados (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Hardwares-Testados"
+
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Subsection
+Gerenciamento dos dispositivos
+\end_layout
+
+\begin_layout Standard
+No firmware é realizado o mapeamento dos dispositivos e seus respectivos
+ IDs para os pinos do microcontrolador.
+ Ele interpreta os comandos enviados pelas aplicações e as transforma em
+ ações.
+ Um exemplo de mapeamento dos dispositivos é demonstrado da listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:firmware1"
+
+\end_inset
+
+, onde é feita a configuração de forma estática, adicionando atuadores e
+ sensores.
+ As classes que abstraem os dispositivos existem, e são baseados na classe
+ Device, e contra com um atributo 
+\begin_inset Quotes eld
+\end_inset
+
+sensor
+\begin_inset Quotes erd
+\end_inset
+
+, para identificar se é um atuador ou sensor.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <OpenDevice.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+// Mapeamento dos Dispositivos
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup(){
+\end_layout
+
+\begin_layout Plain Layout
+
+	ODev.name("ODev-Thing1");
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addCommand("alertMode", alertMode);
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addDevice(5, Device::DIGITAL); // ID:1
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addSensor(3, Device::DIGITAL); // ID:2 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addSensor(RFIDSensor(10,9)); // ID:1
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.begin();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.loop();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+// Comando de Usuario
+\end_layout
+
+\begin_layout Plain Layout
+
+void alertMode(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.debug(ODev.readString());
+\end_layout
+
+\begin_layout Plain Layout
+
+  int count = ODev.readInt();
+\end_layout
+
+\begin_layout Plain Layout
+
+  // ....
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo de configuração do firmware
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:firmware1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Dispositivos suportados
+\end_layout
+
+\begin_layout Standard
+A tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:FirmwareDevices"
+
+\end_inset
+
+, apresenta a lista de dispositivos suportados nativamente.
+ A extensão de dispositivos permite e inclusão e suporte de novos dispositivos,
+ sendo discutidos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FirmwareExtensibilidade"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Biblioteca Extra
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Genérico Digital (1 pino)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Atuador / Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Genérico Analógico (1 pino)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Atuador / Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFID (MFRC522)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Servo Motor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Atuador
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Temperatura (LM35)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Não
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Infra-Vermelho (Emissor)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Atuador
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Infra-Vermelho (Receptor)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dispositivos suportados nativamente
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:FirmwareDevices"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Comandos de Usuário
+\end_layout
+
+\begin_layout Standard
+Os desenvolvedores podem criar novos comandos, estendendo o protocolo ou
+ usando os recursos de comandos do usuário (
+\emph on
+User Functions
+\emph default
+, na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ArquiteturaFirmware"
+
+\end_inset
+
+).
+ Esse recurso permite criar novos comandos e vincula-los à funções definidas
+ pelo próprio usuários.
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:firmware1"
+
+\end_inset
+
+, apresenta um exemplo desse recurso.
+ Os comandos são criados usando a função 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+ODev.addCommand
+\end_layout
+
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, definindo o nome e a função que será executada ao receber esse comando.
+ No lado da aplicação (Java), esse comando é executado através do método:
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+sendCommand("alertMode","Your String", 5)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Observe que também é possível passar parâmetros para a função, e no lado
+ do firmware os parâmetros podem ser recuperados usando as funções 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+ODev.read*()
+\end_layout
+
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Mecanismos de leitura de sensores
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:FirmwareLeituraSensores"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O mecanismo de leitura adotado, também é um sistema baseado em eventos,
+ ou seja, as aplicações não precisam realizar consultas para obter os valores
+ dos sensores, quando houver alguma alteração no valor do sensor, automaticament
+e o firmware envia o valor atualizado para as aplicações.
+ Internamente, o mecanismos de leitura opera de dois modos: síncrono e assíncron
+o, e serão apresentados a seguir.
+\end_layout
+
+\begin_layout Subsubsection
+Modo Sincrono (Polling)
+\end_layout
+
+\begin_layout Standard
+O mecanismo sincrono ou 
+\begin_inset Quotes eld
+\end_inset
+
+polling
+\begin_inset Quotes erd
+\end_inset
+
+, é o mecanismo ativo por padrão, e por ser uma implementação mais simples,
+ pode ser utilizado em qualquer microcontrolador, porém existe algumas limitaçõe
+s.
+ Por se tratar de um mecanismo onde é preciso realizar uma leitura de todos
+ os sensores(pinos) configurados, e comparar o valor lido com o valor atual,
+ algum tempo será perdido lendo sensores que não alteraram seu valor, e
+ consumindo recursos da desnecessários CPU, que poderia estar desempenhando
+ outras atividades.
+ Dependendo do tempo da leitura dos sensores, alguma informação importante
+ pode ser perdida.
+ A leitura de pinos digitais e analógica é bem rápida, a leitura de um pino
+ analógico por exemplo, demora cerca de 100 microssegundos
+\begin_inset space ~
+\end_inset
+
+(0.0001 s), em um processador AVR 8-bits
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://www.arduino.cc/en/Reference/analogRead
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Modo Assíncrono (Interrupções)
+\end_layout
+
+\begin_layout Standard
+As interrupções são sinais enviados para o microcontrolador com eventos
+ que precisam de imediata atenção.
+ A interrupção permite que o processados interrompa a tarefa atual , salve
+ seu contexto, e execute um rotina especial de interrupção, conforme na
+ figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:interrupcoes"
+
+\end_inset
+
+.
+ Quando um dispositivo precisa de atenção ele envia um sinal para o processador
+ que desloca a execução para rotina de interrupção (ISR).
+ O suporte a interrupção externas (mudança nos pinos de I/O), depende do
+ microcontrolador, alguns suportam interrupções em todos os pinos e outros
+ suportam interrupções apenas em alguns pinos predefinidos.
+ Para citar exemplos, o Arduino DUE (SAM3X8E ARM), possui suporte a interrupções
+ externas em todos os pinos, já o Arduino Uno (e similares com chip ATmega328p),
+ suportam interrupções externas apenas nos pinos 2 e 3.
+ 
+\end_layout
+
+\begin_layout Standard
+Para lidar com as limitações encontradas, o firmware utiliza uma biblioteca
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/GreyGnome/EnableInterrupt
+\end_layout
+
+\end_inset
+
+ que permite habilitar a associação de rotinas de interrupções individuais
+ para todos os pinos do microcontrolador, fazendo o gerenciamento do estado
+ dos pinos.
+ Algumas limitações também são encontradas nessa alternativa, o tempo de
+ interrupção podem sofrer atrasos na ordem de alguns micro-segundos para
+ pinos que não suportem nativamente as interrupções externas.
+ Dependendo da aplicação isso pode ser relevante.
+ Uma análise realizada dos tempos de tratamento das interrupções, nesse
+ implementação, é apresentada em 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-isr"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Para habilitar o suporte a interrupções em um sensor é preciso habilitar
+ o recurso nas configurações gerais e ativar os sensores que serão lidos
+ com base nas interrupções.
+ Com base no exemplo da listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:interrupcoes"
+
+\end_inset
+
+, quando ocorre alguma interrupção nos sensores configurados, os valores
+ deles são lidos pela rotina 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+OpenDeviceClass::onInterruptReceived()
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, e marcados para sincronização, que irá ocorrer no ciclo de 
+\begin_inset Quotes eld
+\end_inset
+
+loop
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Um ponto importante , é que os dados não poder enviados na rotina de interrupçã
+o, pois ela deve ocorrer o mais rápido possível, afim de problemas na leitura
+ de outras interrupções e podem ocasionar conflitos com as interrupções
+ de leituras das portas seriais.
+ Detalhes de execução desse fluxo serão apresentados na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:LeituraSensores"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <EnableInterrupt.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <OpenDevice.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup() {
+\end_layout
+
+\begin_layout Plain Layout
+
+  // Modo 1
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.addSensor(3, Device::DIGITAL)->enableInterrupt(CHANGE); // ID:1
+\end_layout
+
+\begin_layout Plain Layout
+
+  // Modo 2
+\end_layout
+
+\begin_layout Plain Layout
+
+  Device *s2 = ODev.addSensor(4, Device::DIGITAL); // ID:2
+\end_layout
+
+\begin_layout Plain Layout
+
+  *s2->enableInterrupt(CHANGE);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.begin();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop() {
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.loop();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Leitura usando interrupções (Arduino/C++) 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:interrupcoes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/firmware_interrupcao.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Execução de uma interrupção
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:interrupcoes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Configuração dinâmica e parametrizações
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ConfiguracaoDinamica"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O firmware tenta detectar o hardware e as bibliotecas utilizadas e realizar
+ as parametrizações necessárias, necessitando o mínimo de configurações
+ possíveis.
+ Um exemplo da técnica é apresentado na listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:firmware2"
+
+\end_inset
+
+, onde a implementação da Ethernet é alterada apenas escolhendo o include
+ correspondente, sem necessidade de alterações no código.
+ As duas implementações são totalmente diferentes, porém essas diferenças
+ são abstraídas pelo firmware, permitindo que o desenvolvedor foque na lógica
+ do sistema.
+\end_layout
+
+\begin_layout Standard
+Alguns parametrizações e valores padrão, como velocidade, portas, tamanhos
+ dos buffers de recepção de dados, podem ser ajustados no arquivo: 'config.h',
+ bem como é possível habilitar o modo de depuração (debug), para auxiliar
+ na detecção de algum erro que esteja ocorrendo.
+ As informações de deputação pode ser direcionadas para a conexão atual
+ ou para uma porta serial do microcontrolador.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Citar o exemplo do MQTT pois ele é interessante tambem.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//#include <UIPEthernet.h> // ENC28J60
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <Ethernet.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <OpenDevice.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.addDevice(13, Device::DIGITAL);
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.begin();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  ODev.loop();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo de configuração do firmware
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:firmware2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Monitoramento
+\end_layout
+
+\begin_layout Standard
+O sistema de monitoramento permite informar às aplicações a utilização da
+ memória RAM e EPROM do microcontrolador e monitorar os estados das conexões,
+ utilizando um mecanismo de Keep-Alive / Heartbeat.
+ Em algumas situações pode ocorrer que algumas das partes da comunicação
+ fique fora de sincronia, devido a problemas no link, falhas de software
+ ou hardware.
+ Esse estado é geralmente chamado conexão semi-aberta (half-open connection
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-halfopen"
+
+\end_inset
+
+).
+ É importante que o lado da conexão que está funcionando corretamente seja
+ notificado ou detecte a falha da outra ponte, e tente uma recomeção ou
+ fecha a conexão semi-aberta.
+ Mesmos existindo mecanismos similares em alguns protocolos como o TCP/IP,
+ ele pode não ser ideal para alguns tipos de aplicações, pois em média ele
+ é executado em um intervalo de duas horas e não permite ajustes a nível
+ de aplicações, necessitando de ajustes no sistema operacional
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-keepa"
+
+\end_inset
+
+.
+ Por outro lado, outras conexões (ex.: usb) não suportaram este mecanismo,
+ para contornar esses problemas, o recurso de Keep-Alive / Heartbeat foi
+ implementado no firmware.
+ Quando é habilitado o suporte ao protocolo MQTT, o mecanismos de Keep-Alive
+ do próprio protocolo são utilizados.
+\end_layout
+
+\begin_layout Standard
+Este mecanismo é implementado através do envio de comando do tipo PING,
+ em um intervalo ajustável e aguardando seu retorno através do comando do
+ tipo PING_RESPONSE, podendo ser habilitado e desabilitado conforme a necessidad
+e.
+ Ao detectar uma falha ou estouro do tempo determinado (time-out), a aplicação
+ ou middleware decide o que fazer com a conexão em estado inválido, se tenta
+ uma reconexão ou finaliza a conexão, liberando os recursos alocados.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Faltou mensionar do monitoramento da bateria (não implementado).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Extensibilidade
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:FirmwareExtensibilidade"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O firmware é projetado como uma biblioteca, permitindo os desenvolvedores
+ facilmente customizar e criar seu próprio firmware através da inclusão
+ do código de usuário (Sketch, vide figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ArquiteturaFirmware"
+
+\end_inset
+
+).
+ O mecanismo de conexões (Connections Framework) também é flexível, permitindo
+ plugar novas conexões facilmente, através da extensão da classe 
+\emph on
+DeviceConnection
+\emph default
+, ou através do mecanismo de 
+\begin_inset Quotes eld
+\end_inset
+
+Custom Connections
+\begin_inset Quotes erd
+\end_inset
+
+, que permite a criação de novas conexões, sobrescrevendo métodos predefinidos
+ usando apenas arquivos de cabeçalho (.h), mais detalhes serão apresentados
+ a seguir.
+\end_layout
+
+\begin_layout Standard
+A classe Device pode ser estendida para dar suporte a dispositivos (sensores
+ ou atuadores) mais complexos, que utilizem mais de um pino ou trabalhem
+ com um protocolo específico (ex.: SPI, OneWire).
+ Um exemplo de especialização desta classe é realizado pele classe 
+\emph on
+RFIDSensor
+\emph default
+, disponível nas bibliotecas do firmware, que permite a integração de um
+ sensor RFID de proximidade (baseado no chip MFRC522).
+ A inclusão de novos dispositivos, é realizada estendendo a classe Device
+ e implementando os métodos 
+\begin_inset Quotes eld
+\end_inset
+
+setValue
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+hasChanged
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Outro método de inclusão de novos dispositivos, mais especificamente sensores,
+ permite a integração com sensores mais complexos (que utilizem um protocolo
+ específico), de uma forma simplificada e sem a necessidade de estender
+ a classe Device, facilitando assim a integração e testes.
+ A listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:firmware-newsenor"
+
+\end_inset
+
+ apresenta um exemplo deste recurso, onde a leitura do sensor é implementada
+ por um método definido pelo usuário no programa principal (Sketch), onde
+ o método deve retornar a leitura do sensor.
+ O firmware é responsável por executar esse método e verificar se houve
+ alguma mudança no valor do sensor, caso exista alguma alteração, as aplicações
+ são notificadas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void setup(){
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.addSensor(readRfid); // ID:1
+\end_layout
+
+\begin_layout Plain Layout
+
+    // ...
+ sensor setup ...
+\end_layout
+
+\begin_layout Plain Layout
+
+    ODev.begin();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+unsigned long readRfid(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  // sensor logic
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Suporte a novos sensores
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:firmware-newsenor"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Mecanismo 
+\begin_inset Quotes eld
+\end_inset
+
+Custom Connections
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nativamente o firmware suporta qualquer conexão que estenda a classe 
+\emph on
+Stream
+\emph default
+ (do Arduino).
+ Caso seja necessário a inclusão de outro mecanismo de comunicação, onde
+ a biblioteca projetada para o mesmo não implemente a classe Stream, um
+ 
+\begin_inset Quotes eld
+\end_inset
+
+adaptador
+\begin_inset Quotes erd
+\end_inset
+
+ pode ser criado para essa conexão.
+ Exemplos dessa implementação são encontrados no próprio firmware (arquivo:
+ EthernetServerConnection.h)
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+O MQTT foi assim, precisa citar ?
+\end_layout
+
+\end_inset
+
+ e a estrutura básica é apresentada na listagem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:firmware-custconn"
+
+\end_inset
+
+.
+ A vantagem é que não é necessário a criação de classes (C++), necessitando
+ apenas de um arquivo de cabeçalho (.h).
+ Ao realizar a inclusão deste cabeçalho no programa, o firmware automaticamente
+ detecta que deve ser usado essa conexão e realiza as chamadas os métodos
+ implementados.
+ É importante que a classe retornada pelo método 
+\begin_inset Quotes eld
+\end_inset
+
+_loop()
+\begin_inset Quotes erd
+\end_inset
+
+, seja uma instância estenda a classe 
+\begin_inset Quotes eld
+\end_inset
+
+Stream
+\begin_inset Quotes erd
+\end_inset
+
+ para que o mecanismo funcione.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define USING_CUSTOM_CONNECTION 1
+\end_layout
+
+\begin_layout Plain Layout
+
+#define CUSTOM_CONNECTION_CLASS YourClassExtendStream
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void custom_connection_begin(){
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+CUSTOM_CONNECTION_CLASS custom_connection_loop(DeviceConnection *conn){
+\end_layout
+
+\begin_layout Plain Layout
+
+  return // return instance of YourClassExtendStream;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Exemplo do mecanismo 
+\begin_inset Quotes eld
+\end_inset
+
+Custom Connections
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:firmware-custconn"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Configuração remota de dispositivos WiFi
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:ConfigWifi"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+falar como foi a configuração do ESP remotamente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fluxo de Mensagens
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:FluxoMensagens"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nesta seção abordaremos os principais fluxos de execução, encontrados no
+ firmware, middleware e aplicações, auxiliando a entender o processo interno
+ de execução e quais componentes são utilizados em cada etapa.
+\end_layout
+
+\begin_layout Subsection
+Envio de Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:FluxoEnvioComandos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_command_send"
+
+\end_inset
+
+, apresenta o fluxo de envio de comandos entre uma aplicação, que se comunica
+ diretamente com os dispositivos (firmware).
+ A primeira etapa inicia com a abstração do dispositivo e a execução do
+ seu método 
+\begin_inset Quotes eld
+\end_inset
+
+on
+\begin_inset Quotes erd
+\end_inset
+
+ ou 
+\begin_inset Quotes eld
+\end_inset
+
+setValue
+\begin_inset Quotes erd
+\end_inset
+
+ (ex.: led.on()), esse método gera um evento que é capturado pelo framework
+ (fluxo 1), através da classe 
+\emph on
+DeviceManager
+\emph default
+, que cria o comando apropriado, no caso o 
+\emph on
+DeviceCommand
+\emph default
+, e inicializa com as informações do ID dispositivo, tipo (ANALOG ou Digital)
+ e valor e repassa para o CommandDelivery (fluxo 1.2), que cuida do envio
+ para as conexões de saída de modo assíncrono, usando a 
+\emph on
+SendTask
+\emph default
+.
+ As mensagens são serializadas para o formato do protocolo (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+) do OpenDevice usando o 
+\emph on
+MessageSerializer
+\emph default
+.
+ Cada comando enviado, recebe um ID (TrackingID), que é gerenciado pelo
+ CommandDelivery, e é usado para fazer o mapeamento dos comandos enviados
+ e comandos recebidos (fluxo 2 e 3).
+ O ID do comando é gerado de forma sequencial, até um limite estabelecido
+ pelo protocolo, depois é reiniciado a contagem.
+ A SendTask, é registrada para receber os eventos das conexões, quando a
+ resposta é recebida pela conexão, o método 
+\begin_inset Quotes eld
+\end_inset
+
+onMessageReceived
+\begin_inset Quotes erd
+\end_inset
+
+ (fluxo 3) é executado, e a resposta é mapeada para o comando enviado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_command_send.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Envio de Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_command_send"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Processamento dos Comandos (Dispositivo)
+\end_layout
+
+\begin_layout Standard
+A figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_firmware_read"
+
+\end_inset
+
+, demonstra o fluxo de execução do firmware, para realizar a leitura dos
+ comandos das aplicações (ou do middleware), e transformar em ações reais.
+\end_layout
+
+\begin_layout Standard
+Os comandos recebidos são tratados por uma implementação da classe 
+\emph on
+Stream
+\emph default
+ (fluxo 1), que pode ser uma implementação nativa do Arduino, como a 
+\emph on
+Serial
+\emph default
+ ou 
+\emph on
+EthernetClient
+\emph default
+, ou uma implementação disponibilizada por uma biblioteca de terceiros,
+ que implementa outra tecnologia de comunicação.
+ Geralmente esses dados são armazenados em um buffer, de software ou de
+ hardware, e serão lidos no ciclo de 
+\begin_inset Quotes eld
+\end_inset
+
+loop
+\begin_inset Quotes erd
+\end_inset
+
+ do programa principal, através da chamada do 
+\begin_inset Quotes eld
+\end_inset
+
+checkDataAvailable
+\begin_inset Quotes erd
+\end_inset
+
+ (fluxo 2), que ao identificar o final da mensagem especificado no protocolo,
+ faz a desserialização através do método 
+\begin_inset Quotes eld
+\end_inset
+
+parseCommand
+\begin_inset Quotes erd
+\end_inset
+
+ ( fluxo 2.3), e repassa para a classe principal da biblioteca do OpenDevice
+ (fluxo 2.4), que verifica que tipo de comando foi recebido e faz o tratamento
+ adequado.
+ Caso a mensagem recebida (fluxo 2.4), seja um 
+\emph on
+DeviceCommand
+\emph default
+ (Ex.: Analogic ou Digital), o dispositivo relacionado é localizado através
+ do 
+\begin_inset Quotes eld
+\end_inset
+
+DeviceID
+\begin_inset Quotes erd
+\end_inset
+
+, e em seguida seu valor é alterado (fluxo 3), confirme o valor recebido
+ pelo comando.
+ Em seguida a implementação do Device determina como será o tratamento para
+ o valor recebido, por exemplo, se o dispositivo for um dispositivo do tipo
+ DIGITAL, a implementação chama o método 
+\begin_inset Quotes eld
+\end_inset
+
+digitalWrite
+\begin_inset Quotes erd
+\end_inset
+
+ da API do Arduino, caso seja um Device do tipo ANALOG, a implementação
+ chama o método 
+\begin_inset Quotes eld
+\end_inset
+
+analogWrite
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Quando um comando é recebido com sucesso e o dispositivo relacionado é encontrad
+o, uma resposta é enviada para a aplicação (fluxo 4.1.1), informando o estados
+ da execução.
+ Esse resposta é encapsulada através da classe 
+\emph on
+ResponseCommand
+\emph default
+, podendo ter vários status, conforme a tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:CommandStatusResp"
+
+\end_inset
+
+, na seção referente ao protocolo (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocolo"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_firmware_read.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Processamento dos Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_firmware_read"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Recebimento de Comandos
+\end_layout
+
+\begin_layout Standard
+O diagrama de sequência apresentado na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_send_response"
+
+\end_inset
+
+, trata-se da continuação do fluxo, quando o dispositivo (firmware) devolve
+ a resposta com o status da execução do comando para a aplicação ou middleware.
+ O componente que fará a leitura dos dados brutos, depende da implementação
+ da conexão, no exemplo da figura, estamos utilizando um 
+\emph on
+StreamReader
+\emph default
+, mais especificamente 
+\emph on
+CommandStreamReader
+\emph default
+, que é a implementação base para lidar com as conexões implementados no
+ módulo 
+\noun on
+connection-stream
+\noun default
+ (Usb e Bluetooth por exemplo).
+ Essa implementação em específico, utiliza uma 
+\begin_inset Quotes eld
+\end_inset
+
+thread
+\begin_inset Quotes erd
+\end_inset
+
+ para leitura dos dados de cada conexão, e ao identificar o recebimento
+ do pacote completo, ele notifica a conexão (fluxo 1.3), que por sua vez
+ notifica os componentes interessados (fluxos 2 e 3).
+\end_layout
+
+\begin_layout Standard
+Quando se trata de uma resposta de um comando, por exemplo DeviceCommand,
+ a SendTask, criada e gerenciada pelo CommandDelivery, é notificada e atualiza
+ o status do comando que foi enviado, com base do ID do comando (TrackingID)
+ e faz a liberação (remove a trava) do comando.
+\end_layout
+
+\begin_layout Standard
+Caso não seja uma resposta de um comando, como por exemplo a leitura de
+ um sensor, o CommandDelivery não entra em cena.
+ Quem é o responsável por tratar esse comando é o DeviceManager, como será
+ visto na seção seguinte (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:LeituraSensores"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_send_response.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Recebimento de Comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_send_response"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Leitura de Sensores
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:LeituraSensores"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O fluxo da leitura de sensores, apresentados nas figuras 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_firmware_read_poll"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_firmware_read_interrupt"
+
+\end_inset
+
+, trata-se também de um fluxo de recebimento de comandos, e é similar ao
+ da figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_send_response"
+
+\end_inset
+
+.
+ Como abordamos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FirmwareLeituraSensores"
+
+\end_inset
+
+, o sistema de leitura de sensores é implementado de dois modos: síncrono
+ (polling) e assíncrono (interrupções).
+ O modo utilizado depende do suporte que o hardware.
+ Como exemplo, utilizaremos um microcontrolador AVR
+\begin_inset space ~
+\end_inset
+
+8Bits
+\begin_inset space ~
+\end_inset
+
+(ex.: Arduino), executando o firmware, e enviando os dados dos sensores para
+ a aplicação (ou middleware).
+\end_layout
+
+\begin_layout Subsubsection
+Leitura Síncrona (Polling)
+\end_layout
+
+\begin_layout Standard
+No modo síncrono, a leitura dos sensores é feito no 
+\begin_inset Quotes eld
+\end_inset
+
+loop
+\begin_inset Quotes erd
+\end_inset
+
+ principal, e é realizada pela classe 
+\emph on
+OpenDevice
+\emph default
+, através do método 
+\begin_inset Quotes eld
+\end_inset
+
+checkSensorsStatus()
+\begin_inset Quotes erd
+\end_inset
+
+ (fluxo 1), neste método todos os sensores serão lidos de forma sequencial,
+ através do método 
+\begin_inset Quotes eld
+\end_inset
+
+hasChanged()
+\begin_inset Quotes erd
+\end_inset
+
+ da classe Device.
+ Ao executar esse método o valor do dispositivo é atualizado, e caso tenha
+ sofrido alguma alteração (fluxo 1.1.2), um comando (
+\emph on
+DeviceCommand
+\emph default
+) com o ID do dispositivo e valor lido é enviado para ao conexão (fluxo
+ 1.2), que cuida de serializar e enviar os dados para a aplicação.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_firmware_read_poll.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Leitura de Sensores no modo Polling
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_firmware_read_poll"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Leitura Assíncrona (Interrupções)
+\end_layout
+
+\begin_layout Standard
+O método de leitura assíncrono, apresentado na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_firmware_read_interrupt"
+
+\end_inset
+
+, é realizado através de interrupções, como mencionamos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FirmwareLeituraSensores"
+
+\end_inset
+
+.
+ Quando habilitado o suporte a interrupções, a classe OpenDevice é registrada
+ para receber as interrupções através do método 
+\begin_inset Quotes eld
+\end_inset
+
+onInterruptReceived()
+\begin_inset Quotes erd
+\end_inset
+
+ , neste método o dispositivo correspondente ao pino que sofreu a interrupção
+ é localizado, e seu valor é atualizado.
+ Os dispositivos que sofrerem alterações nos seus valores durante a interrupção,
+ são marcados para sincronização (fluxo 1.2), que irá ocorrer na próxima
+ execução do “loop” principal do programa.
+ Similar à leitura síncrona, o método 
+\begin_inset Quotes eld
+\end_inset
+
+checkSensorsStatus()
+\begin_inset Quotes erd
+\end_inset
+
+ é chamada no 
+\begin_inset Quotes eld
+\end_inset
+
+loop
+\begin_inset Quotes erd
+\end_inset
+
+, porém neste caso não é feito nenhuma a leitura dos pinos, apenas o envios
+ das informações para dos dispositivos que sofreram alterações para a aplicação
+ (fluxo 1.2 e 2.1).
+ A vantagem neste caso é que enquanto estão sendo enviadas as informações
+ para aplicação, caso algum dispositivo tenha seu valor alterado, a interrupção
+ cuida de deslocar o fluxo de execução, salvar esse valor e retornar para
+ a serialização dos dados, na implementação no modo síncrona (polling),
+ esse valor seria perdido.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_firmware_read_interrupt.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Leitura de Sensores usando Interrupções
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_firmware_read_interrupt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Envio de Comandos (Aplicação - Middleware - Dispositivo)
+\end_layout
+
+\begin_layout Standard
+A figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq_send_ws"
+
+\end_inset
+
+, apresenta o fluxo de execução de um comando enviado por uma aplicação
+ cliente (WebApp) para os dispositivos, através do middleware.
+ O framework, trabalha com dois conceitos de conexões: (1) conexões de entrada,
+ ou seja, os servidores e (2) conexões de saída, geralmente as conexões
+ com os dispositivos físicos.
+ O componente representado em 
+\begin_inset Quotes eld
+\end_inset
+
+WSServerConnection
+\begin_inset Quotes erd
+\end_inset
+
+, é um servidor WebSocket disponibilizado pelo módulo 
+\noun on
+rest-ws-server, 
+\noun default
+que atua como uma conexão de entrada.
+ A aplicação web no exemplo, está utilizando a biblioteca 
+\noun on
+opendevice-js
+\noun default
+, uma das implementações de cliente usando WebSocket, permitindo a conexão
+ de forma simples com o servidor, e oferecendo a abstração dos dispositivos
+ para a camada Web.
+\end_layout
+
+\begin_layout Standard
+Ao alterar o valor de algum dispositivo na camada Web, que pode ser através
+ dos métodos nos objetos JavaScript (fluxo 2), ou através de métodos disponibili
+zados no 
+\noun on
+opendevice-js
+\noun default
+, um comando é enviado via WebSocket para o Middleware (fluxo 2.1).
+ A representação da conexão com o cliente 
+\begin_inset Quotes eld
+\end_inset
+
+WSResource
+\begin_inset Quotes erd
+\end_inset
+
+, recebe o comando (fluxo 2.1.1) e notifica para o DeviceManager (fluxos 2.1.2
+ e 2.1.2.1), que faz a atualização do dispositivo relacionado ao comando recebido,
+ salva no histórico de alterações, e repassa o comando para os dispositivos
+ físicos, através das conexões de saída.
+ O procedimento de envio, representado na imagem, pelo bloco 
+\begin_inset Quotes eld
+\end_inset
+
+Ref: Send Command
+\begin_inset Quotes erd
+\end_inset
+
+, é o mesmo procedimento realizado no fluxo apresentado na seção Envio de
+ Comandos (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:FluxoEnvioComandos"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+O recebimento da resposta do dispositivo físico (fluxo 3), é redirecionado
+ para a conexão de origem (WSResource).
+ O redirecionamento é feito baseado na identificação da conexão (UUID),
+ que é gerado no momento de sua criação (fluxo 1.1.1), e o mesmo é associado
+ ao comando quando ele é enviado ou recebido, sendo então possível enviar
+ a resposta para o cliente correto.
+ Deste modo é possível permitir que múltiplas aplicações acessem o mesmo
+ dispositivo, contornando as limitações do USB e Bluetooth que permitem
+ apenas um cliente, ou mesmo de conexões Ethernet ou Wifi, que dependendo
+ do hardware, podem suportar apenas um cliente ou um número limitado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/seq_send_ws.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Envio de comandos
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq_send_ws"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ref: alg:ExemploJS3
+\end_layout
+
+\begin_layout Plain Layout
+Falar dos CommandFilter (usando no BaseDeviceManager) ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch protocolo
+status collapsed
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "4_Secao_Protocolo.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Tópicos sendo avaliados para inclusão....
+\end_layout
+
+\begin_layout Itemize
+Suporte a múltiplas aplicações (Multitenancy)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+importante pois outros podem aprimorar esse recurso.
+\end_layout
+
+\begin_layout Itemize
+TCP não da suporte a esse modelo atualmente, o WebSocket permite.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aplicações distribuídas e sincronizadas.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+falar do middleware local e o middleware web
+\end_layout
+
+\begin_layout Itemize
+falar da interface web com as interfaces mobile.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Segurança
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Não foi implementado recursos de segurança, ficando a cardo das tecnologias
+ de conexão.
+ Falar dos mecanismos da Wifi, Bluetooth.
+ O mesmo encontrei em outro middleware.
+\end_layout
+
+\begin_layout Itemize
+Segurança estaria disponível no MQTT, Bluetooth.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Fisicamente (USB), o protocolo não prevê mecanismos de autenticaçao
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ler: http://www.hivemq.com/blog/introducing-the-mqtt-security-fundamentals
+\end_layout
+
+\begin_layout Itemize
+SSL/TLS connection from Eclipse Paho Java client to mosquitto MQTT broker
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+https://gist.github.com/sharonbn/4104301
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Experimento 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Reconhecimento de VOZ : ref: 6.3.6 Speech Recognition Interface (Design .)
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

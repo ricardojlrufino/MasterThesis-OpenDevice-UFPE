@@ -1,0 +1,96 @@
+
+\chapter{Conclusões}
+
+A criação de projetos para Internet das Coisas lida com vários desafios,
+na sua essência, relacionados à heterogeneidade dos dispositivos,
+protocolos e tecnologias de comunicação. As arquiteturas baseadas
+em middleware têm sido apresentadas como potenciais soluções para
+lidar com estes desafios, conforme observamos no capítulo de trabalhos
+relacionados. Porém, devido à grade variedade de domínios que estão
+inseridos os projetos de IoT, dificilmente um único padrão de middleware
+genérico irá resolver adequadamente os desafios de todos os domínios. 
+
+Desta forma, este trabalho propõe uma solução baseada em framework,
+com uma infraestrutura sólida de comunicação, abstração de dispositivos
+e gerenciamento de armazenamento, permitindo o desenvolvimento de
+soluções específicas para cada domínio.
+
+A implementação do middleware permitiu avaliar que o mesmo pode ser
+adotado em projetos menos complexos, mostrando-se um alternativa eficaz
+para abstração de dispositivos e protocolos, simplificando o processo
+de desenvolvimento de soluções de IoT.
+
+A disponibilização de bibliotecas que auxiliam na construção de aplicações
+embarcadas (firmware), permitem a simplificação do processo de desenvolvimento
+de dispositivos inteligentes, habilitados para Internet das Coisas.
+As ferramentas oferecidas neste trabalho, bem como o protocolo proposto,
+permitem a utilização de microcontroladores de baixo custo e plataformas
+de prototipação, como o Arduino, para criação destes dispositivos.
+
+A disponibilização de bibliotecas para construção de aplicações cliente,
+que implementam o protocolo proposto, permitem a integração de aplicações
+usando linguagens de alto nível e simplificando o processo de desenvolvimento. 
+
+Os experimentos realizados na seção \ref{sec:Integracao3D}, permitiram
+avaliar a simplicidade da implementação do protocolo em outra linguagem
+de programação.
+
+Por fim, a arquitetura proposta, seu design e implementação, conseguiram
+atender a todos objetivos estabelecidos no Capítulo 1, seção \ref{sec:Objetivos}. 
+
+
+\section{Contribuições}
+
+As principais contribuições deste trabalho são:
+\begin{itemize}
+\item Um framework para construção de projetos de Internet das Coisas, com
+uma estrutura flexível e modular, baseado em padrões abertos.
+\item Um framework de conexões, que permite a integração com novos servidores
+e a inclusão de novos protocolos de comunicação com os dispositivos.
+\item Um middleware genérico, multiplataforma e extensível, que permite
+a abstração da comunicação com dispositivos heterogêneos, utilizando
+tecnologias de comunicação USB, Bluetooth, Ethernet, Wi-Fi.
+\item Uma interface Web para visualização e análise de dados que permite
+a construção de dashboards dinâmicos, utilizando um série de gráficos
+com suporte a visualização de dados históricos ou em tempo real.
+\item Biblioteca JavaScript para criação de projetos Web, que realiza a
+abstração dos dispositivos e permite comunicação em tempo real utilizando
+WebSocket.
+\item Um componente que permite a execução de aplicações em JavaScript no
+lado do servidor ou como aplicações Desktop.
+\item Biblioteca para integração com dispositivos móveis (Android).
+\item Compilação e distribuição da biblioteca BlueCove (Bluetooth), para
+plataforma ARM.
+\item Experimentos com a API \emph{Device I/O}, que validaram sua compatibilidade
+com a plataforma de desenvolvimento ``Beaglebone Black''.
+\item Experimentos que oferecem os fundamentos para criação de sistemas
+de simulação usando ambientes 3D.
+\item A proposta de um protocolo aberto, simples, extensível e de fácil
+implementação, que permite a comunicação com dispositivos com baixo
+pode ser processamento e memória.
+\item Um conjuntos de bibliotecas (firmware) em C++ para microcontroladores
+e plataformas abertas (ex.: Arduino), que implementam o protocolo
+proposto e simplificam o processo de desenvolvimento de aplicações
+embarcadas. 
+\end{itemize}
+
+\section{Trabalhos Futuros}
+\begin{itemize}
+\item Desenvolvimento de uma plataforma como serviço (PaaS), que ofereça
+uma infraestrutura escalável baseada em \emph{cloud computing}, para
+desenvolvimento e implantação de projetos de IoT oferecidos como serviço
+(SaaS). Essa plataforma seria desenvolvida com base no OpenStack\footnote{https://www.openstack.org/}
+e/ou OpenShift\footnote{www.openshift.com}.
+\item Criação de ferramentas para geração do firmware de forma automática
+usando linguagens declarativas ou visuais.
+\item Criação de ferramentas que permitam a atualização remota do firmware.
+\item Otimizar a estrutura de armazenamento de dados do Neo4J, utilizando
+um modelo baseado em arvore (GraphAware Neo4j TimeTree\footnote{http://graphaware.com/neo4j/2014/08/20/graphaware-neo4j-timetree.html}).
+Este modelo pode oferecer uma melhor performance para trabalhar com
+consulta e análise de eventos baseados no tempo.
+\item Realizar estudos de caso em outros cenários, como casa inteligente,
+cidade inteligente, redes de sensores sem fio, etc.
+\item Implementação de algoritmos inteligentes para detecção de eventos
+complexos, usando \emph{Complex Event Processing.}
+\end{itemize}
+

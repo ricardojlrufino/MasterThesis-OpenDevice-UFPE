@@ -1,0 +1,479 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Principal.lyx
+\maintain_unincluded_children false
+\language brazilian
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Introdução
+\end_layout
+
+\begin_layout Standard
+A Internet das Coisas ou Internet of Things (IoT)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ashton2009"
+
+\end_inset
+
+, em inglês, é um termo utilizado para descrever um paradigma tecnológico
+ no qual os objetos físicos estão conectados em rede e se comunicam através
+ da Internet, gerando informações, atuando de forma inteligente a eventos,
+ integrando aplicações e serviços.
+\end_layout
+
+\begin_layout Standard
+A IoT é umas das principais tecnologias emergentes, é considerada a terceira
+ onda de desenvolvimento da Internet
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GoldmanSachs2014"
+
+\end_inset
+
+, e assim como as duas primeiras ondas, promete trazer profundas mudanças
+ na economia.
+ Essa 
+\begin_inset Quotes eld
+\end_inset
+
+revolução
+\begin_inset Quotes erd
+\end_inset
+
+ vem impulsionando mudanças nos padrões da própria Internet, a fim de atender
+ uma escala nunca antes vista de 
+\begin_inset Quotes eld
+\end_inset
+
+coisas
+\begin_inset Quotes erd
+\end_inset
+
+ conectadas, e inevitavelmente, promovendo para vida cotidiana, trabalho,
+ saúde e negócios.
+\end_layout
+
+\begin_layout Standard
+Recentes avanços tecnológicos tem impulsionado o desenvolvimento da Internet
+ das Coisas, a citar: (1) redução dos custos de sensores e microprocessadores,
+ permitindo a criação de dispositivos 
+\begin_inset Quotes eld
+\end_inset
+
+mais inteligentes
+\begin_inset Quotes erd
+\end_inset
+
+, (2) redução no custo de banda da internet, algo estimado em 40x nos últimos
+ 10 anos, (3) a presença massiva de smartphones, tornando-se uma ferramenta
+ para geração de dados, visualização e controle, (4) BigData, com a capacidade
+ de processar enorme quantidades de dados e gerar informações estratégicas
+ para os negócios e (5) a alta disponibilidade de acesso a rede internet
+ de maneira quase ubíqua
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GoldmanSachs2014"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+O potencial estimado da Internet das Coisas tem despertado o interesse e
+ investimento de grandes empresas como Google, Microsoft, Intel, Oracle,
+ IBM, Cisco, Sansung
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ref: http://internetofthingsagenda.techtarget.com/feature/Ten-legacy-giants-shapin
+g-the-IoT-landscape
+\end_layout
+
+\end_inset
+
+.
+ Não somente empresa, mas projetos e fundações ligadas ao 
+\begin_inset Quotes eld
+\end_inset
+
+ecossistema
+\begin_inset Quotes erd
+\end_inset
+
+ open source, como Eclipse, Arduino, Ubuntu/Linux, vem apostando na Internet
+ das Coisas.
+ 
+\end_layout
+
+\begin_layout Standard
+Apesar dos benefícios e oportunidades, ainda existem uma série de desafios
+ que precisam ser superados para uma transição completa para a Internet
+ das Coisas
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mattern2010,teixeira2011"
+
+\end_inset
+
+.
+ Os desafios estão relacionados à heterogeneidade, escalabilidade, interoperabil
+idade , segurança, privacidade, grande volumes de dados, complexidade do
+ software e do hardware, que estão inseridos com graus de relevâncias diferencia
+dos nas áreas da saúde, transportes, telecomunicações, automação, etc.
+\end_layout
+
+\begin_layout Standard
+Um enorme esforço de investigação é necessário para fazer a IoT viável,
+ uma vez que muitas questões em aberto ainda persistem nesta área.
+ A comunidade científica está oferecendo várias tentativas para padronizar
+ totalmente o paradigma IoT.
+ Além disso, o grande número de dispositivos que são esperados integrar
+ o ambiente de IoT, obriga um esquema de endereçamento eficaz.
+ Tais questões são geralmente discutidos na literatura
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yang2010,Katasonov2008"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Motivação
+\end_layout
+
+\begin_layout Standard
+A Internet das Coisas é uma grande oportunidade para empresas e desenvolvedores
+ criarem novas soluções que conectem dispositivos à Internet.
+ Novos dispositivos, sensores, microcontroladores e plataformas de desenvolvimen
+to vêm surgindo, impulsionados por essas oportunidades e pelo desenvolvimento
+ da Internet das Coisas.
+ Porém, essa grande quantidade de dispositivos heterogêneos, decorrente
+ da inerente diversidade de tecnologias de hardware e software, se tornam
+ um dos principais desafios para o desenvolvimento de aplicações.
+\end_layout
+
+\begin_layout Standard
+Devido à falta do estabelecimento de padrões das plataformas de hardware
+ e software, os desenvolvedores acabam criando suas próprias soluções, o
+ que contribui para o problema da interoperabilidade.
+ Muitas das soluções elaboradas, acabam tendo uma baixa qualidade, são fechadas
+ (proprietárias) ou devido a sua complexidade acabam atrasando ou mesmo
+ inviabilizando o atendimento dos principais requisitos, que é gerar valor
+ de mercado e promover a inovação.
+\end_layout
+
+\begin_layout Standard
+Nesse contexto, plataformas de middleware são avaliadas como soluções promissora
+s para prover tal interoperabilidade, realizar o gerenciamento da crescente
+ quantidade de dispositivos e integrar aplicações
+\begin_inset CommandInset citation
+LatexCommand cite
+key "teixeira2011"
+
+\end_inset
+
+.
+ Tais plataformas oferecem um meio padronizado para o acesso aos dados e
+ serviços através de uma interface de alto nível
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bandyopadhyay2011"
+
+\end_inset
+
+, com isso as aplicações não precisam lhe dar com os detalhes de baixo nível
+ relacionados às especificidades de cada dispositivo e padrões de comunicação.
+ A adoção de uma plataforma de middleware, pode contribuir para facilitar
+ o desenvolvimento de projetos de IoT.
+\end_layout
+
+\begin_layout Standard
+Existem cerca de 9 milhões de desenvolvedores Java, o fornecimento de frameworks
+ e serviços 
+\emph on
+open source
+\emph default
+ em plataforma Java irá tornar mais fácil a adoção da linguagem para projetos
+ de Internet das Coisas e favorecer possíveis contribuições para o desenvolvimen
+to e aprimoramento da solução proposta nesse trabalho.
+\end_layout
+
+\begin_layout Subsection
+Desafios
+\end_layout
+
+\begin_layout Standard
+Sistemas baseados em Internet das Coisas podem ser usado para diferentes
+ fins e áreas, de modo que, temos de enfrentar diferentes desafios.
+ Nesta seção, vamos explicar alguns dos desafios que precisam ser considerados
+ nas atividades de investigação:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tecnologias de Borda:
+\series default
+ Ao nível do hardware, são necessários mais esforços de investigação para
+ desenvolver a tecnologia de dispositivos embarcados, sensores, atuadores
+ e identificação (passiva e ativa), uma vez que um sistema baseado na Internet
+ das Coisas deve ser capaz de reunir informações suficientes sobre o mundo
+ real, empregando uma grande variedade de dispositivos e ambientes.
+ Assim, exige-se mais esforços para conectar dispositivos heterogêneos e
+ implantá-los em aplicações da Internet das Coisas, e para fornecer suporte
+ para novos dispositivos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tecnologias de Rede
+\series default
+: Em IoT, as coisas estão ligadas através de diferentes tipos de redes,
+ ou seja, rede móvel, com e sem fio.
+ Estas redes fornecem comunicação bidirecional em diferentes níveis entre
+ os objetos do mundo real, aplicações e serviços que são utilizados pelas
+ aplicações da Internet das Coisas.
+ Esta estrutura altamente distribuída deve fornecer interconexão com baixo
+ consumo de energia, enquanto os dados distribuídas podem causar problemas
+ de privacidade.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Middleware:
+\series default
+ Em IoT, temos redes e dispositivos heterogêneos.
+ Sua heterogeneidade pode potencialmente aumentar com as novas tecnologias.
+ Para facilitar a utilização destes dispositivos por aplicações da Internet
+ das Coisas, devemos proteger a sua heterogeneidade.
+ Portanto, precisamos desenvolver um middleware seguro, escalável e semanticamen
+te enriquecido para lidar com a heterogeneidade dos dispositivos.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Plataformas de Serviços:
+\series default
+ Eles suportam uma gestão de alto nível de todos os dispositivos envolvidos,
+ de forma integrada, garantindo a escalabilidade, alta disponibilidade,
+ e a execução segura das funcionalidades solicitadas a partir de dispositivos.
+\end_layout
+
+\begin_layout Section
+Objetivo Geral
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Objetivos"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Criação de um framework para facilitar o desenvolvimento de aplicações para
+ Internet das Coisa, com menor custo e tempo possível, abstraindo dispositivos,
+ protocolos e tecnologias de comunicação de comunicação, bem como oferecer
+ um conjunto de APIs para integração com outras aplicações.
+\end_layout
+
+\begin_layout Section
+Objetivos Específicos
+\end_layout
+
+\begin_layout Standard
+Os objetivos específicos que este trabalho pretende alcançar, são listador
+ a seguir:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Solução completa para integração entre plataformas
+\series default
+: oferecendo soluções para o desenvolvimento e integração de projetos nas
+ plataformas de Hardware, Desktop, Web e Mobile.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Integração entre diferentes dispositivos e protocolos
+\series default
+: permitindo integrar diferentes dispositivos e protocolos em um mesmo ambiente
+ de maneira transparente e consistente, focando em padrões abertos e baseado
+ em plataformas open source (hardware e software).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Utilização em dispositivos com limitações de processamento e memória
+\series default
+: oferecer soluções para o desenvolvimento de dispositivos embarcados com
+ limitações de processamento e memória, como microcontroladores (AVR 8-bits),
+ mini PCs e dispositivos móveis.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Oferecer um protocolo aberto e extensível
+\series default
+: Trata-se da elaboração de um protocolo (baseado em comandos), para integrar
+ aplicações e dispositivos com limitações de memória e processamento, permitindo
+ uma comunicação bidirecional, em tempo-real e apoiada sobre padrões abertos
+ como MQTT, WebSocket, TCP, etc.
+ Um dos principais objetivos é que este protocolo seja de fácil implementação
+ e extensível.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Simplificação na criação de dispositivos inteligentes
+\series default
+: permitindo que as empresas e indivíduos possam focar em questões de projeto,
+ design, marketing e comercialização dos novos dispositivos inteligente
+ que irão compor a Internet das Coisas.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Oferecer uma plataforma base para criação de projetos especializados
+\series default
+: através de uma arquitetura flexível, oferecer uma fundação para que empresas
+ e desenvolvedores possam estender a adaptá-la a regras de casos de uso
+ específicos das áreas de automação, transporte, cidades inteligentes, etc.
+\end_layout
+
+\begin_layout Standard
+Neste contexto é apresentado o OpenDevice, um framework que facilita a criação
+ de projetos de Internet das Coisas usando tecnologias de baixo custo, como:
+ Arduino
+\begin_inset CommandInset citation
+LatexCommand cite
+key "url:arduino:intro"
+
+\end_inset
+
+, Rasberry Pi
+\begin_inset CommandInset citation
+LatexCommand cite
+key "url:raspberry"
+
+\end_inset
+
+, ESP8266
+\begin_inset CommandInset citation
+LatexCommand cite
+key "url:esp8266:espressif"
+
+\end_inset
+
+ e outros
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arduino-comp1,arduino-comp2,arduino-comp3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Organização da Dissertação
+\end_layout
+
+\begin_layout Standard
+Este trabalho está organizado da seguinte forma.
+ O capítulo 2 apresenta os fundamentos para o desenvolvimento desta dissertação.
+ O capítulo 3 apresenta e discute propostas e trabalhos relacionados com
+ o desenvolvimento de middlewares ou projetos correlacionados.
+ O capítulo 4 apresenta a arquitetura proposta e os seus componentes, assim
+ como a implementação dessa arquitetura.
+ O capítulo 5 apresenta a avaliação e os testes da implementação da proposta.
+ Finalmente, o capítulo 6 apresenta as conclusões da dissertação, assim
+ como os trabalhos futuros.
+ 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,2545 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass extbook
+\use_default_options true
+\master ../Principal.lyx
+\maintain_unincluded_children false
+\language brazilian
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Avaliação Experimental
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Avaliacao-Experimental"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este capítulo apresenta avaliação experimental da implementação da arquitetura
+ apresentada no capítulo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Arquitetura"
+
+\end_inset
+
+.
+ Os objetivos gerais desta avaliação e a estruturação da mesma são apresentados
+ a seguir.
+\end_layout
+
+\begin_layout Standard
+Na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Hardwares-Testados"
+
+\end_inset
+
+, foram realizados testes em diferentes hardwares, permitindo avaliar sua
+ capacidade de adaptabilidade e compatibilidade tanto da perspectiva do
+ middleware, quanto do firmware.
+ Na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Testes-de-Performance"
+
+\end_inset
+
+, foram conduzidos testes de performance com diferentes tecnologias de comunicaç
+ão e protocolos, permitindo avalizar a capacidade da arquitetura de lidar
+ com tecnologias heterogêneas e avaliar o desempenho e latências de comunicação.
+ A seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Integracao3D"
+
+\end_inset
+
+, apresenta experimentos de integração com ambientes de desenvolvimento
+ de jogos 3D (
+\emph on
+Game Engines
+\emph default
+), 
+\emph on
+Blender
+\emph default
+ e 
+\emph on
+jMonkeyEngine.
+
+\emph default
+ Estas ferramentas podem ser utilizadas para criar ambientes de simulação,
+ facilitando a criação de aplicações de IoT, sem depender de um ambiente
+ ou hardware real.
+ Por fim, a seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Estudo-de-Caso"
+
+\end_inset
+
+, apresenta um estudo de caso, que permite avaliar a arquitetura proposta
+ em um contexto real.
+ O contexto apresentado, está relacionado à automação residencial, focando,
+ principalmente, no controle de acesso usando a tecnologia RFID.
+\end_layout
+
+\begin_layout Section
+Hardwares Testados
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Hardwares-Testados"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Os testes realizados com os hardware estão subdivididos nas categorias de
+ microcontroladores (onde é executado o firmware) e os hardwares na categoria
+ de mini PCs que possuem um poder de processamento maior e são destinados
+ a executar o middleware ou aplicação construída utilizando o framework.
+\end_layout
+
+\begin_layout Subsection
+Microcontroladores (Firmware)
+\end_layout
+
+\begin_layout Standard
+Apesar do firmware ser construído com base na API do Arduino, o que o tornaria
+ automaticamente compatível com uma série de dispositivos 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "arduino-comp1,arduino-comp2,arduino-comp3"
+
+\end_inset
+
+, os testes demostraram que alguns microcontroladores possuem peculiaridades
+ que têm que ser levadas em consideração, principalmente pelo nível de abstração
+ que é proposto pelo sistema de configuração dinâmico de conexões que é
+ implementado (seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:ConfiguracaoDinamica"
+
+\end_inset
+
+).
+ Como exemplo, o firmware deve ser capaz de identificar quando estiver rodando
+ em um ESP8266, e realizar as configurações para conexão Wi-Fi sem necessidade
+ de modificações na aplicação/firmware.
+\end_layout
+
+\begin_layout Standard
+A tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:HardwaresTestados1"
+
+\end_inset
+
+ apresenta a lista de hardwares dessa categoria que foram testados.
+ Em seguida é apresentada a tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:HardwaresTestados1-mod"
+
+\end_inset
+
+, com os módulos de conexão testados.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Processador
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arquitetura
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino UNO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATmega328P - 16 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Nano
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATmega328P - 16 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Leonardo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATmega32u4 - 16 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Arduino MEGA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATmega2560 - 16 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Yun
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATmega32U4 / AR9331 Linux
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Arduino Due
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATSAM3X8E - 84 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ARM 32-bit 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ESP8266
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SoC (Tensilica's L106) - 80 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RISC 32-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stellaris Launchpad
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LM4F120H5QR - 80 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ARM M4F 32-bit 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Digispark
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ATtiny85 - 20MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AVR 8-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Teensy 3.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MK20DX256 - 72 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ARM M4 32-bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hardwares Testados (Microcontroladores)
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:HardwaresTestados1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Módulo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conexão
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Ethernet Shield
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ethernet
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Módulo ENC28J60
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ethernet
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ESP8266 (AT Mode)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wi-Fi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HC-05 / HC-06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bluetooth SPP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hardwares Testados (Módulos)
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:HardwaresTestados1-mod"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Precisar colocar referencias para as placas:
+\end_layout
+
+\begin_layout Plain Layout
+Lauchpad: http://www.ti.com/lit/ug/spmu289c/spmu289c.pdf
+\end_layout
+
+\begin_layout Plain Layout
+ESP: https://www.adafruit.com/images/product-files/2471/0A-ESP8266__Datasheet__EN_
+v4.3.pdf
+\end_layout
+
+\begin_layout Plain Layout
+Digispark: http://digistump.com/products/1
+\end_layout
+
+\begin_layout Plain Layout
+http://www.atmel.com/images/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45
+-attiny85_datasheet.pdf
+\end_layout
+
+\begin_layout Plain Layout
+Bluetooth: http://www.seeedstudio.com/wiki/images/4/48/HC-05_datasheet.pdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Mini PCs
+\end_layout
+
+\begin_layout Standard
+No trabalho, nomeamos de mini PCs, os hardware capazes de executar um sistema
+ operacional completo, como o Linux, e que possuem 512MB de memória RAM
+ ou superior.
+ Hardwares baseados na arquitetura ARM são elegíveis para suporte a máquina
+ virtual Java (JVM), consequentemente tendo suporte para execução do middleware.
+ Entretanto a forma de acesso aos periféricos dos mesmos, como os pinos
+ de GPIO, são específicos de cada plataforma.
+ Não existe uma especificação genérica como a disponível no framework do
+ Arduino, que abstraia o acesso aos pinos de GPIO de uma forma unificado.
+ Uma proposta é API 
+\emph on
+Device I/O
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "device-io:wiki"
+
+\end_inset
+
+, porém, é um especificação nova e sua compatibilidade é limitada.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arquitetura
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RAM 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Raspberry Pi Model B (Alpha)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ARM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256MB
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BeagleBone Black
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ARM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+512MB
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hardwares Testados (Mini PCs)
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:HardwaresTestados2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Testes de Performance
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Testes-de-Performance"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O objetivo deste experimento é avaliar a performance do middleware, implementaçõ
+es das tecnologias de comunicação e do firmware.
+\end_layout
+
+\begin_layout Subsection
+Procedimento de Medição
+\end_layout
+
+\begin_layout Standard
+Os experimentos foram executados através da ferramenta JMH
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://openjdk.java.net/projects/code-tools/jmh/
+\end_layout
+
+\end_inset
+
+, que permite a criação de 
+\emph on
+micro-benchmarks
+\emph default
+ em Java, isolando alguns comportamentos da JVM, aproximando ao máximo de
+ um ambiente real.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+A JMH é desenvolvida pelas mesmas pessoas que implementam a máquina virtual
+ Java.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Os seguintes parâmetros de configuração foram utilizados na execução dos
+ testes:
+\end_layout
+
+\begin_layout Itemize
+Iterações de pré-execução: 2;
+\end_layout
+
+\begin_layout Itemize
+Tempo de execução das iterações de pré-execução: 2s;
+\end_layout
+
+\begin_layout Itemize
+Iterações de coleta de dados: 20;
+\end_layout
+
+\begin_layout Itemize
+Tempo de cada iteração: 1s;
+\end_layout
+
+\begin_layout Itemize
+Argumentos da JVM: 
+\begin_inset Quotes eld
+\end_inset
+
+-server
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As iterações de 
+\begin_inset Quotes eld
+\end_inset
+
+pré-execução
+\begin_inset Quotes erd
+\end_inset
+
+ são utilizadas para garantir que a JVM, todas as classes da aplicação e
+ bibliotecas, sejam carregadas completamente, evitando interferência de
+ acesso ao disco.
+ 
+\end_layout
+
+\begin_layout Standard
+Em cada iteração de coletas de dados são enviados um série de comandos (
+\emph on
+DeviceCommand
+\emph default
+) para os dispositivos, durante o período definido (1s).
+ Em cada iteração, são enviados o máximo de comandos possíveis de forma
+ sequencial e síncrona, permitindo calcular o tempo médio de resposta de
+ cada comando.
+\end_layout
+
+\begin_layout Standard
+Ao final de todas iterações definidas (20), as estatísticas são geradas
+ pela ferramenta.
+\end_layout
+
+\begin_layout Subsection
+Métrica Utilizada
+\end_layout
+
+\begin_layout Standard
+A métrica utilizada é o tempo de resposta fim-a-fim.
+ Após todas iterações serem executadas, é calculado o tempo médio de resposta
+ de cada iteração e em seguida, o tempo médio de reposta geral de todas
+ iterações e o erro médio.
+\end_layout
+
+\begin_layout Standard
+O tempo de resposta, inclui o tempo para geração da mensagem no middleware,
+ transmissão, processamento e execução da ação no dispositivo e recebimento
+ da resposta.
+\end_layout
+
+\begin_layout Subsection
+Resultados: Conexão USB
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_5/usb.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Teste de performance - USB
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:perf-usb"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Resultados: Conexão Bluetooth
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_5/bluetooth.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Teste de performance - Bluetooth
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:perf-bluetooth"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Resultados: Conexão Ethernet
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Flar que foi suando o Wiznet..
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_5/ethernet.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Teste de performance - Ethernet
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:perf-ethernet"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+http://www.3scale.net/2015/04/how-to-load-test-and-tune-performance-on-your-api-pa
+rt-i/
+\end_layout
+
+\begin_layout Plain Layout
+http://pt.slideshare.net/alongirmonsky/how-to-run-a-1000000-vu-load-test-using-apa
+che-jmeter-and-blazemeter
+\end_layout
+
+\begin_layout Plain Layout
+- teste usando Nojs e Raspbberry (usando uma ferramenta)
+\end_layout
+
+\begin_layout Plain Layout
+http://guidogarcia.net/blog/2012/09/13/node-js-on-my-raspberry-pi-a-benchmark/
+\end_layout
+
+\begin_layout Plain Layout
+-- bem feito e buas ferramentas
+\end_layout
+
+\begin_layout Plain Layout
+https://www.ekito.fr/people/mqtt-benchmarks-rabbitmq-activemq/
+\end_layout
+
+\begin_layout Plain Layout
+outro:http://www.scalagent.com/IMG/pdf/Benchmark_MQTT_servers-v1-1.pdf
+\end_layout
+
+\begin_layout Plain Layout
+https://github.com/takanorig/mqtt-bench
+\end_layout
+
+\begin_layout Plain Layout
+Scaling MQTT With Apache Kafka
+\end_layout
+
+\begin_layout Plain Layout
+http://pt.slideshare.net/kellogh/mqtt-kafka-33100776
+\end_layout
+
+\begin_layout Plain Layout
+- testes de performace:
+\end_layout
+
+\begin_layout Plain Layout
+http://www.warski.org/blog/2014/07/evaluating-persistent-replicated-message-queues
+/
+\end_layout
+
+\begin_layout Plain Layout
+Script em python para teste, usando uma maquina ou várias, com mensagens
+ customizadas.
+\end_layout
+
+\begin_layout Plain Layout
+https://github.com/remakeelectric/mqtt-malaria
+\end_layout
+
+\begin_layout Plain Layout
+Websocket
+\end_layout
+
+\begin_layout Plain Layout
+https://blazemeter.com/blog/websocket-testing-apache-jmeter
+\end_layout
+
+\begin_layout Plain Layout
+(talvez dê pra adicionar uma seção falando da implementação do teste usando
+ websockets.)
+\end_layout
+
+\begin_layout Plain Layout
+USB: testes com o UNO e o Teensy
+\end_layout
+
+\begin_layout Plain Layout
+ref: https://www.pjrc.com/teensy/benchmark_usb_serial_receive.html
+\end_layout
+
+\begin_layout Plain Layout
+Possível problema na leitura lendo byte por byte, parece que não é tão efeficien
+te.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Bluetooth: Mostrar resultados dos teste em desktop, android, RaspberryPI
+\end_layout
+
+\begin_layout Plain Layout
+Referencia de testes com o Netty
+\end_layout
+
+\begin_layout Plain Layout
+http://www.infoq.com/news/2014/05/benchmark-web-framework
+\end_layout
+
+\begin_layout Plain Layout
+-> Falta falar do UPnP
+\end_layout
+
+\begin_layout Plain Layout
+Ferramenta: https://www.digitalocean.com/community/tutorials/how-to-use-apachebenc
+h-to-do-load-testing-on-an-ubuntu-13-10-vps
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+FALTA O STELARIS LAUCHPAD
+\end_layout
+
+\begin_layout Plain Layout
+grafico: https://plot.ly/plot/?plot_type=Bar+chart
+\end_layout
+
+\begin_layout Plain Layout
+Arduino DUE era pra ser o mais veloz ( The main reason is that the SAM3X8E
+ is one of the very few (perhaps only?) chips that supports USB High Speed
+ (480 MHz).) Ref: https://developer.mbed.org/cookbook/Arduino-Due
+\end_layout
+
+\begin_layout Plain Layout
+Proque o teensy é mais rápido? (ver Receive Buffering)
+\end_layout
+
+\begin_layout Plain Layout
+-> https://www.pjrc.com/teensy/td_serial.html
+\end_layout
+
+\begin_layout Plain Layout
+Arduino 101- Pedir para o PACMAN realizar o Benackmark
+\end_layout
+
+\begin_layout Plain Layout
+Falar que os Teensy, Due, e Lun, foram doados pelos próprios criadores.
+\end_layout
+
+\begin_layout Plain Layout
+Maxima velocidade do Uno: Paul did not benchmark the Arduino Uno or Arduino
+ Nano.
+ On Both boards the serial baudrate is limited to 115200 baud
+\end_layout
+
+\begin_layout Plain Layout
+Se for testar no Windows dodanilo, falar que o JHM limita as direfêncas
+ do SSD
+\end_layout
+
+\begin_layout Plain Layout
+--
+\end_layout
+
+\begin_layout Plain Layout
+Teste de performace com o CoAp (Callifornium / Eclipse IOT)
+\end_layout
+
+\begin_layout Plain Layout
+http://www.vs.inf.ethz.ch/publ/papers/mkovatsc-2014-iot-californium.pdf
+\end_layout
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\begin_layout Plain Layout
+Ferramenta para WebSocket:
+\end_layout
+
+\begin_layout Plain Layout
+https://github.com/observing/thor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Seção: Avaliação das API de Clientes
+\end_layout
+
+\begin_layout Plain Layout
+Testes: TCP vs WebSocket
+\end_layout
+
+\begin_layout Plain Layout
+Fazer teste direto aplicação - firmware, e aplicação (local) - midleware
+ - firmware (testar com TCP e WS)
+\end_layout
+
+\begin_layout Plain Layout
+Fazer testes com e sem o CommandDelivery
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Integração com Ambientes 3D
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Integracao3D"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O desenvolvimento de aplicações para Internet das Coisas conta com o desafio
+ de ter que lidar com vários dispositivos físicos.
+ Como alternativa ambientes de simulação podem ser utilizados para executar
+ os testes e experimentos, antes de testar com os dispositivos reais.
+ Outra possibilidade para utilização dos ambientes 3D, é permitir a integração
+ entre um ambiente real e virtual.
+\end_layout
+
+\begin_layout Standard
+Foram realizados testes de integração do OpenDevice com sistema de desenvolvimen
+to de jogos (
+\emph on
+Game Engine
+\emph default
+), afim de validar uma possível utilização dos mesmos para criação de ambientes
+ de simulação.
+ Os experimentos realizados são detalhados a seguir.
+\end_layout
+
+\begin_layout Subsection
+Integração - jMonkeyEngine.
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+jMonkeyEngine
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\emph on
+http://jmonkeyengine.org/
+\end_layout
+
+\end_inset
+
+
+\emph default
+ é uma ferramenta gratuita de código fonte aberto, utilizada para construção
+ de jogos 3D em Java.
+ Possui uma boa documentação e ambiente de desenvolvimento integrado.
+ Devido sua implementação ser baseada na linguagem Java, a integração com
+ o OpenDevice se torna bastante simples e permite a construção de uma aplicação
+ de simulação que utiliza as APIs e módulos do OpenDevice diretamente, sem
+ a necessidade do middleware.
+ 
+\end_layout
+
+\begin_layout Standard
+No teste realizado, foi construída uma aplicação simples para validar a
+ integração, que consiste no mapeamento dos dispositivos físicos, no caso
+ 3 LEDs, e sua vinculação com objetos virtuais 3D da 
+\emph on
+Game Engine
+\emph default
+.
+ Ao clicar em algum objeto 3D, como os representados na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:jmonkey"
+
+\end_inset
+
+, o OpenDevice localiza o dispositivo vinculado e envia o comando para o
+ acionamento do dispositivo físico.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/JMonkeyEngine.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integração com a JMonkeyEngine
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:jmonkey"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Integração - Blender.
+\end_layout
+
+\begin_layout Standard
+O 
+\emph on
+Blender
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\emph on
+https://www.blender.org/
+\end_layout
+
+\end_inset
+
+
+\emph default
+ é uma ferramenta livre e de código fonte aberto, escrita em sua maior parte
+ utilizando a linguagem de programação Python.
+ Ela possui ferramentas para modelagem, animação, renderização e desenvolvimento
+ de Jogos.
+ O diferencial em relação à 
+\emph on
+jMonkeyEngine,
+\emph default
+ é que o 
+\emph on
+Blender
+\emph default
+ possui uma série de facilidades para configurações de eventos e vinculações
+ de scripts em Python utilizando apenas a interface gráfica.
+\end_layout
+
+\begin_layout Standard
+Para permitir a integração com o OpenDevice, foi necessária a criação de
+ uma biblioteca cliente em Python, que implementa o protocolo do OpenDevice
+ e permite uma comunicação bidirecional através de uma comunicação TCP.
+ O experimento realizado (Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:blender1"
+
+\end_inset
+
+), é similar ao experimento realizado com a 
+\emph on
+jMonkeyEngine
+\emph default
+, permitindo fazer a vinculação entre objetos virtuais 3D e os dispositivos
+ físicos
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Vídeo do experimento da figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:blender1"
+
+\end_inset
+
+: http://youtu.be/b3PbOPIMHmY
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Para validar a performance da integração, foram realizados testes visuais
+ do tempo de resposta entre duas aplicações gráficas (Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:blender2"
+
+\end_inset
+
+), uma escrita em Java (executando o middleware) e outra Python.
+ Verificou-se que as duas interfaces respondem em tempo real às modificações
+ na barra de rolagem (slider) em ambas interfaces
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Vídeo do experimento da figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:blender2"
+
+\end_inset
+
+: http://youtu.be/j4dMnAPZu70
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_4/Blender.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integração com o Blender
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:blender1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /media/ricardo/Dados/Dropbox/Mestrado/Dissertacao/Imagens/Cap_4/Blender2.png
+	width 70line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Teste de desempenho do cliente Python
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:blender2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Estudo de Caso
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Estudo-de-Caso"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A arquitetura descrita conforme a seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Arquitetura"
+
+\end_inset
+
+, foi implementada vários testes foram conduzidos para validar os componentes
+ da arquitetura em relação ao design, integração e performance.
+ Nesta seção, faremos um estudo de caso baseado em um cenário real, permitindo
+ avaliar a integração entre os componentes da arquitetura e as capacidades
+ de evolução do framework proposto.
+\end_layout
+
+\begin_layout Subsection
+Resumo
+\end_layout
+
+\begin_layout Standard
+O cenário escolhido para validação da proposta consiste em um sistema de
+ controle de acesso, usando a tecnologia RFID e alguns elementos de automação
+ residencial.
+ A estratégia utilizada consiste na elaboração de um cenário mais simples
+ e sua posterior evolução para um cenário mais complexo, integrando outros
+ dispositivos e plataformas: Hardware, Desktop, Web/Cloud e Mobile.
+ O projeto será implantado nas instalações do prédio denominado 
+\begin_inset Quotes eld
+\end_inset
+
+GEDAI
+\begin_inset Quotes erd
+\end_inset
+
+, onde está instalada a CriativaSoft (empresa do autor) e outras duas empresas,
+ sendo utilizado para o controle de acesso dos funcionários.
+ 
+\end_layout
+
+\begin_layout Standard
+Os principais objetivos são: (1) avaliar os componentes da arquitetura em
+ conjunto, (2) validar os modelos de comunicação Cloud e Local, (3) avaliar
+ a integração com novos dispositivos (sensores e atuadores), (4) avaliar
+ a integração com dispositivos IP que utilizam outros protocolos, (5) avaliar
+ a integração com aplicações cliente Mobile(Android) e (5) avaliar as capacidade
+s de extensibilidade da plataforma.
+\end_layout
+
+\begin_layout Subsection
+Ambiente de Teste
+\end_layout
+
+\begin_layout Standard
+Neste experimento serão utilizados hardwares de baixo custo, como o Arduino,
+ ESP8266 e Raspberry Pi, os demais sensores e atuadores utilizados serão
+ descritos nas seções seguintes.
+ O middleware foi implantado em um servidor na Amazon EC2, permitindo que
+ aplicações cliente controlem e recebam informações dos dispositivos pela
+ Internet.
+\end_layout
+
+\begin_layout Standard
+O experimento será avaliado em dois cenários, descritos e detalhados a seguir.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falar de como extender os devices
+\end_layout
+
+\begin_layout Plain Layout
+Falar de como extender as connections
+\end_layout
+
+\begin_layout Plain Layout
+Falar como adicionar novos comandosque
+\end_layout
+
+\begin_layout Plain Layout
+Desenvolvendo novas extenções.
+\end_layout
+
+\begin_layout Plain Layout
+Falar de como implementar novos protocolos.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Melhorar descrição do Raspberry:
+\end_layout
+
+\begin_layout Plain Layout
+Raspberry Pi is a single board computer based on the Linux system, and its
+ size is similar as a credit card [1].
+ We use the board of raspberry pi, which is version B and contains a Broadcom
+ BCM2835 700MHZ ARM architecture processor with 512MB memory, an Ethernet,
+ two USB interfaces, HDMI video output and SD card as storage media, as
+ shown in Fig.
+ 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Cenário 1
+\end_layout
+
+\begin_layout Standard
+Este cenário tem como objetivo avalizar a utilização da arquitetura do OpenDevic
+e para criação de projetos simples para Internet das Coisas, utilizando
+ componente e hardwares existentes no mercado para criação de projetos inovadore
+s.
+ Como mencionado, este cenário consiste na criação de uma aplicação para
+ controle de acesso usando RFID, conforme apresentado na figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cenario1"
+
+\end_inset
+
+.
+ Neste cenário, o hardware está conectada à Internet através de uma comunicação
+ Ethernet ou Wi-Fi e se comunica com o middleware utilizando o protocolo
+ do OpenDevice em conjunto com o protocolo MQTT.
+ Este cenário tem como característica ser um cenário de fácil implantação.
+ 
+\end_layout
+
+\begin_layout Standard
+Para implementação dessa aplicação, foi utilizado o Arduino Yún, uma versão
+ do Arduino que possui conexão Ethernet e Wi-Fi já embutidas na própria
+ placa, e executa uma versão customizada no Linux para roteadores, o OpenWrt-Yún
+\begin_inset CommandInset citation
+LatexCommand cite
+key "openwrt-yun"
+
+\end_inset
+
+, porém é possível utilizar qualquer outra versão do Arduino, com um módulo
+ que forneça uma comunicação IP.
+ A leitura dos cartões de acesso é feita por um leitor RFID de proximidade
+ que trabalha na frequência 13.56 MHz.
+ O leitor é baseado no processador MFRC522
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MFRC522"
+
+\end_inset
+
+ da empresa NXP, compatível com cartões/tags RFID padrão ISO 14443A.
+ A comunicação com este leitor é realizada através do protocolo SPI
+\begin_inset CommandInset citation
+LatexCommand cite
+key "spi1,spi2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_5/diagrama_caso1.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama - Cenário 1 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cenario1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Estruturação do projeto:
+\end_layout
+
+\begin_layout Standard
+Neste cenário foram implementados duas aplicações: (1) uma aplicação embarcada
+\begin_inset space ~
+\end_inset
+
+(firmware), que faz o gerenciamento dos dispositivos físicos, e (2) uma
+ aplicação Java que utiliza o framework do OpenDevice, que é a responsável
+ pela validação dos cartões lidos.
+ O firmware, utiliza as bibliotecas do OpenDevice, MQTT
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lib-mqtt"
+
+\end_inset
+
+ e do leitor RFID (MFRC522)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lib-MFRC522"
+
+\end_inset
+
+.
+ A aplicação Java, é uma aplicação bem simples, utilizando o módulo de servidor
+ MQTT embarcado, o módulo core da plataforma e um banco de dados em memória
+ chamado MapDB
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mapdb"
+
+\end_inset
+
+, com suporte a serialização em disco.
+ O MapDB foi escolhido por ser o mesmo utilizado na implementação do servidor
+ MQTT (baseado no Moquette).
+\end_layout
+
+\begin_layout Subsubsection*
+Descrição básica de funcionamento
+\end_layout
+
+\begin_layout Standard
+Ao detectar a presença de alguma etiqueta/cartão RFID, o firmware envia
+ a notificação para aplicação Java, que verifica a existência do código
+ lido no cache em memória (aumentando a performance) e envia a resposta
+ de confirmação de volta para o firmware, através de um comando customizado
+ (action), chamado 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+onAuthFinish
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Na função 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+onAuthFinish
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, definida pelo firmware, ele verifica o parâmetro enviado pela aplicação,
+ se a autenticação foi realizada, em caso positivo, é emitido um sinal sonoro
+ e liberado a fechadura elétrica.
+ Em caso negativo, é emitido um sinal sonoro longo e o acionamento de um
+ LED vermelho, permitindo o usuário identificar a não autorização.
+\end_layout
+
+\begin_layout Standard
+O firmware conta com uma função que emite um alerta (sonoro e visual), caso
+ o servidor (aplicação Java) não efetue a resposta até um tempo limite.
+ É possível, também, a definição de chaves mestre, que não necessitam de
+ autenticação 
+\begin_inset Quotes eld
+\end_inset
+
+on-line
+\begin_inset Quotes erd
+\end_inset
+
+, permitindo a a liberação do acesso caso não exista conectividade com a
+ Internet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Com esta aplicação, é possível criar por exemplo um serviço de autenticação
+ centralizado, onde o usuário teria acesso à vários espaços distribuídos,
+ como hotéis, coworking.
+ Os códigos desse projeto estão disponíveis no website
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/OpenDevice/opendevice-examples/tree/master/opendevice-access-c
+ontrol-v1
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Tirar um foto da lista de compoentes.
+\end_layout
+
+\begin_layout Plain Layout
+Colocar o Diagrama desse cenário.
+\end_layout
+
+\begin_layout Plain Layout
+Dúvida: Colocar um diagrama de ligação dos componentes ?
+\end_layout
+
+\begin_layout Plain Layout
+Destacar alguns testes realizads no Raspberry ?
+\end_layout
+
+\begin_layout Plain Layout
+O MapDB pode salvar o ultimo valor dos dispositivos ???? é importante para
+ evitar o problemas de leituras inválidas.
+\end_layout
+
+\begin_layout Plain Layout
+Falta o banco de dados EXTERNO.
+\end_layout
+
+\begin_layout Plain Layout
+Falta linkar para biblioteca AT do ESP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Cenário 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Falta falar da versão do Raspberry PI, e a versão do Java instalada, que
+ não precisar ter a Device/IO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O cenário 2, representado pela figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cenario2"
+
+\end_inset
+
+, pode ser considerado uma complementação do cenário 1, focado no controle
+ de acesso, mas incluindo novos elementos de automação.
+ Neste cenário é utilizado um servidor local, executando em um Raspberry
+ Pi (ou BeagleBone), e o mesmo está sincronizado com o middleware na Internet.
+ 
+\end_layout
+
+\begin_layout Standard
+O objetivo é avaliar o gerenciamento de vários dispositivos, a integração
+ com uma câmera IP (que opera com protocolo próprio), a interface entre
+ uma aplicação Mobile e dispositivos físicos pela Internet e a integração
+ entre uma aplicação local e o middleware instalado em um servidor na nuvem.
+\end_layout
+
+\begin_layout Standard
+Além do controle de acesso, usando RFID, este cenário integra uma campainha
+ sem fio, operando na frequência 433Mhz, uma câmera IP (clone da Foscam)
+ e um emissor de infra-vermelho para controle do ar-condicionado da sala
+ de reunião.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../Imagens/Cap_5/diagrama_caso2.svg
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama - Cenário 2 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cenario2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Descrição básica de funcionamento
+\end_layout
+
+\begin_layout Standard
+Quando a campainha é pressionada, o receptor RF 433Mhz acoplado ao Arduino
+ detecta o sinal e o firmware envia a notificação, via conexão Wi-Fi, para
+ a aplicação (ou middleware), que está executando no servidor local.
+ Em seguida, a aplicação captura a imagem da câmera IP e envia uma notificação
+ para as aplicações mobile, informando que uma visita está aguardando a
+ liberação, que pode ser realizada pelo próprio aplicativo Mobile.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Estruturação do projeto:
+\end_layout
+
+\begin_layout Standard
+Este cenário é composto por 5 aplicações/componentes, que serão detalhados
+ a seguir:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dispositivo 1 (Arduino)
+\series default
+: Similar à implementação do cenário 1, com algumas modificações no hardware.
+ Foi utilizado o Arduino UNO e a conectividade Wi-Fi é fornecida pelo módulo
+ ESP8266, utilizando o firmware AT, conectado na porta UART do Arduino.
+ Também foi incluído um módulo receptor RF 433 Mhz que recebe o sinal da
+ campainha.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dispositivo 2 (ESP8266)
+\series default
+: O dispositivo que faz o controle do ar-condicionado.
+ Opera no modo independente (standalone), ou seja, sem depender de outro
+ componente.
+ É programado com um firmware baseado no framework do Arduino
+\begin_inset CommandInset citation
+LatexCommand cite
+key "esp8266:arduino"
+
+\end_inset
+
+, utilizando a biblioteca do OpenDevice e a biblioteca para operar o emissor
+ de infra-vermelho
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://github.com/markszabo/IRremoteESP8266
+\end_layout
+
+\end_inset
+
+.
+ A comunicação com a aplicação local, é feita usando o protocolo MQTT em
+ conjunto com o protocolo do OpenDevice.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Middleware Local
+\series default
+: Aplicação que executa localmente no Raspberry Pi e responsável pelo gerenciame
+nto de todos os dispositivos do projeto.
+ É baseada na versão padrão do middleware, e as regras específicas para
+ o projeto são implementadas através de extensões.
+ As extensões incluídas neste cenário adicionaram novas entidades persistentes,
+ novas interfaces Rest, suporte a novos dispositivos (câmera IP) e novas
+ páginas na interface administrativa do middleware.
+ O sistema de armazenamento utiliza a implementação padrão, baseada no Neo4J,
+ com suporte a JPA (Java Persistence API).
+ A aplicação local possui uma conexão com a versão do middleware que está
+ implantado em um servidor na nuvem (Amazon), permitindo que aplicações
+ clientes controlem os dispositivos pela Internet.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Upload das imagens ?
+\end_layout
+
+\begin_layout Plain Layout
+Falar do sistema de cadastro de tags RFID (poderia ser um Print ?)
+\end_layout
+
+\begin_layout Itemize
+Este cenário utiliza uma nova estratégia de implementação, realizada como
+ uma extensão do middleware, permitindo avalizar sua flexibilidade de expansão
+ e inclusão de novas funcionalidades, sem alterações na arquitetura e reutilizan
+do a base de código existente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Middleware
+\series default
+: Implementação padrão disponibilizada pelo OpenDevice, o middleware foi
+ implantado em um servidor na nuvem, permitindo a comunicação com dispositivos
+ pela Internet, sem a necessidade de configurações de IP Fixo ou DDNS (Dynamic
+ DNS).
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+precisa do plugin para GCM 
+\end_layout
+
+\begin_layout Plain Layout
+suporte a UPLOAD (servidor FTP ?).
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Configurado com o plug-in que permite a ponte entre o servidor GCM (Google
+ Cloud Message) e o plug-in que oferece o serviço de armazenamento de arquivos,
+ para visualização das imagens das câmeras.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Aplicação Mobile (Android)
+\series default
+: Permite a visualização da imagem
+\begin_inset space ~
+\end_inset
+
+(posteriormente vídeo) capturada pela câmera, liberação da fechadura elétrica
+ e controle do ar-condicionado da sala de reunião.
+ A comunicação é realizada com o middleware local, caso o dispositivo mobile
+ esteja conectado na mesma rede do middleware, ou com o middleware na Internet,
+ caso esteja usando uma rede 3G/4G.
+\end_layout
+
+\begin_layout Subsubsection*
+Integração com Câmeras IP
+\end_layout
+
+\begin_layout Standard
+A câmera IP utilizada, utiliza um protocolo HTTP próprio.
+ Para realizar a integração, foi criado uma nova extensão que implementa
+ a abstração para este dispositivo.
+ A extensão consiste basicamente na implementação de duas classes: 
+\emph on
+IPCamConnection
+\emph default
+ e 
+\emph on
+IPCamGenericProtocol
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+A classe 
+\emph on
+IPCamGenericProtocol
+\emph default
+, implementa a interface 
+\emph on
+MessageSerializer
+\emph default
+, é responsável por converter os comandos 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+ActionCommand
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+SetPropertyCommand
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, em requisições HTTP, seguindo as especificações da câmera.
+ O protocolo da câmera foi obtida através de engenharia reversa e está disponíve
+l no website do autor
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Protocolo câmera IP Foscam: https://goo.gl/yDUjDI
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Criar uma imagem com o fluxo de tirar a imagem da câmera.
+\end_layout
+
+\begin_layout Plain Layout
+Colocar a foto em si da câmera (e visualização do sistema )?
+\end_layout
+
+\begin_layout Plain Layout
+-- Ref: https://developers.google.com/cloud-messaging/images/GCM_hero.svg
+\end_layout
+
+\begin_layout Plain Layout
+Falar da extenxão do middleware (para mostrar a câmera, e novos devices),
+ queadiciona as novas telas...
+ (tem que criar...)
+\end_layout
+
+\begin_layout Plain Layout
+Falra implementar a ponte GCM -> WebSocket / MQTT
+\end_layout
+
+\begin_layout Plain Layout
+Falar do controle da cametra utilizando a API JavaScript (imgagens / exemplos)...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Considerações Finais
+\end_layout
+
+\begin_layout Standard
+Este capítulo apresentou uma avaliação experimental, que abordou vários
+ aspectos e componentes da arquitetura proposta.
+ Os testes de performance, permitiram analisar a sobrecarga no tempo de
+ comunicação com os dispositivos, introduzido pelos componentes da arquitetura.
+ Bons resultados foram obtidos, principalmente na comunicação USB, mesmo
+ sem a arquitetura ter passado por nenhum processo de otimização.
+\end_layout
+
+\begin_layout Standard
+Os experimentos conduzidos na seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Integracao3D"
+
+\end_inset
+
+, permitiram avaliar positivamente, a possibilidade de integração com plataforma
+s 3D, que podem ser usadas para criar ambientes de simulação.
+\end_layout
+
+\begin_layout Standard
+Os experimentos realizados no estudo de caso (seção 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Estudo-de-Caso"
+
+\end_inset
+
+), permitiram avaliar um amplo conjunto de componentes da plataforma.
+ O estudo de caso, cenário 1, permitiu avaliar a plataforma como framework
+ e a facilidade de implementação de projetos simples.
+ O Cenário 2, permitiu avaliar as capacidades de extensibilidade do middleware,
+ integração com vários dispositivos, utilização de várias tecnologias de
+ comunicação e hardwares.
+ A integração com a câmera IP, apresentou um real desafio, pois ela opera
+ usando um protocolo próprio e é um dispositivo relativamente complexo,
+ pois possui controle de movimentação, infra-vermelho, controle de brilho,
+ saturação, tira fotos (snapshot), vídeo e etc.
+ Porém a integração foi bem sucedida, de modo que a câmera e suas propriedades
+ são totalmente acessíveis também da camada JavaScript / Web.
+\end_layout
+
+\begin_layout Standard
+Estes experimentos demonstraram o potencial e flexibilidade da arquitetura
+ proposta.
+\end_layout
+
+\end_body
+\end_document
